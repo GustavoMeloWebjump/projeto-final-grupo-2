@@ -343,7 +343,8 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
-        'Yotpo_Yotpo' => 1,
+        'Webjump_Backend' => 1,
+        'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
         'websites' => [
@@ -353,7 +354,7 @@ return [
                 'name' => 'Admin',
                 'sort_order' => '0',
                 'default_group_id' => '0',
-                'is_default' => '0',
+                'is_default' => '0'
             ],
             'petshop_code' => [
                 'website_id' => '1',
@@ -361,7 +362,7 @@ return [
                 'name' => 'Petshop',
                 'sort_order' => '1',
                 'default_group_id' => '1',
-                'is_default' => '1',
+                'is_default' => '1'
             ],
             'sneakers_code' => [
                 'website_id' => '8',
@@ -369,8 +370,8 @@ return [
                 'name' => 'Sneakers',
                 'sort_order' => '2',
                 'default_group_id' => '8',
-                'is_default' => '0',
-            ],
+                'is_default' => '0'
+            ]
         ],
         'groups' => [
             0 => [
@@ -379,7 +380,7 @@ return [
                 'name' => 'Default',
                 'root_category_id' => '0',
                 'default_store_id' => '0',
-                'code' => 'default',
+                'code' => 'default'
             ],
             1 => [
                 'group_id' => '1',
@@ -387,16 +388,16 @@ return [
                 'name' => 'Petshop',
                 'root_category_id' => '2',
                 'default_store_id' => '1',
-                'code' => 'petshop_code_group',
+                'code' => 'petshop_code_group'
             ],
             8 => [
                 'group_id' => '8',
                 'website_id' => '8',
                 'name' => 'Sneakers',
-                'root_category_id' => '2',
+                'root_category_id' => '10',
                 'default_store_id' => '8',
-                'code' => 'sneakers_code_group',
-            ],
+                'code' => 'sneakers_code_group'
+            ]
         ],
         'stores' => [
             'admin' => [
@@ -406,7 +407,7 @@ return [
                 'group_id' => '0',
                 'name' => 'Admin',
                 'sort_order' => '0',
-                'is_active' => '1',
+                'is_active' => '1'
             ],
             'petshop_view_code' => [
                 'store_id' => '1',
@@ -415,7 +416,7 @@ return [
                 'group_id' => '1',
                 'name' => 'Petshop',
                 'sort_order' => '1',
-                'is_active' => '1',
+                'is_active' => '1'
             ],
             'petshop_view2_code' => [
                 'store_id' => '2',
@@ -424,7 +425,7 @@ return [
                 'group_id' => '1',
                 'name' => 'Petshop2',
                 'sort_order' => '2',
-                'is_active' => '1',
+                'is_active' => '1'
             ],
             'sneakers_view_code' => [
                 'store_id' => '8',
@@ -433,9 +434,9 @@ return [
                 'group_id' => '8',
                 'name' => 'Sneakers',
                 'sort_order' => '2',
-                'is_active' => '1',
-            ],
-        ],
+                'is_active' => '1'
+            ]
+        ]
     ],
     'system' => [
         'websites' => [

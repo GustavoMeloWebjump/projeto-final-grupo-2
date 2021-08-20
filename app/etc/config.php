@@ -393,7 +393,7 @@ return [
                 'group_id' => '8',
                 'website_id' => '8',
                 'name' => 'Sneakers',
-                'root_category_id' => '0',
+                'root_category_id' => '2',
                 'default_store_id' => '8',
                 'code' => 'sneakers_code_group',
             ],

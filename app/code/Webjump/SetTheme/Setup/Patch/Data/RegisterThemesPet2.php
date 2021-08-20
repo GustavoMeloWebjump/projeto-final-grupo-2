@@ -3,56 +3,53 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Webjump\SetTheme\Setup\Patch\Data;
-
 use Magento\Theme\Model\Theme\Registration;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
-
 /**
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
  */
-class RegisterThemes implements DataPatchInterface
+class RegisterThemesPet2 implements DataPatchInterface
 {
-
-    private WriterInterface $writer;
+    /**
+    * @var ConfigInterface
+    */
+    private $configInterface;
     
     private StoreManagerInterface $storeManager;
-
-
     /**
      * RegisterThemes constructor.
      * @param \Magento\Framework\Setup\ModuleDataSetupInterface $moduleDataSetup
      * @param Registration $themeRegistration
      */
     public function __construct(
-        StoreManagerInterface $storeManager, 
-        WriterInterface $writer
+        StoreManagerInterface $storeManager,
+        ConfigInterface $configInterface
     ) {
-        $this->writer = $writer;
+        
         $this->storeManager = $storeManager;
+        $this->configInterface = $configInterface;
     }
-    
     /**
      * {@inheritdoc}
      */
     public function apply()
     {
-        $fanonStoreId = $this->storeManager->getStore('sneakers_view_code')->getId();
 
-        $this->writer->save(
-            'design/theme/theme_id',
-            4,
-            'stores',
-            $fanonStoreId
+        $pet2StoreId = $this->storeManager->getDefaultStoreView('petshop_view2_code')->getId();
+        $this->configInterface->saveConfig(
+            'design/theme/theme_id', 
+            5, 
+            'view', 
+            $pet2StoreId
         );
-    }
 
+    }
     /**
      * {@inheritdoc}
      */
@@ -60,7 +57,6 @@ class RegisterThemes implements DataPatchInterface
     {
         return [];
     }
-
     /**
      * {@inheritdoc}
      */

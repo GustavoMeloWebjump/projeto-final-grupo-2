@@ -1,11 +1,12 @@
 <?php
 namespace Webjump\Backend\Setup\Patch\Data;
 
-use Magento\Catalog\Helper\DefaultCategoryFactory;
 use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use Magento\Store\Model\GroupFactory;
+use Magento\Store\Model\ResourceModel\Group;
 
 /**
  * Class InstallCategories data patch.
@@ -25,24 +26,32 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     private $categorySetupFactory;
 
     /**
-     * @var DefaultCategoryFactory
+     * @var GroupFactory
      */
-    private $categoryFactory;
+    private $groupFactory;
+    
+    /**
+     * @var Group
+     */
+    private $groupResourceModel;
 
     /**
      * PatchInitial constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param CategorySetupFactory $categorySetupFactory
-     * @param DefaultCategoryFactory $categoryFactory
+     * @param GroupFactory $groupFactory
+     * @param Group $group
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         CategorySetupFactory $categorySetupFactory,
-        DefaultCategoryFactory $categoryFactory
+        GroupFactory $groupFactory,
+        Group $group
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->categorySetupFactory = $categorySetupFactory;
-        $this->categoryFactory = $categoryFactory;
+        $this->groupFactory = $groupFactory;
+        $this->groupResourceModel = $group;
     }
 
     /**
@@ -228,6 +237,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
+
+        $group = $this->groupFactory->create();
+        $group->load(2)->setRootCategoryId(10);
+        $this->groupResourceModel->save($group);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

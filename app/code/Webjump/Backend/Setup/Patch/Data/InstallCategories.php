@@ -1,7 +1,7 @@
 <?php
 namespace Webjump\Backend\Setup\Patch\Data;
 
-use Magento\Catalog\Model\CategoryFactory as ModelCategoryFactory;
+use Magento\Catalog\Helper\DefaultCategoryFactory;
 use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -25,7 +25,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     private $categorySetupFactory;
 
     /**
-     * @var ModelCategoryFactory
+     * @var DefaultCategoryFactory
      */
     private $categoryFactory;
 
@@ -33,12 +33,12 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      * PatchInitial constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param CategorySetupFactory $categorySetupFactory
-     * @param ModelCategoryFactory $categoryFactory
+     * @param DefaultCategoryFactory $categoryFactory
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         CategorySetupFactory $categorySetupFactory,
-        ModelCategoryFactory $categoryFactory
+        DefaultCategoryFactory $categoryFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->categorySetupFactory = $categorySetupFactory;

@@ -158,6 +158,19 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
+            
+        $category6 = $categorySetup->createCategory();
+        $category6->load(8)
+            ->setParentId($categoryPet->getId())
+            ->setId(8)
+            ->setPath($rootCategoryId . '/' . 2 . '/' . 8)
+            ->setStoreId(1)
+            ->setName('Category 6')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(2)
+            ->setInitialSetupFlag(true)
+            ->save();
 
         //Sneakers category and its subs
         $categorySneakers = $categorySetup->createCategory();
@@ -232,6 +245,19 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setPath($rootCategoryId . '/' . 10 . '/' . 15)
             ->setStoreId(3)
             ->setName('Category 15')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(2)
+            ->setInitialSetupFlag(true)
+            ->save();
+            
+        $category16 = $categorySetup->createCategory();
+        $category16->load(16)
+            ->setParentId($categorySneakers->getId())
+            ->setId(16)
+            ->setPath($rootCategoryId . '/' . 10 . '/' . 16)
+            ->setStoreId(3)
+            ->setName('Category 16')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)

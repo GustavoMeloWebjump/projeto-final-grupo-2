@@ -10,6 +10,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\ScopeInterface;
 /**
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
@@ -41,11 +42,11 @@ class RegisterThemesPet2 implements DataPatchInterface
     public function apply()
     {
 
-        $pet2StoreId = $this->storeManager->getDefaultStoreView('petshop_view2_code')->getId();
+        $pet2StoreId = $this->storeManager->getStore('petshop_view2_code')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             5, 
-            'view', 
+            ScopeInterface::SCOPE_STORES, 
             $pet2StoreId
         );
 

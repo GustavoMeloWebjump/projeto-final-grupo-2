@@ -10,6 +10,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\ScopeInterface;
 /**
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
@@ -43,7 +44,7 @@ class RegisterThemesFanon implements DataPatchInterface
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             4, 
-            'stores', 
+            ScopeInterface::SCOPE_STORES,
             $fanonStoreId
         );
        

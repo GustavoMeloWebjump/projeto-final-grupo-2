@@ -465,10 +465,10 @@ return [
                     ]
                 ],
                 'currency' => [
-                        'options' => [
+                    'options' => [
                         'base' => 'USD',
                         'default' => 'USD',
-                        'allow' => 'USD',
+                        'allow' => 'USD'
                     ]
                 ]
             ]

@@ -54,13 +54,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
+
         /** @var \Magento\Catalog\Setup\CategorySetup $categorySetup */
-        
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
         $rootCategoryId = \Magento\Catalog\Model\Category::TREE_ROOT_ID;
-
-        $category = $this->categoryFactory->create();
-        $categoryId = $category->getId();
         
         //Root category
         $categorySetup->createCategory()
@@ -248,7 +245,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      */
     public static function getVersion()
     {
-        return '2.0.0';
+        return '2.1.0';
     }
 
     /**

@@ -330,6 +330,7 @@ return [
         'Dotdigitalgroup_ChatGraphQl' => 1,
         'Dotdigitalgroup_EmailGraphQl' => 1,
         'Dotdigitalgroup_Sms' => 1,
+        'Ho_Templatehints' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
@@ -465,10 +466,10 @@ return [
                     ]
                 ],
                 'currency' => [
-                        'options' => [
+                    'options' => [
                         'base' => 'USD',
                         'default' => 'USD',
-                        'allow' => 'USD',
+                        'allow' => 'USD'
                     ]
                 ]
             ]

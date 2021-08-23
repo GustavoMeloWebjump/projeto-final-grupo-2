@@ -453,6 +453,23 @@ return [
                     ]
                 ]
             ]
+        ],
+        'stores' => [
+            'petshop_view2_code' => [
+                'general' => [
+                    'locale' => [
+                        'code' => 'en_US',
+                        'language' => 'en'
+                    ]
+                ],
+                'currency' => [
+                        'options' => [
+                        'base' => 'USD',
+                        'default' => 'USD',
+                        'allow' => 'USD',
+                    ]
+                ]
+            ]
         ]
     ]
 ];

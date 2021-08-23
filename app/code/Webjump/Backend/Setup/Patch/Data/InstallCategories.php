@@ -55,13 +55,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
         /** @var \Magento\Catalog\Setup\CategorySetup $categorySetup */
-        
+
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
         $rootCategoryId = \Magento\Catalog\Model\Category::TREE_ROOT_ID;
 
-        $category = $this->categoryFactory->create();
-        $categoryId = $category->getId();
-        
         //Root category
         $categorySetup->createCategory()
             ->load($rootCategoryId)
@@ -73,7 +70,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setName('Root')
             ->setInitialSetupFlag(true)
             ->save();
-        
+
         //Pet category and its subs
         $categoryPet = $categorySetup->createCategory();
         $categoryPet->load(2)
@@ -89,7 +86,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->save();
 
         $category1 = $categorySetup->createCategory();
-        $category1->load(2)
+        $category1->load(3)
             ->setParentId($categoryPet->getId())
             ->setId(3)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 3)
@@ -100,9 +97,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category2 = $categorySetup->createCategory();
-        $category2->load(2)
+        $category2->load(4)
             ->setParentId($categoryPet->getId())
             ->setId(4)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 4)
@@ -115,7 +112,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->save();
 
         $category3 = $categorySetup->createCategory();
-        $category3->load(2)
+        $category3->load(5)
             ->setParentId($categoryPet->getId())
             ->setId(5)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 5)
@@ -128,7 +125,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->save();
 
         $category4 = $categorySetup->createCategory();
-        $category4->load(2)
+        $category4->load(6)
             ->setParentId($categoryPet->getId())
             ->setId(6)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 6)
@@ -141,7 +138,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->save();
 
         $category5 = $categorySetup->createCategory();
-        $category5->load(2)
+        $category5->load(7)
             ->setParentId($categoryPet->getId())
             ->setId(7)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 7)
@@ -152,7 +149,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-        
+
         //Sneakers category and its subs
         $categorySneakers = $categorySetup->createCategory();
         $categorySneakers->load(10)
@@ -166,9 +163,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(1)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category11 = $categorySetup->createCategory();
-        $category11->load(10)
+        $category11->load(11)
             ->setParentId($categorySneakers->getId())
             ->setId(11)
             ->setPath($rootCategoryId . '/' . 10 . '/' . 11)
@@ -179,9 +176,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category12 = $categorySetup->createCategory();
-        $category12->load(10)
+        $category12->load(12)
             ->setParentId($categorySneakers->getId())
             ->setId(12)
             ->setPath($rootCategoryId . '/' . 10 . '/' . 12)
@@ -192,9 +189,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category13 = $categorySetup->createCategory();
-        $category13->load(10)
+        $category13->load(13)
             ->setParentId($categorySneakers->getId())
             ->setId(13)
             ->setPath($rootCategoryId . '/' . 10 . '/' . 13)
@@ -205,9 +202,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category14 = $categorySetup->createCategory();
-        $category14->load(10)
+        $category14->load(14)
             ->setParentId($categorySneakers->getId())
             ->setId(14)
             ->setPath($rootCategoryId . '/' . 10 . '/' . 14)
@@ -218,9 +215,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category15 = $categorySetup->createCategory();
-        $category15->load(10)
+        $category15->load(15)
             ->setParentId($categorySneakers->getId())
             ->setId(15)
             ->setPath($rootCategoryId . '/' . 10 . '/' . 15)
@@ -231,8 +228,8 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-        
-        $this->moduleDataSetup->getConnection()->endSetup();  
+
+        $this->moduleDataSetup->getConnection()->endSetup();
     }
 
     /**
@@ -248,7 +245,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      */
     public static function getVersion()
     {
-        return '2.0.0';
+        return '3.1.0';
     }
 
     /**

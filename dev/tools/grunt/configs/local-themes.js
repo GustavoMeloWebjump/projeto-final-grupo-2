@@ -51,6 +51,16 @@ module.exports = {
         ],
         dsl: 'less'
     },
+    pet: {
+        area: 'frontend',
+        name: 'projetofinal_temas/tema_patinhas',
+        locale: 'pt_BR',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
+    },
     backend: {
         area: 'adminhtml',
         name: 'Magento/backend',

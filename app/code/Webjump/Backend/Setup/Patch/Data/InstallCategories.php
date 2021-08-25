@@ -13,7 +13,7 @@ use Magento\Store\Model\ResourceModel\Group;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class InstallCategories implements DataPatchInterface, PatchVersionInterface
+class InstallCategories implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -277,14 +277,6 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     public static function getDependencies()
     {
         return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getVersion()
-    {
-        return '3.1.0';
     }
 
     /**

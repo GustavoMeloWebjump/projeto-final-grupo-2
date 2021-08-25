@@ -26,7 +26,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        EavSetupFactory $eavSetupFactory,
+        EavSetupFactory $eavSetupFactory
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
@@ -38,9 +38,10 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
         $this->moduleDataSetup->getConnection()->startSetup();
         $eavSetup =  $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
+            Product::ENTITY,
             self::PETSHOP_ANIMAL,
             [
+                'group' => 'General',
                 'type' => 'varchar',
 				'label' => 'Animais',
 				'input' => 'select',
@@ -87,7 +88,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
 
     public function revert()
     {
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::PETSHOP_ANIMAL

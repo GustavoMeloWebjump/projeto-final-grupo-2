@@ -17,7 +17,7 @@ class CreatePetshopProductAttribute implements DataPatchInterface
 
 
     private $attributeSetFactory;
-    private $attributeSet;
+
     private $categorySetupFactory;
     /**
      * @var \Magento\Framework\Setup\ModuleDataSetupInterface

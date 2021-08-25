@@ -89,7 +89,7 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
 
     public function revert()
     {
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::SNEKAERS_SIZE

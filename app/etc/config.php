@@ -343,7 +343,8 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
-        'Webjump_Backend' => 0,
+        'Webjump_Backend' => 1,
+        'Webjump_SetTheme' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
@@ -464,10 +465,10 @@ return [
                     ]
                 ],
                 'currency' => [
-                        'options' => [
+                    'options' => [
                         'base' => 'USD',
                         'default' => 'USD',
-                        'allow' => 'USD',
+                        'allow' => 'USD'
                     ]
                 ]
             ]

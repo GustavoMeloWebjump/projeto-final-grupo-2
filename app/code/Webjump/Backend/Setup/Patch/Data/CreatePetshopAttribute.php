@@ -11,7 +11,7 @@ use Magento\Catalog\Model\Product;
 
 class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInterface
 {
-    const PETSHOP_ANIMAL = 'petshop_animal';
+    const PETSHOP_ANIMAL = 'petshop_product_tag';
 
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
@@ -41,27 +41,30 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
             Product::ENTITY,
             self::PETSHOP_ANIMAL,
             [
-                'group' => 'General',
+                'group' => 'Attribute',
                 'type' => 'varchar',
-				'label' => 'Animais',
+				'label' => 'Tags de produtos (patinhas)',
 				'input' => 'select',
 				'required' => false,
                 'sort_order' => 35,
 				'source' => '',
-				'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+				'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
 				'filterable' => false,
 				'comparable' => false,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filtrable_in_grid' => true,
                 'used_in_product_listing' => true,
+                'default' => 0,
+                'system' => false,
 				'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => false,
-                'option' => ['values' => ['Cachorro', 'Gato', 'Coelho', 'Galinha']],
-                'attribute_set_id' => 9
+                'option' => ['values' => ['Ração', 'Coleiras', 'Brinquedos', 'Remédio']],
+                'attribute_set' => CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME
             ]
         );
+
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
@@ -88,7 +91,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
 
     public function revert()
     {
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::PETSHOP_ANIMAL

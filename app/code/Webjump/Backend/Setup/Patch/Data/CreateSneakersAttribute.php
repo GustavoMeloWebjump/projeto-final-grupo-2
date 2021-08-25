@@ -11,7 +11,7 @@ use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInterface
 {
 
-    const SNEKAERS_SIZE = 'sneakers_size';
+    const SNEKAERS_SIZE = 'sneakers_type';
 
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
@@ -26,7 +26,7 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        EavSetupFactory $eavSetupFactory,
+        EavSetupFactory $eavSetupFactory
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
@@ -42,26 +42,30 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
             Product::ENTITY,
             self::SNEKAERS_SIZE,
             [
-                'group' => 'General',
+                'group' => 'Attribute',
                 'type' => 'varchar',
-				'label' => 'Tamanho do tênis',
+				'label' => 'Masculino ou Feminino (fanon)',
 				'input' => 'select',
 				'required' => false,
                 'sort_order' => 30,
 				'source' => '',
-				'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+				'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
 				'filterable' => false,
 				'comparable' => false,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filtrable_in_grid' => true,
                 'used_in_product_listing' => true,
+                'default' => 0,
+                'system' => false,
 				'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => false,
-                'attribute_set_id' => 10
+                'option' => ['values' => ['Masculino', 'Feminino']],
+                'attribute_set' => CreateSneakersProductAttribute::SNEAKERS_ATTRIBUTE_NAME
             ]
         );
+
 
         $this->moduleDataSetup->getConnection()->endSetup();
 
@@ -89,7 +93,7 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
 
     public function revert()
     {
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::SNEKAERS_SIZE

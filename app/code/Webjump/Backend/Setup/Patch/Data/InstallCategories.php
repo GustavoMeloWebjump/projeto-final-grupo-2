@@ -29,7 +29,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      * @var GroupFactory
      */
     private $groupFactory;
-    
+
     /**
      * @var Group
      */
@@ -158,7 +158,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category6 = $categorySetup->createCategory();
         $category6->load(8)
             ->setParentId($categoryPet->getId())
@@ -250,7 +250,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category16 = $categorySetup->createCategory();
         $category16->load(16)
             ->setParentId($categorySneakers->getId())

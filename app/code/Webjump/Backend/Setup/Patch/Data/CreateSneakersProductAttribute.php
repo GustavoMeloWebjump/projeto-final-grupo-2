@@ -77,6 +77,4 @@ class CreateSneakersProductAttribute implements DataPatchInterface
     {
         return [];
     }
-
-
 }

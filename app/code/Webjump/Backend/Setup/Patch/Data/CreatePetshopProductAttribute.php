@@ -28,7 +28,11 @@ class CreatePetshopProductAttribute implements DataPatchInterface
      * AttributeSetData constructor.
      * @
      */
-    public function __construct(AttributeSetFactory $attributeSetFactory, CategorySetupFactory $categorySetupFactory, ModuleDataSetupInterface $moduleDataSetup)
+    public function __construct(
+        AttributeSetFactory $attributeSetFactory,
+        CategorySetupFactory $categorySetupFactory,
+        ModuleDataSetupInterface $moduleDataSetup
+    )
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->attributeSetFactory = $attributeSetFactory;

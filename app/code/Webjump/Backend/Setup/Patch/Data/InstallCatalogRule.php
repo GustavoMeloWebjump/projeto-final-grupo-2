@@ -5,7 +5,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\CatalogRule\Model\RuleFactory;
 use Magento\CatalogRule\Model\ResourceModel\Rule as ResourceModelRule;
-use Magento\Framework\App\Area;
+// use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 
 class InstallCatalogRule implements DataPatchInterface
@@ -27,7 +27,7 @@ class InstallCatalogRule implements DataPatchInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
-        $this->state->setAreaCode(Area::AREA_GLOBAL);
+        //$this->state->setAreaCode(Area::AREA_GLOBAL);
 
         $rule5Percent = $this->ruleFactory->create();
 

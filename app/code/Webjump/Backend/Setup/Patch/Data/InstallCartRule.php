@@ -7,7 +7,7 @@ use Magento\SalesRule\Model\RuleFactory;
 use Magento\SalesRule\Model\Rule\Condition\CombineFactory;
 use Magento\SalesRule\Model\ResourceModel\Rule as ResourceModelRule;
 use Magento\Framework\App\State;
-use Magento\Framework\App\Area;
+// use Magento\Framework\App\Area;
 use Magento\SalesRule\Model\Rule\Condition\Address;
 use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 class InstallCartRule implements DataPatchInterface
@@ -32,7 +32,7 @@ class InstallCartRule implements DataPatchInterface
 
     public function apply()
     {
-        $this->state->setAreaCode(Area::AREA_GLOBAL);
+        // $this->state->setAreaCode(Area::AREA_GLOBAL);
 
         $this->moduleDataSetup->getConnection()->startSetup();
         $address = $this->addressFactory->create();

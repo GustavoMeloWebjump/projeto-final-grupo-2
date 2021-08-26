@@ -343,7 +343,7 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
-        'Webjump_Backend' => 1,
+        'Webjump_Backend' => 0,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [

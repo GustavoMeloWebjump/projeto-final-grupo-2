@@ -18,6 +18,8 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
 {
     const PETSHOP_ANIMAL = 'petshop_product_tag';
 
+    const PETSHOP_SHAPE = 'petshop_shape';
+
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
@@ -77,6 +79,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'attribute_set' => CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME,
                 'type' => 'varchar',
 				'label' => 'Tags de produtos (patinhas)',
+                'user_defined' => true,
 				'input' => 'select',
 				'required' => false,
                 'sort_order' => 35,
@@ -101,6 +104,39 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
         $sortOrder = 50;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::PETSHOP_ANIMAL, $sortOrder);
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::PETSHOP_SHAPE,
+            [
+
+                'attribute_set' => CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME,
+                'type' => 'varchar',
+				'label' => 'Porte (patinhas)',
+                'user_defined' => true,
+				'input' => 'select',
+				'required' => false,
+                'sort_order' => 35,
+				'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+				'filterable' => false,
+				'comparable' => false,
+                'is_used_in_grid' => false,
+                'is_visible_in_grid' => false,
+                'is_filtrable_in_grid' => true,
+                'used_in_product_listing' => true,
+                'system' => false,
+				'visible' => true,
+                'is_html_allowed_on_front' => false,
+                'visible_on_front' => false,
+                'option' => ['values' => ['Pequeno', 'Médio', 'Grande']],
+            ]
+        );
+        $attributeSetId = $eavSetup->getAttributeSetId(Product::ENTITY, CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME);
+        $attributeSet = $this->attributeSetFactory->create();
+        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+        $sortOrder = 50;
+        $this->productAttributeManagement
+            ->assign($attributeSetId, $attributeGroupId, self::PETSHOP_SHAPE, $sortOrder);
     }
 
 
@@ -130,6 +166,10 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::PETSHOP_ANIMAL
+        );
+        $eavSetup->removeAttribute(
+            Product::ENTITY,
+            self::PETSHOP_SHAPE
         );
     }
 

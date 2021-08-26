@@ -1,5 +1,21 @@
 <?xml version="1.0"?>
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
+<referenceBlock name="logo"> 
+
+<arguments> 
+    <argument name="logo_width" xsi:type="number">250</argument>
+    <argument name="logo_height" xsi:type="number">200</argument>
+    <argument name="logo_file" xsi:type="string">images/patinha.png</argument>
+
+</arguments>
+
+</referenceBlock>
+
+<referenceContainer name="header.panel" remove="true"/>
+
+<referenceContainer name="header-wrapper">
+    <container name="busca.carrinho.entrar" htmlTag="div" htmlClass="busca-carrinho-entrar" />
+</referenceContainer>
 
 </page>

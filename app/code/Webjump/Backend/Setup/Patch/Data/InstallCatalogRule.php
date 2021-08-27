@@ -5,19 +5,23 @@ namespace Webjump\Backend\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\CatalogRule\Api\Data\RuleInterfaceFactory as RuleFactory;
+use Magento\CatalogRule\Api\CatalogRuleRepositoryInterface as CatalogRuleRepository;
 use Magento\Customer\Model\Group;
 
 class InstallCatalogRule implements DataPatchInterface
 {
     private $moduleDataSetup;
     private $ruleFactory;
+    private $catalogRuleRepository;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        RuleFactory $ruleFactory)
+        RuleFactory $ruleFactory,
+        CatalogRuleRepository $catalogRuleRepository)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
+        $this->catalogRuleRepository = $catalogRuleRepository;
     }
 
     public function apply()
@@ -30,12 +34,13 @@ class InstallCatalogRule implements DataPatchInterface
             ->setName('discount of 5% for guest users')
             ->setDescription('this discount is applied for guest users that will enter in first website ')
             ->setIsActive(1)
-            ->setDiscountAmount(5)
-            ->setSimpleAction('by_percent')
             ->setWebsiteIds('1')
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
-            ->setStopRulesProcessing(0)
-            ->save();
+            ->setSimpleAction('by_percent')
+            ->setDiscountAmount(5)
+            ->setStopRulesProcessing(0);
+        
+        $this->catalogRuleRepository->save($rule5);
 
         $rule10 = $this->ruleFactory->create(['setup' => $this->moduleDataSetup]);
 
@@ -43,12 +48,13 @@ class InstallCatalogRule implements DataPatchInterface
             ->setName('discount of 10% for guest users')
             ->setDescription('this discount is applied for gues users that will enter in secound website')
             ->setIsActive(1)
-            ->setDiscountAmount(10)
-            ->setSimpleAction('by_percent')
             ->setWebsiteIds('2')
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
-            ->setStopRulesProcessing(0)
-            ->save();
+            ->setSimpleAction('by_percent')
+            ->setDiscountAmount(10)
+            ->setStopRulesProcessing(0);
+
+        $this->catalogRuleRepository->save($rule10);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

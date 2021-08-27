@@ -104,6 +104,7 @@ class InstallSaleRule implements DataPatchInterface
         $cartRule
             ->setName($data['name'])
             ->setDescription($data['description'])
+            ->setSimpleAction('by_percent')
             ->setWebsiteIds($data['websiteids'])
             ->setCustomerGroupIds($data['groups'])
             ->setIsActive($data['active'])

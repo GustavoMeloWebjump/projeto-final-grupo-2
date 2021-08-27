@@ -32,6 +32,7 @@ class InstallCatalogRule implements DataPatchInterface
             ->setDescription('this discount is applied for guest users that will enter in first website ')
             ->setIsActive(1)
             ->setDiscountAmount(5)
+            ->setSimpleAction('by_percent')
             ->setWebsiteIds('1')
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
             ->setStopRulesProcessing(0);
@@ -44,6 +45,7 @@ class InstallCatalogRule implements DataPatchInterface
             ->setDescription('this discount is applied for gues users that will enter in secound website')
             ->setIsActive(1)
             ->setDiscountAmount(10)
+            ->setSimpleAction('by_percent')
             ->setWebsiteIds('2')
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
             ->setStopRulesProcessing(0);

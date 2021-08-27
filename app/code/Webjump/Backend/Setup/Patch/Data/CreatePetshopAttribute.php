@@ -9,8 +9,6 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Catalog\Model\Product;
-use Magento\Customer\Setup\CustomerSetupFactory;
-use Magento\Customer\Setup\CustomerSetup;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 

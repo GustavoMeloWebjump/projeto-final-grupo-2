@@ -330,7 +330,6 @@ return [
         'Dotdigitalgroup_ChatGraphQl' => 1,
         'Dotdigitalgroup_EmailGraphQl' => 1,
         'Dotdigitalgroup_Sms' => 1,
-        'Ho_Templatehints' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
@@ -344,7 +343,7 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
-        'Webjump_Backend' => 1,
+        'Webjump_Backend' => 0,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [

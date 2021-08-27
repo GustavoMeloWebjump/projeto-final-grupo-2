@@ -5,3 +5,4 @@ Você encontrará, dentro das pastas do projeto, alguns outros README.md com ins
 Estão localizados em:
 
 -app/etc - Configurando multistore
+-app/code/Webjump/Backend - Instalando categorias e métodos de pagamento

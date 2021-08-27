@@ -12,17 +12,14 @@ use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 class CreateAttributeCategory implements DataPatchInterface
 {
 
-    const CATEGORY_ATTRIBUTE = 'category_attribute';
+    const CATEGORY_ATTRIBUTE_CODE_ONE = 'category_attribute_code_one';
+
+    const CATEGORY_ATTRIBUTE_CODE_TWO = 'category_attribute_code_two';
 
     /**
      * @var ModuleDataSetupInterface
      */
     private $moduleDataSetup;
-
-    /**
-     * @var CategorySetupFactory
-     */
-    private $categorySetupFactory;
 
     /**
      * @var EavSetupFactory
@@ -31,8 +28,7 @@ class CreateAttributeCategory implements DataPatchInterface
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        EavSetupFactory $eavSetupFactory,
-        CategorySetupFactory $categorySetupFactory
+        EavSetupFactory $eavSetupFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->eavSetupFactory = $eavSetupFactory;
@@ -47,20 +43,32 @@ class CreateAttributeCategory implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
         $eavConfig = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
-        $eavConfig->addAttribute(Category::ENTITY, self::CATEGORY_ATTRIBUTE, [
+        $eavConfig->addAttribute(Category::ENTITY, self::CATEGORY_ATTRIBUTE_CODE_ONE, [
             'type' => 'varchar',
-            'label' => 'Category Test',
+            'label' => 'Produtos (patinhas)',
             'input' => 'text',
             'source' => '',
             'user_defined' => true,
             'visible' => true,
-            'default' => '0',
+            'default' => '',
             'required' => false,
-            'global' => ScopedAttributeInterface::SCOPE_STORE,
-            'group' => 'Display Settings'
+            'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+            'group' => 'General'
         ]);
 
 
+        $eavConfig->addAttribute(Category::ENTITY, self::CATEGORY_ATTRIBUTE_CODE_TWO, [
+            'type' => 'varchar',
+            'label' => 'Produtos (fanon)',
+            'input' => 'text',
+            'source' => '',
+            'user_defined' => true,
+            'visible' => true,
+            'default' => '',
+            'required' => false,
+            'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+            'group' => 'General'
+        ]);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

@@ -37,11 +37,6 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
     private $eavSetupFactory;
 
     /**
-     * @var CustomerSetupFactory
-     */
-    protected $customerSetupFactory;
-
-    /**
      * @var AttributeSetFactory
      */
     private $attributeSetFactory;
@@ -50,7 +45,6 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
         ModuleDataSetupInterface $moduleDataSetup,
         EavSetupFactory $eavSetupFactory,
         ProductAttributeManagementInterface $productAttributeManagement,
-        CustomerSetupFactory $customerSetupFactory,
         AttributeSetFactory $attributeSetFactory
     )
     {
@@ -58,7 +52,6 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
         $this->eavSetupFactory = $eavSetupFactory;
         $this->productAttributeManagement = $productAttributeManagement;
         $this->attributeSetFactory = $attributeSetFactory;
-        $this->customerSetupFactory = $customerSetupFactory;
     }
 
     public function apply(): void

@@ -3,6 +3,16 @@
 
 <referenceContainer name="footer" remove="true" />
 
-<move element="footer-pet" destination="footer-container"/> 
+<referenceContainer name="footer-container">
+
+<container name="footer-content" htmlTag="div" htmlClass="block footer-content">
+<block class="Magento\Cms\Block\Block" name="footer_links_block">
+<arguments>
+<argument name="block_id" xsi:type="string">footer-pet</argument>
+</arguments>
+</block>
+</container> 
+
+</referenceContainer>
 
 </page>

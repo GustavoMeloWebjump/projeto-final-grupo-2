@@ -7,11 +7,10 @@ use Magento\SalesRule\Api\Data\RuleInterfaceFactory;
 use Magento\SalesRule\Api\RuleRepositoryInterface;
 use Magento\SalesRule\Api\Data\ConditionInterfaceFactory;
 use Magento\SalesRule\Api\Data\ConditionInterface;
-use Magento\SalesRule\Model\Data\Condition;
 use Magento\SalesRule\Model\Rule\Condition\Address;
 use Magento\Rule\Model\Condition\Combine;
 
-class InstallCartRule implements DataPatchInterface
+class InstallSaleRule implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -47,7 +46,6 @@ class InstallCartRule implements DataPatchInterface
 
     public function generateCondition(array $data)
     {
-        /** @var ConditionInterface */
         $condition = $this->conditionFactory->create();
         $condition2 = $this->conditionFactory->create();
 
@@ -57,14 +55,12 @@ class InstallCartRule implements DataPatchInterface
             ->setOperator($data['condition']['operator'])
             ->setValue($data['condition']['value']);
 
-
         $condition->setAttributeName($data['attribute'])
             ->setOperator($data['operator'])
             ->setValue($data['value'])
             ->setAggregatorType($data['aggregator'])
             ->setConditionType(Combine::class)
             ->setConditions([$condition2]);
-
 
         return $condition;
     }

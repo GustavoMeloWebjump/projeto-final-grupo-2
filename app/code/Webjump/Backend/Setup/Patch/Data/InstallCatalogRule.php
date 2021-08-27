@@ -1,19 +1,24 @@
 <?php
+
 namespace Webjump\Backend\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\CatalogRule\Api\Data\RuleInterfaceFactory as RuleFactory;
 use Magento\CatalogRule\Model\CatalogRuleRepository;
+use Magento\Customer\Model\Group;
 
 class InstallCatalogRule implements DataPatchInterface
 {
-
     private $moduleDataSetup;
     private $ruleFactory;
     private $catalogRepository;
 
-    public function __construct(ModuleDataSetupInterface $moduleDataSetup, RuleFactory $ruleFactory, CatalogRuleRepository $catalogRepository) {
+    public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup, 
+        RuleFactory $ruleFactory, 
+        CatalogRuleRepository $catalogRepository)
+    {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
         $this->catalogRepository = $catalogRepository;
@@ -21,32 +26,29 @@ class InstallCatalogRule implements DataPatchInterface
 
     public function apply()
     {
-        $this->moduleDataSetup->getConnection()->startSetup();
+        $rule5 = $this->ruleFactory->create();
 
-        $rule5Percent = $this->ruleFactory->create();
+        $rule5->setName('discount of 5% for guest users')
+            ->setDescription('this discount is applied for guest users that will enter in first website ')
+            ->setIsActive(1)
+            ->setDiscountAmount(5)
+            ->setWebsiteIds('1')
+            ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
+            ->setStopRulesProcessing(0);
 
-        $rule5Percent->setName('discount of 5% for guess users');
-        $rule5Percent->setDescription('this discount is aplied for guess users that will enter in first website ');
-        $rule5Percent->setIsActive(1);
-        $rule5Percent->setDiscountAmount(5.0);
-        $rule5Percent->setWebsiteIds('1');
-        $rule5Percent->setCustomerGroupIds('0');
+        $this->catalogRepository->save($rule5);
 
-        $this->catalogRepository->save($rule5Percent);
+        $rule10 = $this->ruleFactory->create();
 
-        $rule10Percent = $this->ruleFactory->create();
+        $rule10->setName('discount of 10% for guest users')
+            ->setDescription('this discount is applied for gues users that will enter in secound website')
+            ->setIsActive(1)
+            ->setDiscountAmount(10)
+            ->setWebsiteIds('2')
+            ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
+            ->setStopRulesProcessing(0);
 
-        $rule10Percent->setName('discount of 10% for guess users');
-        $rule10Percent->setDescription('this discount is aplied for guess users that will enter in secound website');
-        $rule10Percent->setIsActive(1);
-        $rule10Percent->setDiscountAmount(10.0);
-        $rule10Percent->setWebsiteIds('2');
-        $rule10Percent->setCustomerGroupIds('0');
-
-
-        $this->catalogRepository->save($rule10Percent);
-
-        $this->moduleDataSetup->getConnection()->endSetup();
+        $this->catalogRepository->save($rule10);
     }
 
     public function getAliases()

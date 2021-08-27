@@ -3,18 +3,16 @@
 
 <referenceBlock name="logo"> 
 <arguments> 
-    <argument name="logo_width" xsi:type="number">150</argument>
-    <argument name="logo_height" xsi:type="number">100</argument>
+    <argument name="logo_width" xsi:type="number">250</argument>
+    <argument name="logo_height" xsi:type="number">200</argument>
     <argument name="logo_file" xsi:type="string">images/Fanon.png</argument>
 
 </arguments>
+
 </referenceBlock>
 
-<referenceContainer name="header.panel" remove="true"/>
-
-<referenceContainer name="header-wrapper">
-    <container name="busca.carrinho.entrar" htmlTag="div" htmlClass="busca-carrinho-entrar" />
-</referenceContainer>
+<referenceBlock name="header" remove="true"/>
+<referenceBlock name="header.panel" remove="false"/>
 
 
 </page>

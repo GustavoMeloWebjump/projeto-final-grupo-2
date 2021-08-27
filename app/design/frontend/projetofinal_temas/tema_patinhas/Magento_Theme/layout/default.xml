@@ -12,10 +12,11 @@
 
 </referenceBlock>
 
-<referenceContainer name="header.panel" remove="true"/>
 
-<referenceContainer name="header-wrapper">
-    <container name="busca.carrinho.entrar" htmlTag="div" htmlClass="busca-carrinho-entrar" />
-</referenceContainer>
+<referenceBlock name="header" remove="true"/>
+<referenceBlock name="header.panel" remove="false"/>
+
 
 </page>
+
+

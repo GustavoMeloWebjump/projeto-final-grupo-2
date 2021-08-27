@@ -140,7 +140,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setId(6)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 6)
             ->setStoreId(1)
-            ->setName('Passáros')
+            ->setName('Pássaros')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)

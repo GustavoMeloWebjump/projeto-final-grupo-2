@@ -1,5 +1,15 @@
 Para configurar as categorias e os métodos de pagamento usando o módulo:
 
-PRIMEIRAMENTE aplique as alterações do config.php, caso não já tenha feito, com 'app:config:import'.
+PRIMEIRAMENTE aplique as alterações do config.php, caso não já tenha feito, com `app:config:import`.
 
-Execute o 'setup:upgrade' e os dados devem ser atualizados automaticamente.
+Execute o `setup:upgrade` e os dados devem ser atualizados automaticamente.
+
+### Comandos que devem ser executados
+
+```bash
+# Adicionar os websites, stores...
+bin/magento app:config:import
+
+# Para rodar o data patch
+bin/magento setup:db-data:upgrade
+```

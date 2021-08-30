@@ -42,7 +42,7 @@ class RegisterThemesPet2 implements DataPatchInterface
     public function apply()
     {
 
-        $pet2StoreId = $this->storeManager->getStore('petshop_view2_code')->getId();
+        $pet2StoreId = $this->storeManager->getStore('petshop_en_view_code')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             5, 

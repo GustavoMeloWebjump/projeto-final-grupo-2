@@ -1,117 +1,74 @@
 <?php
-namespace Webjump\Backend\Setup\Patch\Data;
+
+namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\SalesRule\Api\Data\RuleInterfaceFactory;
-use Magento\SalesRule\Api\RuleRepositoryInterface;
-use Magento\SalesRule\Api\Data\ConditionInterfaceFactory;
-use Magento\SalesRule\Api\Data\ConditionInterface;
+use Magento\SalesRule\Model\RuleFactory;
+use Magento\SalesRule\Model\ResourceModel\Rule as RuleResourceModelSale;
+use Magento\SalesRule\Model\Rule\Condition\CombineFactory;
+use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
-use Magento\Rule\Model\Condition\Combine;
+use Magento\CatalogRule\Model\Rule\Condition\ProductFactory;
 
-class InstallSaleRule implements DataPatchInterface
+class InstallCartRule implements DataPatchInterface
 {
-    /**
-     * @var ModuleDataSetupInterface
-     */
-    private $moduleDataSetup;
-
-    /**
-     * @var RuleInterfaceFactory
-     */
-    private $ruleFactory;
-
-    /**
-     * @var RuleRepositoryInterface
-     */
-    private $ruleRepository;
-
-    /**
-     * @var ConditionInterfaceFactory
-     */
-    private $conditionFactory;
+    private ModuleDataSetupInterface $moduleDataSetup;
+    private RuleFactory $ruleFactory;
+    private RuleResourceModelSale $ruleResourceModelSale;
+    private CombineFactory $combineFactory;
+    private AddressFactory $addressFactory;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        RuleInterfaceFactory $ruleFactory,
-        RuleRepositoryInterface $ruleRepository,
-        ConditionInterfaceFactory $conditionFactory
+        RuleFactory $ruleFactory,
+        RuleResourceModelSale $ruleResourceModelSale,
+        CombineFactory $combineFactory,
+        AddressFactory $addressFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
-        $this->ruleRepository = $ruleRepository;
-        $this->conditionFactory = $conditionFactory;
+        $this->ruleResourceModelSale = $ruleResourceModelSale;
+        $this->combineFactory = $combineFactory;
+        $this->addressFactory = $addressFactory;
     }
-
-    public function generateCondition(array $data)
-    {
-        $condition = $this->conditionFactory->create();
-        $condition2 = $this->conditionFactory->create();
-
-        $condition2
-            ->setConditionType(Address::class)
-            ->setAttributeName($data['condition']['attribute'])
-            ->setOperator($data['condition']['operator'])
-            ->setValue($data['condition']['value']);
-
-        $condition->setAttributeName($data['attribute'])
-            ->setOperator($data['operator'])
-            ->setValue($data['value'])
-            ->setAggregatorType($data['aggregator'])
-            ->setConditionType(Combine::class)
-            ->setConditions([$condition2]);
-
-        return $condition;
-    }
-
-    public function getData(): array
-    {
-        return [
-            'name' => '5 items in cart 10% of discount',
-            'description' => 'if cart has 5 or more items you will have 10% of discount',
-            'websiteids' => ['1', '2'],
-            'groups' => ['0', '1', '2', '3'],
-            'active' => '1',
-            'condition' => [
-                'attribute' => null,
-                'operator' => null,
-                'value' => 1,
-                'aggregator' => ConditionInterface::AGGREGATOR_TYPE_ALL,
-                'condition' => [
-                    'attribute' => 'total_qty',
-                    'operator' => '>=',
-                    'value' => '5',
-                ]
-            ],
-            'discount' => 10
-        ];
-    }
-
     /**
      *  {@inheritDoc}
      */
     public function apply()
     {
+        // $this->state->setAreaCode(Area::AREA_ADMINHTML);
 
         $this->moduleDataSetup->getConnection()->startSetup();
 
-        $data = $this->getData();
+        $condition1 = $this->combineFactory->create();
+        $condition2 = $this->addressFactory->create();
 
-        $setcondition = $this->generateCondition($data['condition']);
+        $condition2
+            ->setData('attribute', 'total_qty')
+            ->setData('operator', '>=')
+            ->setData('value', '5')
+            ->setData("is_value_processed", "false");
+
+        $condition1
+            ->setData('attribute', null)
+            ->setData('operator', null)
+            ->setData('value', '1')
+            ->setData('is_value_processed', null)
+            ->setData('aggregator', 'all')
+            ->setConditions([$condition2->settype(Address::class)]);
 
         $cartRule = $this->ruleFactory->create();
         $cartRule
-            ->setName($data['name'])
-            ->setDescription($data['description'])
-            ->setSimpleAction('by_percent')
-            ->setWebsiteIds($data['websiteids'])
-            ->setCustomerGroupIds($data['groups'])
-            ->setIsActive($data['active'])
-            ->setCondition($setcondition)
-            ->setDiscountAmount($data['discount']);
+            ->setName('5% of discount when have 5 items in cart')
+            ->setDescription('5% of discount when have 5 items in cart')
+            ->setWebsiteIds(['1', '2'])
+            ->setCustomerGroupIds(['0', '1', '2', '3'])
+            ->setIsActive(1)
+            ->setConditions($condition1)
+            ->setDiscountAmount(10);
 
-        $this->ruleRepository->save($cartRule);
+        $this->ruleResourceModelSale->save($cartRule);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

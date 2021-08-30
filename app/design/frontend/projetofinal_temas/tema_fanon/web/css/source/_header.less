@@ -10,7 +10,7 @@
 }
 
 .page-header{
-    background-color: @branco;
+    background-color: @preto;
     color: @preto;
     .panel.wrapper{
         background-color: darken(@preto, 5);
@@ -22,14 +22,24 @@
     border-radius: 50px;
 }
 
+.block-search input:hover {
+    border: 3px solid @dourado;
+    transform: scale(1.0); 
+}
 
+.minicart-wrapper .action.showcart:before {
+    color: @dourado;
+}
+
+.minicart-wrapper .action.showcart:after {
+    color: @branco;
+}
 
 .panel{
     background-color: @branco;
     font-family: @mont-bold; 
 
 }
-
 
 .panel.wrapper{
     background-color: @branco !important;

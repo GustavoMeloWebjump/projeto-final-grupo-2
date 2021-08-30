@@ -13,7 +13,7 @@ use Magento\Store\Model\ResourceModel\Group;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class InstallCategories implements DataPatchInterface, PatchVersionInterface
+class InstallCategories implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -29,7 +29,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      * @var GroupFactory
      */
     private $groupFactory;
-    
+
     /**
      * @var Group
      */
@@ -158,7 +158,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category6 = $categorySetup->createCategory();
         $category6->load(8)
             ->setParentId($categoryPet->getId())
@@ -250,7 +250,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
-            
+
         $category16 = $categorySetup->createCategory();
         $category16->load(16)
             ->setParentId($categorySneakers->getId())
@@ -277,14 +277,6 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     public static function getDependencies()
     {
         return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getVersion()
-    {
-        return '3.1.0';
     }
 
     /**

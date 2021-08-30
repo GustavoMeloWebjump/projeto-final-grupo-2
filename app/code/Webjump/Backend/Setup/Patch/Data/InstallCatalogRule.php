@@ -5,23 +5,19 @@ namespace Webjump\Backend\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\CatalogRule\Api\Data\RuleInterfaceFactory as RuleFactory;
-use Magento\CatalogRule\Api\CatalogRuleRepositoryInterface as CatalogRuleRepository;
 use Magento\Customer\Model\Group;
 
 class InstallCatalogRule implements DataPatchInterface
 {
     private $moduleDataSetup;
     private $ruleFactory;
-    private $catalogRuleRepository;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        RuleFactory $ruleFactory,
-        CatalogRuleRepository $catalogRuleRepository)
+        RuleFactory $ruleFactory)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
-        $this->catalogRuleRepository = $catalogRuleRepository;
     }
 
     public function apply()
@@ -38,9 +34,8 @@ class InstallCatalogRule implements DataPatchInterface
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
             ->setSimpleAction('by_percent')
             ->setDiscountAmount(5)
-            ->setStopRulesProcessing(0);
-        
-        $this->catalogRuleRepository->save($rule5);
+            ->setStopRulesProcessing(0)
+            ->save();
 
         $rule10 = $this->ruleFactory->create(['setup' => $this->moduleDataSetup]);
 
@@ -52,9 +47,8 @@ class InstallCatalogRule implements DataPatchInterface
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
             ->setSimpleAction('by_percent')
             ->setDiscountAmount(10)
-            ->setStopRulesProcessing(0);
-
-        $this->catalogRuleRepository->save($rule10);
+            ->setStopRulesProcessing(0)
+            ->save();
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

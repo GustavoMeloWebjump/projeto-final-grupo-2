@@ -45,6 +45,7 @@ class InstallRuleSales implements DataPatchInterface
         $condition2 = $this->addressFactory->create();
 
         $condition2
+            ->settype(Address::class)
             ->setData('attribute', 'total_qty')
             ->setData('operator', '>=')
             ->setData('value', '5')
@@ -56,7 +57,7 @@ class InstallRuleSales implements DataPatchInterface
             ->setData('value', '1')
             ->setData('is_value_processed', null)
             ->setData('aggregator', 'all')
-            ->setConditions([$condition2->settype(Address::class)]);
+            ->setConditions([$condition2]);
 
         $cartRule = $this->ruleFactory->create();
         $cartRule
@@ -65,6 +66,7 @@ class InstallRuleSales implements DataPatchInterface
             ->setWebsiteIds(['1', '2'])
             ->setCustomerGroupIds(['0', '1', '2', '3'])
             ->setIsActive(1)
+            ->setSimpleAction('by_percent')
             ->setConditions($condition1)
             ->setDiscountAmount(10);
 

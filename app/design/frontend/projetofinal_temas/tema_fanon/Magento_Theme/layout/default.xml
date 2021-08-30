@@ -3,6 +3,7 @@
 
 <referenceBlock name="logo"> 
 <arguments> 
+
     <argument name="logo_width" xsi:type="number">250</argument>
     <argument name="logo_height" xsi:type="number">200</argument>
     <argument name="logo_file" xsi:type="string">images/fanon-branco.png</argument>

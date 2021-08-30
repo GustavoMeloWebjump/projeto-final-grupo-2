@@ -23,8 +23,8 @@ class InstallCatalogRule implements DataPatchInterface
         $this->ruleFactory = $ruleFactory;
         $this->customState = $customState;
 
-        if (!$this->state->validateAreaCode()) {
-            $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        if (!$this->customState->validateAreaCode()) {
+            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
         }
     }
 

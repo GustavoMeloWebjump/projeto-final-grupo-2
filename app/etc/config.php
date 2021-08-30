@@ -363,15 +363,15 @@ return [
             'petshop_code' => [
                 'website_id' => '1',
                 'code' => 'petshop_code',
-                'name' => 'Petshop',
+                'name' => 'Patinhas',
                 'sort_order' => '1',
                 'default_group_id' => '1',
                 'is_default' => '1'
             ],
             'sneakers_code' => [
-                'website_id' => '3',
+                'website_id' => '2',
                 'code' => 'sneakers_code',
-                'name' => 'Sneakers',
+                'name' => 'Fanon',
                 'sort_order' => '2',
                 'default_group_id' => '2',
                 'is_default' => '0'
@@ -396,7 +396,7 @@ return [
             ],
             [
                 'group_id' => '2',
-                'website_id' => '3',
+                'website_id' => '2',
                 'name' => 'Sneakers',
                 'root_category_id' => '10',
                 'default_store_id' => '3',
@@ -418,25 +418,25 @@ return [
                 'code' => 'petshop_view_code',
                 'website_id' => '1',
                 'group_id' => '1',
-                'name' => 'Petshop',
+                'name' => 'Patinhas',
                 'sort_order' => '1',
                 'is_active' => '1'
             ],
-            'petshop_view2_code' => [
+            'petshop_en_view_code' => [
                 'store_id' => '2',
-                'code' => 'petshop_view2_code',
+                'code' => 'petshop_en_view_code',
                 'website_id' => '1',
                 'group_id' => '1',
-                'name' => 'Petshop2',
+                'name' => 'Patinhas en',
                 'sort_order' => '2',
                 'is_active' => '1'
             ],
             'sneakers_view_code' => [
                 'store_id' => '3',
                 'code' => 'sneakers_view_code',
-                'website_id' => '3',
+                'website_id' => '2',
                 'group_id' => '2',
-                'name' => 'Sneakers',
+                'name' => 'Fanon',
                 'sort_order' => '2',
                 'is_active' => '1'
             ]
@@ -447,20 +447,20 @@ return [
             'petshop_code' => [
                 'web' => [
                     'unsecure' => [
-                        'base_url' => 'http://pet.localhost/'
+                        'base_url' => 'http://patinhas.localhost/'
                     ]
                 ]
             ],
             'sneakers_code' => [
                 'web' => [
                     'unsecure' => [
-                        'base_url' => 'http://sneakers.localhost/'
+                        'base_url' => 'http://fanon.localhost/'
                     ]
                 ]
             ]
         ],
         'stores' => [
-            'petshop_view2_code' => [
+            'petshop_en_view_code' => [
                 'general' => [
                     'locale' => [
                         'code' => 'en_US',

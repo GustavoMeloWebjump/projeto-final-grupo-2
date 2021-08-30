@@ -2,6 +2,8 @@ para rodar esse datapatch, é necessario:
 
 - entrar na pasta raiz do projeto dentro do terminal
 - execute o seguinte comando: bin/magento module:enable Webjump_Backend
+- execute bin/magento cache:flush
+- execute bin/magento setup:di:compile
 - apos isso, rode: bin/magento setup:upgrade
 
 para validar:

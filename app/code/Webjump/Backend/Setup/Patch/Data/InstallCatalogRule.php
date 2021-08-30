@@ -6,18 +6,26 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\CatalogRule\Api\Data\RuleInterfaceFactory as RuleFactory;
 use Magento\Customer\Model\Group;
+use Webjump\Backend\App\CustomState;
 
 class InstallCatalogRule implements DataPatchInterface
 {
     private $moduleDataSetup;
     private $ruleFactory;
+    private CustomState $customState;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        RuleFactory $ruleFactory)
+        RuleFactory $ruleFactory,
+        CustomState $customState)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
+        $this->customState = $customState;
+
+        if (!$this->state->validateAreaCode()) {
+            $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        }
     }
 
     public function apply()

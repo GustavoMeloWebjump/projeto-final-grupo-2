@@ -11,7 +11,7 @@ use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
 use Magento\CatalogRule\Model\Rule\Condition\ProductFactory;
 
-class InstallCartRule implements DataPatchInterface
+class InstallSalesRule implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
     private RuleFactory $ruleFactory;

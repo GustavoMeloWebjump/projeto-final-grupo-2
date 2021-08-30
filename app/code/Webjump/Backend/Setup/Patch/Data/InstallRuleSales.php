@@ -1,6 +1,6 @@
 <?php
 
-namespace Webjump\IBCBackend\Setup\Patch\Data;
+namespace Webjump\Backend\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -11,7 +11,7 @@ use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
 use Magento\CatalogRule\Model\Rule\Condition\ProductFactory;
 
-class InstallSaleRule implements DataPatchInterface
+class InstallRuleSales implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
     private RuleFactory $ruleFactory;

@@ -11,6 +11,9 @@ use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Theme\Model\ResourceModel\Theme as ThemeResouceModel;
+use Magento\Theme\Model\ThemeFactory;
+
 /**
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
@@ -23,6 +26,11 @@ class RegisterThemesPet2 implements DataPatchInterface
     private $configInterface;
     
     private StoreManagerInterface $storeManager;
+
+    private $themeResouceModel;
+
+    private $themeFactory;
+
     /**
      * RegisterThemes constructor.
      * @param \Magento\Framework\Setup\ModuleDataSetupInterface $moduleDataSetup
@@ -30,26 +38,31 @@ class RegisterThemesPet2 implements DataPatchInterface
      */
     public function __construct(
         StoreManagerInterface $storeManager,
-        ConfigInterface $configInterface
+        ConfigInterface $configInterface,
+        ThemeResouceModel $themeResourceModel,
+        ThemeFactory $themeFactory
     ) {
         
         $this->storeManager = $storeManager;
         $this->configInterface = $configInterface;
+        $this->themeResouceModel = $themeResourceModel;
+        $this->themeFactory = $themeFactory;
     }
     /**
      * {@inheritdoc}
      */
     public function apply()
     {
+        $patinhas = $this->themeFactory->create();
+        $this->themeResouceModel->load($patinhas, 'projetofinal_temas/tema_patinhas', 'theme_path');
 
         $pet2StoreId = $this->storeManager->getStore('petshop_en_view_code')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
-            5, 
+            $patinhas->getId(), 
             ScopeInterface::SCOPE_STORES, 
             $pet2StoreId
         );
-
     }
     /**
      * {@inheritdoc}

@@ -420,9 +420,9 @@ return [
                 'sort_order' => '1',
                 'is_active' => '1'
             ],
-            'petshop_view2_code' => [
+            'petshop_en_view_code' => [
                 'store_id' => '2',
-                'code' => 'petshop_view2_code',
+                'code' => 'petshop_en_view_code',
                 'website_id' => '1',
                 'group_id' => '1',
                 'name' => 'Patinhas en',
@@ -458,7 +458,7 @@ return [
             ]
         ],
         'stores' => [
-            'petshop_view2_code' => [
+            'petshop_en_view_code' => [
                 'general' => [
                     'locale' => [
                         'code' => 'en_US',

@@ -36,40 +36,22 @@ class TranslateCategoriesNames implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
 
         $category1 = $this->categoryRepository->get(3, 2);
-        $category1->setStoreId(2)
-            ->setName('Dogs');
-
-        $this->categoryRepository->save($category1);
+        $category1->setName('Dogs')->save();
 
         $category2 = $this->categoryRepository->get(4, 2);
-        $category2->setStoreId(2)
-            ->setName('Cats');
-
-        $this->categoryRepository->save($category2);
+        $category2->setName('Cats')->save();
 
         $category3 = $this->categoryRepository->get(5, 2);
-        $category3->setStoreId(2)
-            ->setName('Toys');
-
-        $this->categoryRepository->save($category3);
+        $category3->setName('Toys')->save();
 
         $category4 = $this->categoryRepository->get(6, 2);
-        $category4->setStoreId(2)
-            ->setName('Birds');
-
-        $this->categoryRepository->save($category4);
+        $category4->setName('Birds')->save();
 
         $category5 = $this->categoryRepository->get(7, 2);
-        $category5->setStoreId(2)
-            ->setName('Bath');
-
-        $this->categoryRepository->save($category5);
+        $category5->setName('Bath')->save();
 
         $category6 = $this->categoryRepository->get(8, 2);
-        $category6->setStoreId(2)
-            ->setName('Accessories');
-
-        $this->categoryRepository->save($category6);
+        $category6->setName('Accessories')->save();
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

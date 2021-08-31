@@ -4,7 +4,7 @@
     <referenceBlock name="page.main.title" remove="true"/>
     <referenceContainer name="main.content" htmlTag="main" htmlClass="page-main-full-width" />
     
-    <move element="cms_page" destination="main.content" before="-"/>
+    
 
 
 <referenceContainer name="footer" remove="true" />

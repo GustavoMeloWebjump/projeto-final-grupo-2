@@ -17,6 +17,9 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchInterface;
 use Magento\Cms\Model\PageRepository;
+use Magento\Cms\Model\ResourceModel\Block as BlockResourceModel;
+use Magento\Cms\Model\BlockFactory;
+
 
 /**
  * Class HomePageUpdate
@@ -26,6 +29,17 @@ class CreateHomeContent implements DataPatchInterface {
     /** @var ModuleDataSetupInterface */
     private $moduleDataSetup;
 
+      /**
+     * @var BlockResourceModel $blockResourceModel
+     */
+    private $blockResourceModel;
+
+       /**
+     * @var BlockFactory $blockFactory
+     */
+    private $blockFactory;
+
+    
     /** @var PageFactory */
     private $pageFactory;
 
@@ -45,11 +59,15 @@ class CreateHomeContent implements DataPatchInterface {
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         PageFactory $pageFactory,
-        PageRepository $pageRepository
+        PageRepository $pageRepository,
+        BlockFactory $blockFactory,
+        BlockResourceModel $blockResourceModel
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
         $this->pageRepository = $pageRepository;
+        $this->blockFactory = $blockFactory;
+        $this->blockResourceModel = $blockResourceModel;
     }
 
     /**
@@ -59,8 +77,28 @@ class CreateHomeContent implements DataPatchInterface {
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        $blockBannerFanon = $this->blockFactory->create();
+        $this->blockResourceModel->load($blockBannerFanon, 'banner_main_fanon', 'identifier');
+        $blockBannerFanonId = $blockBannerFanon->getId();
+        
+
+        $blockBannerPatinhas = $this->blockFactory->create();
+        $this->blockResourceModel->load($blockBannerPatinhas, 'banner_main_patinhas', 'identifier');
+        $blockBannerPatinhasId = $blockBannerPatinhas->getId();
+        
+
+        $blockCarroselPatinhas = $this->blockFactory->create();
+        $this->blockResourceModel->load($blockCarroselPatinhas, 'carrosel_main_patinhas', 'identifier');
+        $blockCarroselPatinhasId = $blockCarroselPatinhas->getId();
+        
+
+        $blockCarroselFanon = $this->blockFactory->create();
+        $this->blockResourceModel->load($blockCarroselFanon, 'carrosel_main_fanon', 'identifier');
+        $blockCarroselFanonId = $blockCarroselFanon->getId();
+        
+
         $content = <<<HTML
-        <div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="23" type_name="CMS Static Block"}}</div><div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="24" type_name="CMS Static Block"}}</div><div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="20" type_name="CMS Static Block"}}</div><div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="19" type_name="CMS Static Block"}}</div>
+        <div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id=$blockBannerFanonId type_name="CMS Static Block"}}</div><div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id=$blockBannerPatinhasId type_name="CMS Static Block"}}</div><div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id=$blockCarroselFanonId type_name="CMS Static Block"}}</div><div data-content-type="block" data-appearance="default" data-element="main">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id=$blockCarroselPatinhasId type_name="CMS Static Block"}}</div>
         HTML;
         $cmsPage = $this->pageFactory->create()->load(self::PAGE_IDENTIFIER, 'identifier');
         if ($cmsPage->getId()) {
@@ -79,7 +117,12 @@ class CreateHomeContent implements DataPatchInterface {
      */
     public static function getDependencies(): array
     {
-        return [];
+        return [
+            CreateBannerBlockFanon::class,
+            CreateBannerBlockPatinhas::class,
+            CreateCarroselBlockFanon::class,
+            CreateCarroselBlockPatinhas::class
+        ];
     }
     /**
      * {@inheritdoc}

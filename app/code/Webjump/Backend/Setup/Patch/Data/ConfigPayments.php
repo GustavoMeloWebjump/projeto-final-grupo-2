@@ -1,5 +1,4 @@
 <?php
-
 namespace Webjump\Backend\Setup\Patch\Data;
 
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface as ConfigResourceConfigInterface;
@@ -26,18 +25,18 @@ class ConfigPayments implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
 
         $this->configInterface->saveConfig(
-            'payment/banktransfer/active',
-            true,
+            'payment/banktransfer/active', 
+            true, 
             ScopeInterface::SCOPE_DEFAULT);
-
+            
         $this->configInterface->saveConfig(
-            'payment/checkmo/active',
-            true,
+            'payment/checkmo/active', 
+            true, 
             ScopeInterface::SCOPE_DEFAULT);
-
+            
         $this->configInterface->saveConfig(
-            'payment/purchaseorder/active',
-            true,
+            'payment/purchaseorder/active', 
+            true, 
             ScopeInterface::SCOPE_DEFAULT);
 
         $this->moduleDataSetup->getConnection()->endSetup();

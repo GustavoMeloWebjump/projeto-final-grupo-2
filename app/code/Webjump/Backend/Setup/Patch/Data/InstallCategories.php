@@ -1,4 +1,5 @@
 <?php
+
 namespace Webjump\Backend\Setup\Patch\Data;
 
 use Magento\Catalog\Setup\CategorySetupFactory;
@@ -13,7 +14,7 @@ use Magento\Store\Model\ResourceModel\Group;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class InstallCategories implements DataPatchInterface
+class InstallCategories implements DataPatchInterface, PatchVersionInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -87,7 +88,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(2)
             ->setPath($rootCategoryId . '/' . 2)
             ->setStoreId(1)
-            ->setName('Pet')
+            ->setName('Patinhas')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(1)
@@ -100,7 +101,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(3)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 3)
             ->setStoreId(1)
-            ->setName('Category 1')
+            ->setName('Cachorros')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -113,7 +114,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(4)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 4)
             ->setStoreId(1)
-            ->setName('Category 2')
+            ->setName('Gatos')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -126,7 +127,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(5)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 5)
             ->setStoreId(1)
-            ->setName('Category 3')
+            ->setName('Brinquedos')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -139,7 +140,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(6)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 6)
             ->setStoreId(1)
-            ->setName('Category 4')
+            ->setName('Pássaros')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -152,7 +153,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(7)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 7)
             ->setStoreId(1)
-            ->setName('Category 5')
+            ->setName('Banho')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -165,7 +166,7 @@ class InstallCategories implements DataPatchInterface
             ->setId(8)
             ->setPath($rootCategoryId . '/' . 2 . '/' . 8)
             ->setStoreId(1)
-            ->setName('Category 6')
+            ->setName('Acessórios')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -177,9 +178,9 @@ class InstallCategories implements DataPatchInterface
         $categorySneakers->load(10)
             ->setParentId($rootCategoryId)
             ->setId(10)
-            ->setPath($rootCategoryId . '/' . 10)
+            ->setPath($rootCategoryId . '/' . $categorySneakers->getId())
             ->setStoreId(3)
-            ->setName('Sneakers')
+            ->setName('Fanon')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(1)
@@ -190,9 +191,9 @@ class InstallCategories implements DataPatchInterface
         $category11->load(11)
             ->setParentId($categorySneakers->getId())
             ->setId(11)
-            ->setPath($rootCategoryId . '/' . 10 . '/' . 11)
+            ->setPath($rootCategoryId . '/' . $categorySneakers->getId() . '/' . $category11->getId())
             ->setStoreId(3)
-            ->setName('Category 11')
+            ->setName('Lançamentos')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
@@ -203,12 +204,92 @@ class InstallCategories implements DataPatchInterface
         $category12->load(12)
             ->setParentId($categorySneakers->getId())
             ->setId(12)
-            ->setPath($rootCategoryId . '/' . 10 . '/' . 12)
+            ->setPath($rootCategoryId . '/' . $categorySneakers->getId() . '/' . $category12->getId())
             ->setStoreId(3)
-            ->setName('Category 12')
+            ->setName('Masculino')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
+            ->setInitialSetupFlag(true)
+            ->save();
+
+        $category121 = $categorySetup->createCategory();
+        $category121->load(121)
+            ->setParentId($category12->getId())
+            ->setId(121)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category12->getId() . '/' . $category121->getId()
+            )
+            ->setStoreId(3)
+            ->setName('Casual')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
+            ->setInitialSetupFlag(true)
+            ->save();
+
+        $category122 = $categorySetup->createCategory();
+        $category122->load(122)
+            ->setParentId($category12->getId())
+            ->setId(122)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category12->getId() . '/' . $category122->getId()
+            )
+            ->setStoreId(3)
+            ->setName('Corrida')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
+            ->setInitialSetupFlag(true)
+            ->save();
+
+        $category123 = $categorySetup->createCategory();
+        $category123->load(123)
+            ->setParentId($category12->getId())
+            ->setId(123)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category12->getId() . '/' . $category123->getId()
+            )
+            ->setStoreId(3)
+            ->setName('Skate')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
+            ->setInitialSetupFlag(true)
+            ->save();
+
+        $category124 = $categorySetup->createCategory();
+        $category124->load(124)
+            ->setParentId($category12->getId())
+            ->setId(124)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category12->getId() . '/' . $category124->getId()
+            )
+            ->setStoreId(3)
+            ->setName('Chuteiras')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
+            ->setInitialSetupFlag(true)
+            ->save();
+
+        $category125 = $categorySetup->createCategory();
+        $category125->load(125)
+            ->setParentId($category12->getId())
+            ->setId(125)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category12->getId() . '/' . $category125->getId()
+            )
+            ->setStoreId(3)
+            ->setName('Basquete')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
             ->setInitialSetupFlag(true)
             ->save();
 
@@ -218,49 +299,74 @@ class InstallCategories implements DataPatchInterface
             ->setId(13)
             ->setPath($rootCategoryId . '/' . 10 . '/' . 13)
             ->setStoreId(3)
-            ->setName('Category 13')
+            ->setName('Feminino')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
 
-        $category14 = $categorySetup->createCategory();
-        $category14->load(14)
-            ->setParentId($categorySneakers->getId())
-            ->setId(14)
-            ->setPath($rootCategoryId . '/' . 10 . '/' . 14)
+        $category131 = $categorySetup->createCategory();
+        $category131->load(131)
+            ->setParentId($category13->getId())
+            ->setId(131)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category13->getId() . '/' . $category131->getId()
+            )
             ->setStoreId(3)
-            ->setName('Category 14')
+            ->setName('Casual')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
-            ->setLevel(2)
+            ->setLevel(3)
             ->setInitialSetupFlag(true)
             ->save();
 
-        $category15 = $categorySetup->createCategory();
-        $category15->load(15)
-            ->setParentId($categorySneakers->getId())
-            ->setId(15)
-            ->setPath($rootCategoryId . '/' . 10 . '/' . 15)
+        $category132 = $categorySetup->createCategory();
+        $category132->load(132)
+            ->setParentId($category13->getId())
+            ->setId(132)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category13->getId() . '/' . $category132->getId()
+            )
             ->setStoreId(3)
-            ->setName('Category 15')
+            ->setName('Corrida')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
-            ->setLevel(2)
+            ->setLevel(3)
             ->setInitialSetupFlag(true)
             ->save();
 
-        $category16 = $categorySetup->createCategory();
-        $category16->load(16)
-            ->setParentId($categorySneakers->getId())
-            ->setId(16)
-            ->setPath($rootCategoryId . '/' . 10 . '/' . 16)
+        $category133 = $categorySetup->createCategory();
+        $category133->load(133)
+            ->setParentId($category13->getId())
+            ->setId(133)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category13->getId() . '/' . $category133->getId()
+            )
             ->setStoreId(3)
-            ->setName('Category 16')
+            ->setName('Skate')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
-            ->setLevel(2)
+            ->setLevel(3)
+            ->setInitialSetupFlag(true)
+            ->save();
+
+        $category134 = $categorySetup->createCategory();
+        $category134->load(134)
+            ->setParentId($category13->getId())
+            ->setId(134)
+            ->setPath(
+                $rootCategoryId . '/' . $categorySneakers->getId() .
+                    '/' . $category13->getId() . '/' . $category134->getId()
+            )
+            ->setStoreId(3)
+            ->setName('Chuteiras')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
             ->setInitialSetupFlag(true)
             ->save();
 
@@ -282,9 +388,16 @@ class InstallCategories implements DataPatchInterface
     /**
      * {@inheritdoc}
      */
+    public static function getVersion()
+    {
+        return '3.1.0';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getAliases()
     {
         return [];
     }
 }
-

@@ -4,16 +4,15 @@
 <referenceContainer name="footer" remove="true" />
 
 <referenceContainer name="footer-container">
-
-<container name="footer-content" htmlTag="div" htmlClass="block footer-content">
-<block class="Magento\Cms\Block\Block" name="footer_links_block">
-<arguments>
-<argument name="block_id" xsi:type="string">footer-sneakers</argument>
-</arguments>
-</block>
-</container> 
-
+    <container name="footer-content" htmlTag="div" htmlClass="block footer-content">
+        <block class="Magento\Cms\Block\Block" name="footer_links_block">
+            <arguments>
+            <argument name="block_id" xsi:type="string">footer-sneakers</argument>
+            </arguments>
+        </block>
+    </container> 
 </referenceContainer>
+
 <referenceBlock name="logo"> 
 <arguments> 
 

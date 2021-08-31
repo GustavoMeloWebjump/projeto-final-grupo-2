@@ -6,9 +6,10 @@ Execute o 'setup:upgrade' e os dados devem ser atualizados automaticamente.
 
 Obs: caso já tenha executado esse módulo e precise executar novamente:
 
-Antes de rodar o setup:upgrade, execute no terminal:
+Antes de rodar o setup:upgrade, execute no terminal 'mysql -u projeto -p'.
 
-mysql -u projeto -p
+Com o MySQL aberto, execute: 
+
 use projetofinal;
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE catalog_category_entity;
@@ -30,6 +31,7 @@ INSERT INTO `catalog_category_entity_varchar` (`value_id`, `attribute_id`, `stor
                                                                                                                  ('2', '45', '0', '2', 'Default Category');
 SET FOREIGN_KEY_CHECKS = 1;
 DELETE FROM url_rewrite WHERE entity_type = 'category';
-DELETE FROM patch_list WHERE patch_name = 'Webjump\Backend\Setup\Patch\Data\InstallCategories' LIMIT 1;
 
-Este código irá resetar as categorias previamente instaladas, além de remover o patch do histórico, permitindo que possa ser executado novamente.
+Este código irá resetar as categorias previamente instaladas.
+
+Selecione então o conteúdo do patch_list ('SELECT * FROM patch_list') e apague os patches 'Install Categories' e 'Translate Categories' (se houver). Execute novamente o setup:upgrade.

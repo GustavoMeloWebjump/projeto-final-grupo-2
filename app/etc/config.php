@@ -398,7 +398,7 @@ return [
                 'group_id' => '2',
                 'website_id' => '2',
                 'name' => 'Sneakers',
-                'root_category_id' => '10',
+                'root_category_id' => '2',
                 'default_store_id' => '3',
                 'code' => 'sneakers_code_group'
             ]

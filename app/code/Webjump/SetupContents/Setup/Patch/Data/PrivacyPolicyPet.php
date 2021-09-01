@@ -21,6 +21,7 @@ use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 class PrivacyPolicyPet implements DataPatchInterface
 {
@@ -137,7 +138,9 @@ class PrivacyPolicyPet implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
 
     /**

@@ -12,6 +12,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
 use Magento\Theme\Model\ThemeFactory;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 /**
  * Class RegisterThemes
@@ -41,7 +42,6 @@ class RegisterThemesPet2 implements DataPatchInterface
         ThemeResourceModel $themeResourceModel,
         ThemeFactory $themeFactory
     ) {
-        
         $this->storeManager = $storeManager;
         $this->configInterface = $configInterface;
         $this->themeResourceModel = $themeResourceModel;
@@ -68,7 +68,9 @@ class RegisterThemesPet2 implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
     /**
      * {@inheritdoc}

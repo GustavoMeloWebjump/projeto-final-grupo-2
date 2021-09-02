@@ -5,7 +5,8 @@ namespace Webjump\SetupContents\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Model\Store;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 /**
  * Patch to apply creation of the block Charges and fees
@@ -39,18 +40,26 @@ class CreateCarroselBlockFanon implements DataPatchInterface
     private $blockFactory;
 
     /**
+     * @var StoreRepositoryInterface $storeRepository
+     */
+    private $storeRepository;
+
+    /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+     * @param StoreRepositoryInterface $storeRepository
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
+        $this->storeRepository = $storeRepository;
     }
 
     /**
@@ -75,13 +84,14 @@ class CreateCarroselBlockFanon implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
+        $fanon = $this->storeRepository->get(InstallWGS::FANON_STORE_CODE);
         
         return $this->blockFactory->create()
             ->load(self::IDENTIFIER, 'identifier')
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores(['3'])
+            ->setStores([$fanon->getId()])
             ->setContent($content);
     }
 

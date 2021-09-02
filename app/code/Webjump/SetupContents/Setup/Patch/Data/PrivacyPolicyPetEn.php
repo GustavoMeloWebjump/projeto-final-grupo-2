@@ -15,13 +15,14 @@ namespace Webjump\SetupContents\Setup\Patch\Data;
 use Magento\Cms\Model\PageFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchInterface;
 use Magento\Store\Model\ResourceModel\Website;
 use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
-class PrivacyPolicyPet implements DataPatchInterface
+class PrivacyPolicyPetEn implements DataPatchInterface
 {
 
     /**
@@ -61,7 +62,7 @@ class PrivacyPolicyPet implements DataPatchInterface
     /**
      * const CODE_WEBSITE
      */
-    const CODE_WEBSITE = [InstallWGS::PATINHAS_WEBSITE_CODE];
+    const CODE_WEBSITE = ['petshop_code'];
 
     /**
      * AddNewCmsPage constructor.
@@ -99,15 +100,15 @@ class PrivacyPolicyPet implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
 
         $content = <<<HTML
-        <style>#html-body [data-pb-style=DOUAU1J]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="DOUAU1J"><h2 data-content-type="heading" data-appearance="default" data-element="main">Política de Privacidade</h2><div data-content-type="text" data-appearance="default" data-element="main"><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</p></div></div></div>
+        <style>#html-body [data-pb-style=DOUAU1J]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="DOUAU1J"><h2 data-content-type="heading" data-appearance="default" data-element="main">Privacy Policy</h2><div data-content-type="text" data-appearance="default" data-element="main"><p>This is our privacy policy. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</p></div></div></div>
         HTML;
 
-        $pageIdentifier = 'politicas_de_privacidade';
+        $pageIdentifier = 'privacy-policy';
         $cmsPageModel = $this->pageFactory->create()->load($pageIdentifier, 'title');
-        $cmsPageModel->setIdentifier('politicas_de_privacidade');
+        $cmsPageModel->setIdentifier('privacy-policy');
         $cmsPageModel->setStores($website->getStoreIds());
-        $cmsPageModel->setTitle('Politica de Privacidade');
-        $cmsPageModel->setContentHeading('Politica de Privacidade');
+        $cmsPageModel->setTitle('Privacy Policy');
+        $cmsPageModel->setContentHeading('Privacy Policy');
         $cmsPageModel->setPageLayout('1column');
         $cmsPageModel->setIsActive(1);
         $cmsPageModel->setContent($content)->save();
@@ -136,9 +137,7 @@ class PrivacyPolicyPet implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [
-            InstallWGS::class
-        ];
+        return [];
     }
 
     /**

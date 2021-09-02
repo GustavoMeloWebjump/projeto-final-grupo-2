@@ -15,7 +15,6 @@ namespace Webjump\SetupContents\Setup\Patch\Data;
 use Magento\Cms\Model\PageFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\Patch\PatchInterface;
 use Magento\Cms\Model\PageRepository;
 use Magento\Cms\Model\ResourceModel\Block as BlockResourceModel;
 use Magento\Cms\Model\BlockFactory;

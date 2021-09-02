@@ -15,11 +15,9 @@ namespace Webjump\SetupContents\Setup\Patch\Data;
 use Magento\Cms\Model\PageFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\Patch\PatchInterface;
 use Magento\Store\Model\ResourceModel\Website;
 use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
-use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
@@ -63,7 +61,7 @@ class PrivacyPolicySneakers implements DataPatchInterface
     /**
      * const CODE_WEBSITE
      */
-    const CODE_WEBSITE = ['sneakers_code'];
+    const CODE_WEBSITE = [InstallWGS::FANON_WEBSITE_CODE];
 
     /**
      * AddNewCmsPage constructor.

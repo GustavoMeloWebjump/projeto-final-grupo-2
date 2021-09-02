@@ -6,7 +6,6 @@ namespace Webjump\SetupContents\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
-use Magento\Store\Model\Store;
 use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 /**

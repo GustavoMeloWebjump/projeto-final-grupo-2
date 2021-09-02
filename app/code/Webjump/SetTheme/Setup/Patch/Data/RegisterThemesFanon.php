@@ -56,7 +56,7 @@ class RegisterThemesFanon implements DataPatchInterface
         $fanon = $this->themeFactory->create();
         $this->themeResourceModel->load($fanon, 'projetofinal_temas/tema_fanon', 'theme_path');
 
-        $fanonStoreId = $this->storeManager->getStore('sneakers_view_code')->getId();
+        $fanonStoreId = $this->storeManager->getStore(InstallWGS::FANON_STORE_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             $fanon->getThemeId(), 

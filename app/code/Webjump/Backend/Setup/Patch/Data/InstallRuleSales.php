@@ -9,7 +9,6 @@ use Magento\SalesRule\Model\ResourceModel\Rule as RuleResourceModelSale;
 use Magento\SalesRule\Model\Rule\Condition\CombineFactory;
 use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
-use Magento\CatalogRule\Model\Rule\Condition\ProductFactory;
 use Magento\Store\Api\WebsiteRepositoryInterface;
 
 class InstallRuleSales implements DataPatchInterface

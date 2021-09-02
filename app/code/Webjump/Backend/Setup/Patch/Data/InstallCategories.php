@@ -5,7 +5,6 @@ namespace Webjump\Backend\Setup\Patch\Data;
 use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Magento\Store\Model\GroupFactory;
 use Magento\Store\Model\ResourceModel\Group as GroupResourceModel;
@@ -48,6 +47,7 @@ class InstallCategories implements DataPatchInterface
      * @param CategorySetupFactory $categorySetupFactory
      * @param GroupFactory $groupFactory
      * @param GroupResourceModel $group
+     * @param StoreRepositoryInterface $storeRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,

@@ -2,11 +2,11 @@
 namespace Webjump\Backend\Setup\Patch\Data;
 
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Magento\Store\Api\WebsiteRepositoryInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class InstallStoresConfig implements DataPatchInterface
 {
@@ -44,7 +44,7 @@ class InstallStoresConfig implements DataPatchInterface
         $this->configInterface->saveConfig(
             'general/locale/code',
             'en_US',
-            'stores',
+            ScopeInterface::SCOPE_STORES,
             $patinhas_en
         );
 
@@ -52,14 +52,14 @@ class InstallStoresConfig implements DataPatchInterface
         $this->configInterface->saveConfig(
             'currency/options/allow',
             'USD',
-            'stores',
+            ScopeInterface::SCOPE_STORES,
             $patinhas_en
         );
 
         $this->configInterface->saveConfig(
             'currency/options/default',
             'USD',
-            'stores',
+            ScopeInterface::SCOPE_STORES,
             $patinhas_en
         );
 
@@ -70,14 +70,14 @@ class InstallStoresConfig implements DataPatchInterface
         $this->configInterface->saveConfig(
             'web/unsecure/base_url',
             'http://patinhas.localhost',
-            'websites',
+            ScopeInterface::SCOPE_WEBSITES,
             $patinhas_web->getId()
         );
 
         $this->configInterface->saveConfig(
             'web/unsecure/base_url',
             'http://fanon.localhost',
-            'websites',
+            ScopeInterface::SCOPE_WEBSITES,
             $fanon_web->getId()
         );
 

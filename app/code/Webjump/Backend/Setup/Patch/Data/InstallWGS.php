@@ -122,7 +122,7 @@ class InstallWGS implements DataPatchInterface
         return [
             'patinhas' => [
                 'website' => [
-                    'code' => 'petshop_code',
+                    'code' => self::PATINHAS_WEBSITE_CODE,
                     'name' => 'Patinhas',
                     'sort_order' => '1',
                     'is_default' => '1'
@@ -130,18 +130,18 @@ class InstallWGS implements DataPatchInterface
                 'group' => [
                     'name' => 'Petshop',
                     'root_category_id' => '2',
-                    'code' => 'petshop_code_group',
+                    'code' => self::PATINHAS_GROUP_CODE,
                     'default_store_id' => 0
                 ],
                 'store' => [
                     'pt' => [
-                        'code' => 'petshop_view_code',
+                        'code' => self::PATINHAS_STORE_CODE,
                         'name' => 'Patinhas',
                         'sort_order' => '1',
                         'is_active' => '1'
                     ],
                     'en' => [
-                        'code' => 'petshop_en_view_code',
+                        'code' => self::PATINHAS_EN_STORE_CODE,
                         'name' => 'Patinhas en',
                         'sort_order' => '2',
                         'is_active' => '1'
@@ -150,7 +150,7 @@ class InstallWGS implements DataPatchInterface
             ],
             'fanon' => [
                 'website' => [
-                    'code' => 'sneakers_code',
+                    'code' => self::FANON_WEBSITE_CODE,
                     'name' => 'Fanon',
                     'sort_order' => '2',
                     'is_default' => '0'
@@ -158,12 +158,12 @@ class InstallWGS implements DataPatchInterface
                 'group' => [
                     'name' => 'Sneakers',
                     'root_category_id' => '2',
-                    'code' => 'sneakers_code_group',
+                    'code' => self::FANON_GROUP_CODE,
                     'default_store_id' => 0
                 ],
                 'store' => [
                     'pt' => [
-                        'code' => 'sneakers_view_code',
+                        'code' => self::FANON_STORE_CODE,
                         'name' => 'Fanon',
                         'sort_order' => '2',
                         'is_active' => '1'

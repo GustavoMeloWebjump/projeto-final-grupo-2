@@ -56,7 +56,7 @@ class RegisterThemesPet implements DataPatchInterface
         $patinhas = $this->themeFactory->create();
         $this->themeResourceModel->load($patinhas, 'projetofinal_temas/tema_patinhas', 'theme_path');
 
-        $petStoreId = $this->storeManager->getStore('petshop_view_code')->getId();
+        $petStoreId = $this->storeManager->getStore(InstallWGS::PATINHAS_STORE_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             $patinhas->getThemeId(), 

@@ -15,6 +15,7 @@ class InstallConfigFreight implements DataPatchInterface
 {
 
     CONST TABLERATES_PATH_FILE = __DIR__ . '/upload/importrates.csv';
+    CONST TABLE_SHIPPING_NAME = 'shipping_tablerate';
 
     private ModuleDataSetupInterface $moduleDataSetup;
     private ConfigInterface $configInterface;
@@ -30,7 +31,7 @@ class InstallConfigFreight implements DataPatchInterface
     }
 
 
-    public function importTableRates ($file) {
+    public function importTableRates ($file) : void {
         if (!file_exists($file)) {
             throw new DomainException('O arquivo de importação csv não se encontra na pasta upload ');
         }
@@ -41,64 +42,34 @@ class InstallConfigFreight implements DataPatchInterface
         unset($csvdata[0]);
         $datas = array_values($csvdata);
 
-        $this->setup->getConnection()->insertArray('shipping_tablerate', $columns, $datas);
+        $this->setup->getConnection()->insertArray(self::TABLE_SHIPPING_NAME, $columns, $datas);
+    }
+
+    public function DataConfigFreight () : array {
+        return [
+            ['carriers/tablerate/active', true],
+            ['carriers/tablerate/title', 'Webjump entreguinhas '],
+            ['carriers/tablerate/name', 'Metodo de entregas da Webjump '],
+            ['carriers/tablerate/condition_name', 'package_value_with_discount'],
+            ['carriers/tablerate/include_virtual_price', true],
+            ['carriers/tablerate/handling_type', 'F'],
+            ['carriers/tablerate/handling_fee', '5.0'],
+            ['carriers/tablerate/specificerrmsg', 'Este metodo de envio não esta disponivel no momento :|'],
+            ['carriers/tablerate/sallowspecific', true],
+            ['carriers/tablerate/specificcountry', 'BR,US,CA'],
+            ['carriers/tablerate/sort_order', 0],
+        ];
     }
 
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/active',
-            true);
+        $arry_data = $this->DataConfigFreight();
 
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/title',
-            'Webjump entreguinhas ');
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/name',
-            'Metodo de entregas da Webjump');
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/condition_name',
-            'package_value_with_discount'
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/include_virtual_price',
-            true
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/handling_type',
-            'F'
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/handling_fee',
-            '5.0'
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/specificerrmsg',
-            'Este metodo de envio não esta disponivel no momento :| '
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/sallowspecific',
-            true
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/specificcountry',
-            'BR,US,CA'
-        );
-
-        $this->configInterface->saveConfig(
-            'carriers/tablerate/sort_order',
-            0
-        );
+        foreach ($arry_data as $data) {
+            $this->configInterface->saveConfig($data[0], $data[1]);
+        }
 
         $this->importTableRates(self::TABLERATES_PATH_FILE);
 

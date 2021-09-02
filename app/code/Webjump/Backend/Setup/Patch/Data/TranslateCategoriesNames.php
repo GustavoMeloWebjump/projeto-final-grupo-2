@@ -47,22 +47,34 @@ class TranslateCategoriesNames implements DataPatchInterface
         $patinhas_en_id = $this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE)->getId();
 
         $category1 = $this->categoryRepository->get(3, $patinhas_en_id);
-        $category1->setName('Dogs')->save();
+        $category1->setName('Dogs')
+            ->setUrlKey('dogs')
+            ->save();
 
         $category2 = $this->categoryRepository->get(4, $patinhas_en_id);
-        $category2->setName('Cats')->save();
+        $category2->setName('Cats')
+            ->setUrlKey('cats')
+            ->save();
 
         $category3 = $this->categoryRepository->get(5, $patinhas_en_id);
-        $category3->setName('Toys')->save();
+        $category3->setName('Toys')
+            ->setUrlKey('toys')
+            ->save();
 
         $category4 = $this->categoryRepository->get(6, $patinhas_en_id);
-        $category4->setName('Birds')->save();
+        $category4->setName('Birds')
+            ->setUrlKey('birds')
+            ->save();
 
         $category5 = $this->categoryRepository->get(7, $patinhas_en_id);
-        $category5->setName('Bath')->save();
+        $category5->setName('Bath')
+            ->setUrlKey('bath')
+            ->save();
 
         $category6 = $this->categoryRepository->get(8, $patinhas_en_id);
-        $category6->setName('Accessories')->save();
+        $category6->setName('Accessories')
+            ->setUrlKey('accessories')
+            ->save();
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

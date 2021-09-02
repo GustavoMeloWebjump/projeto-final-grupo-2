@@ -71,7 +71,7 @@ class FooterPet implements DataPatchInterface
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores(['1', '2'])
+            ->setStores(['1'])
             ->setContent($content);
     }
   /**

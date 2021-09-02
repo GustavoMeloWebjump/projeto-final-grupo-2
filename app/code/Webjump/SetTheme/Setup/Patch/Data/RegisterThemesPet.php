@@ -12,6 +12,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
 use Magento\Theme\Model\ThemeFactory;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 /**
  * Class RegisterThemes
@@ -55,7 +56,7 @@ class RegisterThemesPet implements DataPatchInterface
         $patinhas = $this->themeFactory->create();
         $this->themeResourceModel->load($patinhas, 'projetofinal_temas/tema_patinhas', 'theme_path');
 
-        $petStoreId = $this->storeManager->getStore('petshop_view_code')->getId();
+        $petStoreId = $this->storeManager->getStore(InstallWGS::PATINHAS_STORE_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             $patinhas->getThemeId(), 
@@ -69,7 +70,9 @@ class RegisterThemesPet implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
     /**
      * {@inheritdoc}

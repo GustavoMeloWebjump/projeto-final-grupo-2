@@ -12,6 +12,8 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
 use Magento\Theme\Model\ThemeFactory;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
+
 /**
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
@@ -54,7 +56,7 @@ class RegisterThemesFanon implements DataPatchInterface
         $fanon = $this->themeFactory->create();
         $this->themeResourceModel->load($fanon, 'projetofinal_temas/tema_fanon', 'theme_path');
 
-        $fanonStoreId = $this->storeManager->getStore('sneakers_view_code')->getId();
+        $fanonStoreId = $this->storeManager->getStore(InstallWGS::FANON_STORE_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id', 
             $fanon->getThemeId(), 
@@ -69,7 +71,9 @@ class RegisterThemesFanon implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
 
     /**

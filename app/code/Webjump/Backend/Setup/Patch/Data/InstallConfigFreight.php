@@ -2,14 +2,13 @@
 namespace Webjump\Backend\Setup\Patch\Data;
 
 use DomainException;
-use Magento\Cookie\Model\Config\Backend\Domain;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\DataObject;
 use Magento\Framework\File\Csv;
 use Magento\Setup\Module\Setup;
+use Magento\Store\Api\WebsiteRepositoryInterface;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 class InstallConfigFreight implements DataPatchInterface
 {
@@ -21,13 +20,15 @@ class InstallConfigFreight implements DataPatchInterface
     private ConfigInterface $configInterface;
     private Csv $csv;
     private Setup $setup;
+    private WebsiteRepositoryInterface $websiteRepositoryInterface;
 
-    public function __construct(ModuleDataSetupInterface $moduleDataSetup, ConfigInterface $configInterface, Csv $csv, Setup $setup)
+    public function __construct(ModuleDataSetupInterface $moduleDataSetup, ConfigInterface $configInterface, Csv $csv, Setup $setup, WebsiteRepositoryInterface $websiteRepositoryInterface)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->configInterface = $configInterface;
         $this->csv = $csv;
         $this->setup = $setup;
+        $this->websiteRepositoryInterface = $websiteRepositoryInterface;
     }
 
 
@@ -41,6 +42,13 @@ class InstallConfigFreight implements DataPatchInterface
         $columns = $csvdata[0];
         unset($csvdata[0]);
         $datas = array_values($csvdata);
+
+        $i = 0;
+
+        foreach ($datas as $value) {
+            $datas[$i][0] = $this->websiteRepositoryInterface->get($value[0])->getId();
+            $i++;
+        }
 
         $this->setup->getConnection()->insertArray(self::TABLE_SHIPPING_NAME, $columns, $datas);
     }
@@ -79,7 +87,9 @@ class InstallConfigFreight implements DataPatchInterface
 
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
 
     public function getAliases()

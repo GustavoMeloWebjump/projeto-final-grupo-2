@@ -9,6 +9,7 @@ use Magento\Store\Model\ResourceModel\Website;
 use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 class CreateAboutPageFanon implements DataPatchInterface
 {
@@ -47,10 +48,10 @@ class CreateAboutPageFanon implements DataPatchInterface
     private $pageResource;
 
     /**
-     * const CODE_WEBSITE 
+     * const CODE_WEBSITE
      */
-    const CODE_WEBSITE =  ['sneakers_code'];
-    
+    const CODE_WEBSITE =  [InstallWGS::FANON_WEBSITE_CODE];
+
     /**
      * AddNewCmsPage constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
@@ -131,7 +132,7 @@ class CreateAboutPageFanon implements DataPatchInterface
     {
         return [];
     }
-    
+
     /**
      * {@inheritdoc}
      */

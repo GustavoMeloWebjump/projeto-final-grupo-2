@@ -31,9 +31,9 @@ sneakers_code,BR,508,*,package_value_with_discount,5.0000,5,0
 sneakers_code,BR,496,*,package_value_with_discount,5.0000,15,0
 sneakers_code,BR,502,*,package_value_with_discount,5.0000,15,0
 sneakers_code,BR,491,*,package_value_with_discount,5.0000,15,0
-sneakers_code,BR,507,*,package_value_with_discount,10.0000,15,0
-sneakers_code,BR,497,*,package_value_with_discount,10.0000,20,0
-sneakers_code,BR,503,*,package_value_with_discount,10.0000,20,0
+sneakers_code,BR,499,*,package_value_with_discount,10.0000,20,0
+sneakers_code,BR,504,*,package_value_with_discount,10.0000,20,0
+sneakers_code,BR,507,*,package_value_with_discount,10.0000,20,0
 sneakers_code,BR,511,*,package_value_with_discount,10.0000,20,0
 sneakers_code,BR,495,*,package_value_with_discount,15.0000,35,0
 sneakers_code,BR,494,*,package_value_with_discount,15.0000,35,0
@@ -54,3 +54,4 @@ sneakers_code,BR,498,*,package_value_with_discount,15.0000,40,0
 sneakers_code,BR,503,*,package_value_with_discount,15.0000,40,0
 sneakers_code,BR,486,*,package_value_with_discount,10.0000,40,0
 sneakers_code,BR,509,*,package_value_with_discount,10.0000,40,0
+sneakers_code,US,*,*,package_value_with_discount,0.0000,200,0

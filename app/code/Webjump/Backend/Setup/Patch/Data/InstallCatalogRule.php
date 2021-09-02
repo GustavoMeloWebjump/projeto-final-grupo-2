@@ -6,6 +6,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\CatalogRule\Api\Data\RuleInterfaceFactory as RuleFactory;
 use Magento\Customer\Model\Group;
+use Magento\Store\Api\WebsiteRepositoryInterface;
 use Webjump\Backend\App\CustomState;
 
 class InstallCatalogRule implements DataPatchInterface
@@ -13,15 +14,18 @@ class InstallCatalogRule implements DataPatchInterface
     private $moduleDataSetup;
     private $ruleFactory;
     private CustomState $customState;
+    private $websiteRepository;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         RuleFactory $ruleFactory,
-        CustomState $customState)
-    {
+        CustomState $customState,
+        WebsiteRepositoryInterface $websiteRepository
+    ){
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
         $this->customState = $customState;
+        $this->websiteRepository = $websiteRepository;
 
         if (!$this->customState->validateAreaCode()) {
             $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
@@ -32,26 +36,28 @@ class InstallCatalogRule implements DataPatchInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
-        $rule5 = $this->ruleFactory->create(['setup' => $this->moduleDataSetup]);
+        $patinhas = $this->websiteRepository->get(InstallWGS::PATINHAS_WEBSITE_CODE);
 
+        $rule5 = $this->ruleFactory->create(['setup' => $this->moduleDataSetup]);
         $rule5
             ->setName('discount of 5% for guest users')
             ->setDescription('this discount is applied for guest users that will enter in first website ')
             ->setIsActive(1)
-            ->setWebsiteIds('1')
+            ->setWebsiteIds($patinhas->getId())
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
             ->setSimpleAction('by_percent')
             ->setDiscountAmount(5)
             ->setStopRulesProcessing(0)
             ->save();
 
-        $rule10 = $this->ruleFactory->create(['setup' => $this->moduleDataSetup]);
+        $fanon = $this->websiteRepository->get(InstallWGS::FANON_WEBSITE_CODE);
 
+        $rule10 = $this->ruleFactory->create(['setup' => $this->moduleDataSetup]);
         $rule10
             ->setName('discount of 10% for guest users')
             ->setDescription('this discount is applied for gues users that will enter in secound website')
             ->setIsActive(1)
-            ->setWebsiteIds('2')
+            ->setWebsiteIds($fanon->getId())
             ->setCustomerGroupIds(Group::NOT_LOGGED_IN_ID)
             ->setSimpleAction('by_percent')
             ->setDiscountAmount(10)
@@ -68,6 +74,8 @@ class InstallCatalogRule implements DataPatchInterface
 
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
 }

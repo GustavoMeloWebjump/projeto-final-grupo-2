@@ -20,7 +20,6 @@ use Magento\Cms\Model\PageRepository;
 use Magento\Cms\Model\ResourceModel\Block as BlockResourceModel;
 use Magento\Cms\Model\BlockFactory;
 
-
 /**
  * Class HomePageUpdate
  */
@@ -38,7 +37,6 @@ class CreateHomeContent implements DataPatchInterface {
      * @var BlockFactory $blockFactory
      */
     private $blockFactory;
-
     
     /** @var PageFactory */
     private $pageFactory;
@@ -48,13 +46,14 @@ class CreateHomeContent implements DataPatchInterface {
 
     const PAGE_IDENTIFIER = 'home';
 
-
     /**
      * HomePageUpdate Construct
      *
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param PageFactory $pageFactory
      * @param PageRepository $pageRepository
+     * @param BlockFactory $blockFactory
+     * @param BlockResourceModel $blockResourceModel
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,

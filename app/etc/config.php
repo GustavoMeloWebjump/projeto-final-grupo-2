@@ -335,8 +335,8 @@ return [
         'Klarna_Kp' => 1,
         'Klarna_Onsitemessaging' => 1,
         'Klarna_KpGraphQl' => 1,
-        'PayPal_Braintree' => 0,
-        'PayPal_BraintreeGraphQl' => 0,
+        'PayPal_Braintree' => 1,
+        'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidationApi' => 1,
@@ -344,11 +344,116 @@ return [
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
         'Webjump_Backend' => 1,
-        'Webjump_SetCategoryBanner' => 1,
-        'Webjump_SetFooter' => 1,
-        'Webjump_SetPaymentBlock' => 1,
-        'Webjump_SetTheme' => 1,
-        'Webjump_SetupContents' => 1,
         'Yotpo_Yotpo' => 1
+    ],
+    'scopes' => [
+        'websites' => [
+            'admin' => [
+                'website_id' => '0',
+                'code' => 'admin',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'default_group_id' => '0',
+                'is_default' => '0'
+            ],
+            'petshop_code' => [
+                'website_id' => '1',
+                'code' => 'petshop_code',
+                'name' => 'Petshop',
+                'sort_order' => '1',
+                'default_group_id' => '1',
+                'is_default' => '1'
+            ],
+            'sneakers_code' => [
+                'website_id' => '3',
+                'code' => 'sneakers_code',
+                'name' => 'Sneakers',
+                'sort_order' => '2',
+                'default_group_id' => '2',
+                'is_default' => '0'
+            ]
+        ],
+        'groups' => [
+            [
+                'group_id' => '0',
+                'website_id' => '0',
+                'name' => 'Default',
+                'root_category_id' => '0',
+                'default_store_id' => '0',
+                'code' => 'default'
+            ],
+            [
+                'group_id' => '1',
+                'website_id' => '1',
+                'name' => 'Petshop',
+                'root_category_id' => '2',
+                'default_store_id' => '1',
+                'code' => 'petshop_code_group'
+            ],
+            [
+                'group_id' => '2',
+                'website_id' => '3',
+                'name' => 'Sneakers',
+                'root_category_id' => '10',
+                'default_store_id' => '3',
+                'code' => 'sneakers_code_group'
+            ]
+        ],
+        'stores' => [
+            'admin' => [
+                'store_id' => '0',
+                'code' => 'admin',
+                'website_id' => '0',
+                'group_id' => '0',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'petshop_view_code' => [
+                'store_id' => '1',
+                'code' => 'petshop_view_code',
+                'website_id' => '1',
+                'group_id' => '1',
+                'name' => 'Petshop',
+                'sort_order' => '1',
+                'is_active' => '1'
+            ],
+            'petshop_view2_code' => [
+                'store_id' => '2',
+                'code' => 'petshop_view2_code',
+                'website_id' => '1',
+                'group_id' => '1',
+                'name' => 'Petshop2',
+                'sort_order' => '2',
+                'is_active' => '1'
+            ],
+            'sneakers_view_code' => [
+                'store_id' => '3',
+                'code' => 'sneakers_view_code',
+                'website_id' => '3',
+                'group_id' => '2',
+                'name' => 'Sneakers',
+                'sort_order' => '2',
+                'is_active' => '1'
+            ]
+        ]
+    ],
+    'system' => [
+        'websites' => [
+            'petshop_code' => [
+                'web' => [
+                    'unsecure' => [
+                        'base_url' => 'http://pet.localhost/'
+                    ]
+                ]
+            ],
+            'sneakers_code' => [
+                'web' => [
+                    'unsecure' => [
+                        'base_url' => 'http://sneakers.localhost/'
+                    ]
+                ]
+            ]
+        ]
     ]
 ];

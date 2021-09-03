@@ -28,11 +28,6 @@ class AddProduct
             'file' => '/csv/website-products.csv'
         ],
         2 => [
-            'entity' => 'stock_sources',
-            'behavior' => 'append',
-            'file' => '/csv/stock.csv'
-        ],
-        3 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => '/csv/petshop-products.csv'

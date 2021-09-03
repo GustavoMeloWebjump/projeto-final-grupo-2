@@ -14,8 +14,6 @@ use Webjump\Backend\Model\Product\AddProduct as ModelAddProduct;
 
 class AddProduct extends Command
 {
-    const INPUT_KEY_NAME = 'name';
-    const INPUT_KEY_DESCRIPTION = 'description';
 
     private ModelAddProduct $itemFactory;
 
@@ -35,9 +33,7 @@ class AddProduct extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $item = $this->itemFactory->getData();
-
-        var_dump($item);
+        $this->itemFactory->execute($output);
 
         return Cli::RETURN_SUCCESS;
 

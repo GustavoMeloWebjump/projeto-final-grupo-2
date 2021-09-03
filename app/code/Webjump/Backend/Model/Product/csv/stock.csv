@@ -1,14 +1,15 @@
 source_code,sku,status,quantity
-default,Shampoo_anti_pulgas,1,25.0000
-default,Condicionador,1,20.0000
-default,Racao_para_cachorro_20kg,1,40.0000
-default,Coleira_para_cachorro,1,100.0000
-default,Racao_Escopet_Natural_32,1,50.0000
-default,Soft_Care_Dental,1,20.0000
-default,Areia Mineralizada,1,65.0000
-default,Viveiro para passaros,1,15.0000
-default,Roupa para galo,1,35.0000
-default,Comida_para_gato,1,35.0000
-default,Matisse salmão e arroz,1,35.0000
-default,Arranhador_para_gatos,1,20.0000
-default,Casa_com_arranhador_rede,1,10.0000
+default,P-SAP-1,1,25.0000
+default,P-C-1,1,20.0000
+default,P-CP-1,1,20.0000
+default,P-RC-1,1,40.0000
+default,P-CBD-1,1,20.0000
+default,P-CPC-1,1,100.0000
+default,P-REN-1,1,50.0000
+default,P-SCD-1,1,20.0000
+default,P-AM-1,1,65.0000
+default,P-VP-1,1,15.0000
+default,P-RW-1,1,35.0000
+default,P-RM-1,1,35.0000
+default,P-AG-1,1,20.0000
+default,P-CA4E-1,1,10.0000

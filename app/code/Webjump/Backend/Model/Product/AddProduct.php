@@ -19,12 +19,22 @@ class AddProduct
         0 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => '/csv/products.csv'
+            'file' => '/csv/petshop-products.csv'
         ],
         1 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => '/csv/website-products.csv'
+        ],
+        2 => [
             'entity' => 'stock_sources',
             'behavior' => 'append',
             'file' => '/csv/stock.csv'
+        ],
+        3 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => '/csv/sneakers_products.csv'
         ]
     ];
 
@@ -93,12 +103,13 @@ class AddProduct
             'validation_strategy' => 'validation-stop-on-errors'
         ]);
 
-        $importSetup->validateSource($this->getData($filename));
+        $validation = $importSetup->validateSource($this->getData($filename));
 
-
+        if($validation) {
         $result = $importSetup->importSource();
-        if ($result) {
-            $importSetup->invalidateIndex();
+            if ($result) {
+                $importSetup->invalidateIndex();
+            }
         }
 
     }

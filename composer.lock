@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d3a49b2577a7b47ead01b2d1f532d3c",
+    "content-hash": "ec2ea53de0ba807c156f5f8261fb5473",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -18737,6 +18737,59 @@
             "time": "2021-05-03T11:20:27+00:00"
         },
         {
+            "name": "rafaelstz/traducao_magento2_pt_br",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rafaelstz/traducao_magento2_pt_br.git",
+                "reference": "8af8b1e1cc743adfb3f8b7b8ba0a064a04d51d88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rafaelstz/traducao_magento2_pt_br/zipball/8af8b1e1cc743adfb3f8b7b8ba0a064a04d51d88",
+                "reference": "8af8b1e1cc743adfb3f8b7b8ba0a064a04d51d88",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "magento2-language",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Corrêa Gomes",
+                    "homepage": "https://github.com/rafaelstz"
+                },
+                {
+                    "name": "Magento official translations project for Magento 2",
+                    "homepage": "https://crowdin.com/project/magento-2"
+                }
+            ],
+            "description": "Tradução Magento 2 para Português do Brasil oficial da Magento ",
+            "homepage": "https://github.com/rafaelstz/traducao_magento2_pt_br",
+            "support": {
+                "issues": "https://github.com/rafaelstz/traducao_magento2_pt_br/issues",
+                "source": "https://github.com/rafaelstz/traducao_magento2_pt_br/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/rafaelcg",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/rafaelstz",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-23T20:30:48+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -24491,6 +24544,58 @@
             "time": "2017-01-16T07:08:25+00:00"
         },
         {
+            "name": "honl/magento2-templatehints",
+            "version": "0.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ho-nl/magento2-Ho_Templatehints.git",
+                "reference": "c66ab94c4282acd9e3ae93f52da85d64a86c3f73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ho-nl/magento2-Ho_Templatehints/zipball/c66ab94c4282acd9e3ae93f52da85d64a86c3f73",
+                "reference": "c66ab94c4282acd9e3ae93f52da85d64a86c3f73",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "replace": {
+                "ho-nl/magento2-templatehints": "self.version"
+            },
+            "type": "magento2-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Ho\\Templatehints\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Hachmang - H&O",
+                    "email": "paul@h-o.nl"
+                }
+            ],
+            "description": "H&O Magento 2 Advanced Template Hints module",
+            "homepage": "https://github.com/ho-nl/magento2-Ho_Templatehints",
+            "support": {
+                "issues": "https://github.com/ho-nl/magento2-Ho_Templatehints/issues",
+                "source": "https://github.com/ho-nl/magento2-Ho_Templatehints/tree/master"
+            },
+            "time": "2020-04-17T12:48:43+00:00"
+        },
+        {
             "name": "jms/metadata",
             "version": "2.5.1",
             "source": {
@@ -27736,7 +27841,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rafaelstz/traducao_magento2_pt_br": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

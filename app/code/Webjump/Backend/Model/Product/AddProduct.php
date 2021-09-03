@@ -1,6 +1,7 @@
 <?php
 namespace Webjump\Backend\Model\Product;
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\ImportExport\Model\Import;
 use Magento\ImportExport\Model\ImportFactory;
 use Magento\Framework\App\State;
@@ -9,10 +10,10 @@ use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterfaceFactory as MediaFactory;
 
 class AddProduct
 {
-
     const CSV_FILE = "/csv/products.csv";
 
     const IMPORT_DATA = [
@@ -53,7 +54,6 @@ class AddProduct
      */
     private $importFactory;
 
-
     /**
      * @var File
      */
@@ -64,12 +64,24 @@ class AddProduct
      */
     private $readFile;
 
+    /**
+     * @var ProductRepositoryInterface
+     */
+    private $productRepository;
+
+    /**
+     * @var MediaFactory
+     */
+    private $mediaFactory;
+
     public function __construct(
      CsvFactory $csv,
      ImportFactory $importFactory,
      File $file,
      State $state,
-     ReadFactory $readFile
+     ReadFactory $readFile,
+     ProductRepositoryInterface $productRepository,
+     MediaFactory $mediaFactory
     )
     {
         $this->csv = $csv;
@@ -77,6 +89,8 @@ class AddProduct
         $this->file = $file;
         $this->readFile = $readFile;
         $this->state = $state;
+        $this->productRepository = $productRepository;
+        $this->mediaFactory = $mediaFactory;
     }
 
 
@@ -91,6 +105,16 @@ class AddProduct
 
             $output->writeln("Import " . __DIR__ . $data['file']);
         }
+
+        $media = $this->mediaFactory->create();
+        $media->setFile(__DIR__ . '/img/image_test.jpg')
+            ->setMediaType('image');
+
+        $product = $this->productRepository->get('P-CA4E-1', true);
+
+        $product->setMediaGalleryEntries([$media]);
+        
+        $this->productRepository->save($product);
     }
 
     public function importData($filename, $entity, $behavior)

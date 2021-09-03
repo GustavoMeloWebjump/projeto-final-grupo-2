@@ -12,10 +12,9 @@
     },
     "version": "2.4.3",
     "require": {
-        "magento/composer-dependency-version-audit-plugin": "~0.1",
-        "magento/composer-root-update-plugin": "~1.1",
         "magento/product-community-edition": "2.4.3",
-        "rafaelstz/traducao_magento2_pt_br": "dev-master"
+        "magento/composer-root-update-plugin": "~1.1",
+        "magento/composer-dependency-version-audit-plugin": "~0.1"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -42,7 +41,6 @@
         "allure-framework/allure-phpunit": "~1.4",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "friendsofphp/php-cs-fixer": "~2.18.1",
-        "honl/magento2-templatehints": "^0.2.5",
         "lusitanian/oauth": "~0.8.10",
         "magento/magento-coding-standard": "*",
         "magento/magento2-functional-testing-framework": "^3.0",
@@ -80,3 +78,4 @@
         "magento-force": "override"
     }
 }
+

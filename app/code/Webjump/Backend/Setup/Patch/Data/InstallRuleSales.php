@@ -9,7 +9,7 @@ use Magento\SalesRule\Model\ResourceModel\Rule as RuleResourceModelSale;
 use Magento\SalesRule\Model\Rule\Condition\CombineFactory;
 use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
-use Magento\Store\Api\WebsiteRepositoryInterface;
+use Magento\CatalogRule\Model\Rule\Condition\ProductFactory;
 
 class InstallRuleSales implements DataPatchInterface
 {
@@ -18,22 +18,19 @@ class InstallRuleSales implements DataPatchInterface
     private RuleResourceModelSale $ruleResourceModelSale;
     private CombineFactory $combineFactory;
     private AddressFactory $addressFactory;
-    private WebsiteRepositoryInterface $websiteRepository;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         RuleFactory $ruleFactory,
         RuleResourceModelSale $ruleResourceModelSale,
         CombineFactory $combineFactory,
-        AddressFactory $addressFactory,
-        WebsiteRepositoryInterface $websiteRepository
+        AddressFactory $addressFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
         $this->ruleResourceModelSale = $ruleResourceModelSale;
         $this->combineFactory = $combineFactory;
         $this->addressFactory = $addressFactory;
-        $this->websiteRepository = $websiteRepository;
     }
     /**
      *  {@inheritDoc}
@@ -43,9 +40,6 @@ class InstallRuleSales implements DataPatchInterface
         // $this->state->setAreaCode(Area::AREA_ADMINHTML);
 
         $this->moduleDataSetup->getConnection()->startSetup();
-
-        $patinhas = $this->websiteRepository->get(InstallWGS::PATINHAS_WEBSITE_CODE);
-        $fanon = $this->websiteRepository->get(InstallWGS::FANON_WEBSITE_CODE);
 
         $condition1 = $this->combineFactory->create();
         $condition2 = $this->addressFactory->create();
@@ -69,7 +63,7 @@ class InstallRuleSales implements DataPatchInterface
         $cartRule
             ->setName('5% of discount when have 5 items in cart')
             ->setDescription('5% of discount when have 5 items in cart')
-            ->setWebsiteIds([$patinhas->getId(), $fanon->getId()])
+            ->setWebsiteIds(['1', '2'])
             ->setCustomerGroupIds(['0', '1', '2', '3'])
             ->setIsActive(1)
             ->setSimpleAction('by_percent')
@@ -86,9 +80,7 @@ class InstallRuleSales implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [
-            InstallWGS::class
-        ];
+        return [];
     }
 
     /**

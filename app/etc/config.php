@@ -344,6 +344,7 @@ return [
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
         'Webjump_Backend' => 1,
+        'Webjump_SetCategoryBanner' => 1,
         'Webjump_SetFooter' => 1,
         'Webjump_SetPaymentBlock' => 1,
         'Webjump_SetTheme' => 1,

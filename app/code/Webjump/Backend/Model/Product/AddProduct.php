@@ -19,7 +19,7 @@ class AddProduct
         0 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => '/csv/petshop-products.csv'
+            'file' => '/csv/sneakers_products.csv'
         ],
         1 => [
             'entity' => 'catalog_product',
@@ -34,7 +34,7 @@ class AddProduct
         3 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => '/csv/sneakers_products.csv'
+            'file' => '/csv/petshop-products.csv'
         ]
     ];
 

@@ -26,7 +26,7 @@ class AddProduct extends Command
 
     protected function configure()
     {
-        $this->setName('petshop:product:add');
+        $this->setName('product:add');
 
         parent::configure();
     }

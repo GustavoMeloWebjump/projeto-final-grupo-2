@@ -53,7 +53,7 @@ class InstallTranslatePetsizeOptions implements DataPatchInterface
             $attribute = $this->attributeOptionsFactory->create();
 
             $attribute->setLabel($size[1]);
-            $attribute->setStoreLabels($attributeEnglish);
+            $attribute->setStoreLabels([$attributeEnglish]);
             $attribute->setIsDefault(false);
             $attribute->setSortOrder($contador);
 

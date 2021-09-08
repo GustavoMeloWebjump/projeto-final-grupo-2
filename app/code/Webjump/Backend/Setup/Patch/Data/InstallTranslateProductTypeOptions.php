@@ -4,7 +4,6 @@ namespace Webjump\Backend\Setup\Patch\Data;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Eav\Api\AttributeOptionManagementInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Eav\Api\Data\AttributeOptionInterfaceFactory;
 use Webjump\Backend\Setup\Patch\Data\CreatePetshopAttribute;
 use Magento\Eav\Api\Data\AttributeOptionLabelInterfaceFactory;
@@ -55,7 +54,7 @@ class InstallTranslateProductTypeOptions implements DataPatchInterface
             $attribute = $this->attributeOptionsFactory->create();
 
             $attribute->setLabel($productType[1]);
-            $attribute->setStoreLabels($attributeEnglish);
+            $attribute->setStoreLabels([$attributeEnglish]);
             $attribute->setIsDefault(false);
             $attribute->setSortOrder($contador);
 

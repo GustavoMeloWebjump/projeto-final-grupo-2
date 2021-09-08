@@ -1,14 +1,4 @@
 <?php
-/*
- *
- * @author      Webjump Core Team <dev@webjump.com.br>
- * @copyright   2021 Webjump (http://www.webjump.com.br)
- * @license     http://www.webjump.com.br Copyright
- * @link        http://www.webjump.com.br
- *
- */
-
-declare(strict_types=1);
 
 namespace Webjump\SetupContents\Setup\Patch\Data;
 
@@ -19,11 +9,11 @@ use Magento\Store\Model\ResourceModel\Website;
 use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Api\StoreRepositoryInterface;
 use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
 class PrivacyPolicyPet implements DataPatchInterface
 {
-
     /**
      * @var ModuleDataSetupInterface
      */
@@ -59,10 +49,14 @@ class PrivacyPolicyPet implements DataPatchInterface
     private $pageResource;
 
     /**
-     * const CODE_WEBSITE
+    * @var StoreRepositoryInterface $storeRepository
+    */
+    private $storeRepository;
+
+    /**
+     * const CODE_WEBSITE 
      */
     const CODE_WEBSITE = [InstallWGS::PATINHAS_WEBSITE_CODE];
-
     /**
      * AddNewCmsPage constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
@@ -80,7 +74,8 @@ class PrivacyPolicyPet implements DataPatchInterface
         Website $website,
         WriterInterface $writerInterface,
         WebsiteFactory $websiteFactory,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        StoreRepositoryInterface $storeRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
@@ -89,25 +84,29 @@ class PrivacyPolicyPet implements DataPatchInterface
         $this->writerInterface = $writerInterface;
         $this->websiteFactory = $websiteFactory;
         $this->storeManager = $storeManager;
+        $this->storeRepository = $storeRepository;
     }
 
     /**
      * @param \Magento\Store\Model\Website $website
      */
-    private function setPrivacyPolicy(\Magento\Store\Model\Website $website): void
+    private function setCreateAboutPage(\Magento\Store\Model\Website $website): void
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        $patinhas = $this->storeRepository->get(InstallWGS::PATINHAS_STORE_CODE);
+
         $content = <<<HTML
-        <style>#html-body [data-pb-style=DOUAU1J]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="DOUAU1J"><h2 data-content-type="heading" data-appearance="default" data-element="main">Política de Privacidade</h2><div data-content-type="text" data-appearance="default" data-element="main"><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</p></div></div></div>
+        <style>#html-body [data-pb-style=H19P53I]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll;padding-top:20px}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="H19P53I"><h1 data-content-type="heading" data-appearance="default" data-element="main">Política de Privacidade</h1><div data-content-type="text" data-appearance="default" data-element="main"><p>A loja Patinhas tem como compromisso a integridade de seus dados pessoais e informações sensíveis que eventualmente podem vir a ser requeridas para alguma funcionalidade que tenha como objetivo melhorar a experiência do usuário, nosso sistema é baseado em uma forte segurança de dados para que eventuais ataques de pessoas mal intencionadas não venha a causa qualquer injúria para nossos clientes.</p>
+        <p>Caso queira remover os seus dados sensíveis de nosso banco de dados basta ligar para nossa central de atendimento pelo telefone: (11) 4002-8922.</p></div></div></div>
         HTML;
 
         $pageIdentifier = 'politicas_de_privacidade';
         $cmsPageModel = $this->pageFactory->create()->load($pageIdentifier, 'title');
         $cmsPageModel->setIdentifier('politicas_de_privacidade');
-        $cmsPageModel->setStores($website->getStoreIds());
-        $cmsPageModel->setTitle('Politica de Privacidade');
-        $cmsPageModel->setContentHeading('Politica de Privacidade');
+        $cmsPageModel->setStores([$patinhas->getId()]);
+        $cmsPageModel->setTitle('Políticas de Privacidade');
+        $cmsPageModel->setContentHeading('Políticas de Privacidade');
         $cmsPageModel->setPageLayout('1column');
         $cmsPageModel->setIsActive(1);
         $cmsPageModel->setContent($content)->save();
@@ -120,31 +119,30 @@ class PrivacyPolicyPet implements DataPatchInterface
      */
     public function apply()
     {
-
+            
         $websites = $this->storeManager->getWebsites();
         foreach ($websites as $web) {
             if (in_array($web->getCode(), self::CODE_WEBSITE)) {
                 $website = $this->websiteFactory->create();
                 $website->load($web->getCode());
-                $this->setPrivacyPolicy($website);
+                $this->setCreateAboutPage($website);
             }
         }
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function getDependencies()
-    {
-        return [
-            InstallWGS::class
-        ];
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function getAliases()
+    {
+        return [];
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
     {
         return [];
     }

@@ -6,3 +6,4 @@ Estão localizados em:
 
 -app/etc - Configurando multistore
 -app/code/Webjump/Backend - Instalando categorias
+-apṕ/code/Webjump/SetupContents - Criação de páginas e blocos

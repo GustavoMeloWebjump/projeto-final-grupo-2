@@ -5,10 +5,8 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\CategoryInterfaceFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Api\GroupRepositoryInterface;
 use Magento\Store\Model\GroupFactory;
 use Magento\Store\Model\ResourceModel\Group as GroupResourceModel;
-use Magento\Store\Model\StoreManagerInterface;
 
 class InstallCategories2 implements DataPatchInterface
 {
@@ -64,7 +62,7 @@ class InstallCategories2 implements DataPatchInterface
         
         $fanon = $this->groupFactory->create();
         $this->groupResourceModel->load($fanon, InstallWGS::FANON_GROUP_CODE, 'code');
-        $fanon->setRootCategoryId($categories[14]);
+        $fanon->setRootCategoryId($categories[13]);
         $this->groupResourceModel->save($fanon);
         
         $this->moduleDataSetup->getConnection()->endSetup();
@@ -97,53 +95,48 @@ class InstallCategories2 implements DataPatchInterface
             ],
             // from here: Patinhas Cães' subcategories
             [
-                'name' => 'Brinquedos',
+                'name' => 'Brinquedos para Cães',
                 'parent_ref' => 2,
                 'meta' => 'Patinhas | Cães - Brinquedos'
             ],
             [
-                'name' => 'Banho',
+                'name' => 'Beleza e Limpeza para Cães',
                 'parent_ref' => 2,
-                'meta' => 'Patinhas | Cães - Banho'
+                'meta' => 'Patinhas | Cães - Beleza'
             ],
             [
-                'name' => 'Acessórios',
+                'name' => 'Acessórios para Cães',
                 'parent_ref' => 2,
                 'meta' => 'Patinhas | Cães - Acessórios'
             ],
             // from here: Patinhas Gatos' subcategories
             [
-                'name' => 'Brinquedos',
+                'name' => 'Brinquedos para Gatos',
                 'parent_ref' => 3,
                 'meta' => 'Patinhas | Gatos - Brinquedos'
             ],
             [
-                'name' => 'Banho',
+                'name' => 'Beleza e Limpeza para Gatos',
                 'parent_ref' => 3,
-                'meta' => 'Patinhas | Gatos - Banho'
+                'meta' => 'Patinhas | Gatos - Beleza'
             ],
             [
-                'name' => 'Acessórios',
+                'name' => 'Acessórios para Gatos',
                 'parent_ref' => 3,
                 'meta' => 'Patinhas | Gatos - Acessórios'
             ],
             // from here: Patinhas Pássaros' subcategories
             [
-                'name' => 'Brinquedos',
+                'name' => 'Brinquedos para Aves',
                 'parent_ref' => 4,
                 'meta' => 'Patinhas | Pássaros - Brinquedos'
             ],
             [
-                'name' => 'Banho',
+                'name' => 'Acessórios para Aves',
                 'parent_ref' => 4,
                 'meta' => 'Patinhas | Pássaros - Banho'
             ],
-            [
-                'name' => 'Acessórios',
-                'parent_ref' => 4,
-                'meta' => 'Patinhas | Pássaros - Banho'
-            ],
-            // Fanon's root category ref: 14
+            // Fanon's root category ref: 13
             [
                 'name' => 'Fanon',
                 'parent_ref' => 0,
@@ -152,64 +145,64 @@ class InstallCategories2 implements DataPatchInterface
             // from here: Fanon's categories
             [
                 'name' => 'Lançamentos',
-                'parent_ref' => 14,
+                'parent_ref' => 13,
                 'meta' => 'Fanon | Lançamentos'
             ],
             [
                 'name' => 'Masculino',
-                'parent_ref' => 14,
+                'parent_ref' => 13,
                 'meta' => 'Fanon | Masculino'
             ],
             [
                 'name' => 'Feminino',
-                'parent_ref' => 14,
+                'parent_ref' => 13,
                 'meta' => 'Fanon | Feminino'
             ],
             // from here: Fanon Masculinos' subcategories
             [
                 'name' => 'Casual',
-                'parent_ref' => 16,
+                'parent_ref' => 15,
                 'meta' => 'Fanon | Masculino - Casual'
             ],
             [
                 'name' => 'Corrida',
-                'parent_ref' => 16,
+                'parent_ref' => 15,
                 'meta' => 'Fanon | Masculino - Corrida'
             ],
             [
                 'name' => 'Skate',
-                'parent_ref' => 16,
+                'parent_ref' => 15,
                 'meta' => 'Fanon | Masculino - Skate'
             ],
             [
                 'name' => 'Chuteiras',
-                'parent_ref' => 16,
+                'parent_ref' => 15,
                 'meta' => 'Fanon | Masculino - Chuteiras'
             ],
             [
                 'name' => 'Basquete',
-                'parent_ref' => 16,
+                'parent_ref' => 15,
                 'meta' => 'Fanon | Masculino - Basquete'
             ],
             // from here: Fanon Femininos' subcategories
             [
                 'name' => 'Casual',
-                'parent_ref' => 17,
+                'parent_ref' => 16,
                 'meta' => 'Fanon | Feminino - Casual'
             ],
             [
                 'name' => 'Corrida',
-                'parent_ref' => 17,
+                'parent_ref' => 16,
                 'meta' => 'Fanon | Feminino - Corrida'
             ],
             [
                 'name' => 'Skate',
-                'parent_ref' => 17,
+                'parent_ref' => 16,
                 'meta' => 'Fanon | Feminino - Skate'
             ],
             [
                 'name' => 'Chuteiras',
-                'parent_ref' => 17,
+                'parent_ref' => 16,
                 'meta' => 'Fanon | Feminino - Chuteiras'
             ],
         ];

@@ -22,12 +22,14 @@ class InstallTranslateProductTypeOptions implements DataPatchInterface
     public function __construct(ModuleDataSetupInterface $moduleDataSetup,
     AttributeOptionLabelInterfaceFactory $attributeOptionsLabelFactory,
     StoreRepository $storeRepository,
-    AttributeOptionInterfaceFactory $attributeOptionsFactory)
+    AttributeOptionInterfaceFactory $attributeOptionsFactory,
+    AttributeOptionManagementInterface $attributeOptionManager)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->attributeOptionsLabelFactory = $attributeOptionsLabelFactory;
         $this->storeRepository = $storeRepository;
         $this->attributeOptionsFactory = $attributeOptionsFactory;
+        $this->attributeOptionManager = $attributeOptionManager;
     }
 
 
@@ -45,15 +47,16 @@ class InstallTranslateProductTypeOptions implements DataPatchInterface
     public function setProductType () {
 
         $contador = 0;
-        foreach ($this->returnLabelDatasByProductType() as $productType) {
+        $helper = $this->returnLabelDatasByProductType();
+        foreach ($helper as $productType) {
             $attributeEnglish = $this->attributeOptionsLabelFactory->create();
             $attributeEnglish->setStoreId($this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE)->getId());
-            $attributeEnglish->setLabel($productType[0]);
+            $attributeEnglish->setLabel($productType[1]);
 
 
             $attribute = $this->attributeOptionsFactory->create();
 
-            $attribute->setLabel($productType[1]);
+            $attribute->setLabel($productType[0]);
             $attribute->setStoreLabels([$attributeEnglish]);
             $attribute->setIsDefault(false);
             $attribute->setSortOrder($contador);

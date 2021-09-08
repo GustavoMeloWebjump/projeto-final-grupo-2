@@ -22,12 +22,14 @@ class InstallTranslatePetsizeOptions implements DataPatchInterface
     public function __construct(ModuleDataSetupInterface $moduleDataSetup,
     AttributeOptionLabelInterfaceFactory $attributeOptionsLabelFactory,
     StoreRepository $storeRepository,
-    AttributeOptionInterfaceFactory $attributeOptionsFactory)
+    AttributeOptionInterfaceFactory $attributeOptionsFactory,
+    AttributeOptionManagementInterface $attributeOptionManager)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->attributeOptionsLabelFactory = $attributeOptionsLabelFactory;
         $this->storeRepository = $storeRepository;
         $this->attributeOptionsFactory = $attributeOptionsFactory;
+        $this->attributeOptionManager = $attributeOptionManager;
     }
 
 
@@ -44,15 +46,16 @@ class InstallTranslatePetsizeOptions implements DataPatchInterface
     public function setPetSizeOptions () {
 
         $contador = 0;
-        foreach ($this->returnLabelDatasByPetSize() as $size) {
+        $helper = $this->returnLabelDatasByPetSize();
+        foreach ($helper as $size) {
             $attributeEnglish = $this->attributeOptionsLabelFactory->create();
             $attributeEnglish->setStoreId($this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE)->getId());
-            $attributeEnglish->setLabel($size[0]);
+            $attributeEnglish->setLabel($size[1]);
 
 
             $attribute = $this->attributeOptionsFactory->create();
 
-            $attribute->setLabel($size[1]);
+            $attribute->setLabel($size[0]);
             $attribute->setStoreLabels([$attributeEnglish]);
             $attribute->setIsDefault(false);
             $attribute->setSortOrder($contador);

@@ -50,12 +50,12 @@ class InstallTranslatePetsizeOptions implements DataPatchInterface
         foreach ($helper as $size) {
             $attributeEnglish = $this->attributeOptionsLabelFactory->create();
             $attributeEnglish->setStoreId($this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE)->getId());
-            $attributeEnglish->setLabel($size[1]);
+            $attributeEnglish->setLabel($size[0]);
 
 
             $attribute = $this->attributeOptionsFactory->create();
 
-            $attribute->setLabel($size[0]);
+            $attribute->setLabel($size[1]);
             $attribute->setStoreLabels([$attributeEnglish]);
             $attribute->setIsDefault(false);
             $attribute->setSortOrder($contador);

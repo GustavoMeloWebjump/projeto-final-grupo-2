@@ -1,49 +1,36 @@
 <?php
 declare(strict_types=1);
-
-namespace Webjump\SetupContents\Setup\Patch\Data;
-
+namespace Webjump\SetCategoryBanner\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Webjump\Backend\Setup\Patch\Data\InstallWGS;
-
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class CreateCarroselBlockPatinhas implements DataPatchInterface
+class DogBanner implements DataPatchInterface
 {
     /**
      * @var string IDENTIFIER
      */
-    const IDENTIFIER = 'carrosel_main_patinhas';
-
+    const IDENTIFIER = 'dog-banner';
     /**
      * @var string TITLE
      */
-    const TITLE = 'carrosel_patinhas';
-
+    const TITLE = 'Banner Dog';
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
-
     /**
      * @var BlockRepositoryInterface $blockRepository
      */
     private $blockRepository;
-
     /**
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-
-    /**
-     * @var StoreRepositoryInterface $storeRepository
-     */
-    private $storeRepository;
-
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
@@ -60,8 +47,8 @@ class CreateCarroselBlockPatinhas implements DataPatchInterface
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
         $this->storeRepository = $storeRepository;
-    }
 
+    }
     /**
      * Do Upgrade
      *
@@ -71,12 +58,11 @@ class CreateCarroselBlockPatinhas implements DataPatchInterface
     {
         $this->moduleDataSetup->startSetup();
         $content = <<<HTML
-        <style>#html-body [data-pb-style=S82RBVR]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="full-width" data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="main" data-pb-style="S82RBVR"><div class="row-full-width-inner" data-element="inner"><div data-content-type="text" data-appearance="default" data-element="main"><h3 style="text-align: center;">Alimente seu amigo com o melhor na cidade!</h3></div><div class="carrosel_patinhas" data-content-type="products" data-appearance="carousel" data-autoplay="true" data-autoplay-speed="2000" data-infinite-loop="true" data-show-arrows="true" data-show-dots="true" data-carousel-mode="default" data-center-padding="90px" data-element="main">{{widget type="Magento\CatalogWidget\Block\Product\ProductsList" template="Magento_PageBuilder::catalog/product/widget/content/carousel.phtml" anchor_text="" id_path="" show_pager="0" products_count="5" condition_option="category_ids" condition_option_value="2" type_name="Catalog Products Carousel" conditions_encoded="^[`1`:^[`aggregator`:`all`,`new_child`:``,`type`:`Magento||CatalogWidget||Model||Rule||Condition||Combine`,`value`:`1`^],`1--1`:^[`operator`:`==`,`type`:`Magento||CatalogWidget||Model||Rule||Condition||Product`,`attribute`:`category_ids`,`value`:`2`^]^]" sort_order="position"}}</div></div></div>
-        HTML;
+<style>#html-body [data-pb-style=TGAPMKJ],#html-body [data-pb-style=UL9WDIB]{background-size:cover;background-repeat:no-repeat;background-attachment:scroll}#html-body [data-pb-style=TGAPMKJ]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top}#html-body [data-pb-style=UL9WDIB]{background-position:center center}#html-body [data-pb-style=DNJ0W6F]{border-radius:0;min-height:300px;background-color:transparent}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="TGAPMKJ"><div data-content-type="banner" data-appearance="poster" data-show-button="never" data-show-overlay="never" data-element="main"><div data-element="empty_link"><div class="pagebuilder-banner-wrapper" data-background-images="{\&quot;desktop_image\&quot;:\&quot;{{media url=wysiwyg/VOC_PRECISA_EXPERIMENTAR_NOSSA_NOVA_RECEITA_5__Easy-Resize.com.jpg}}\&quot;}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="wrapper" data-pb-style="UL9WDIB"><div class="pagebuilder-overlay pagebuilder-poster-overlay" data-overlay-color="" data-element="overlay" data-pb-style="DNJ0W6F"><div class="pagebuilder-poster-content"><div data-element="content"></div></div></div></div></div></div></div></div>
+HTML;
         $this->blockRepository->save($this->getCmsBlock($content));
         $this->moduleDataSetup->endSetup();
     }
-
     /**
      * Method create CMS block
      *
@@ -85,16 +71,15 @@ class CreateCarroselBlockPatinhas implements DataPatchInterface
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
         $patinhas = $this->storeRepository->get(InstallWGS::PATINHAS_STORE_CODE);
-        
+        $patinhas_en = $this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE);
+
         return $this->blockFactory->create()
-            ->load(self::IDENTIFIER, 'identifier')
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores([$patinhas->getId()])
+            ->setStores([$patinhas_en->getId()])
             ->setContent($content);
     }
-
   /**
      * {@inheritdoc}
      */
@@ -102,12 +87,13 @@ class CreateCarroselBlockPatinhas implements DataPatchInterface
     {
         return [];
     }
-    
     /**
      * {@inheritdoc}
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            InstallWGS::class
+        ];
     }
 }

@@ -9,9 +9,8 @@ use Magento\Store\Model\ResourceModel\Website;
 use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Webjump\Backend\Setup\Patch\Data\InstallWGS;
 
-class CreateAboutPageFanon implements DataPatchInterface
+class CreateAboutPagePatinhasEn implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -48,10 +47,10 @@ class CreateAboutPageFanon implements DataPatchInterface
     private $pageResource;
 
     /**
-     * const CODE_WEBSITE
+     * const CODE_WEBSITE 
      */
-    const CODE_WEBSITE =  [InstallWGS::FANON_WEBSITE_CODE];
-
+    const CODE_WEBSITE =  ['petshop_code'];
+    
     /**
      * AddNewCmsPage constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
@@ -88,19 +87,18 @@ class CreateAboutPageFanon implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
 
         $content = <<<HTML
-        <style>#html-body [data-pb-style=W3EVYF9]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="W3EVYF9"><div data-content-type="text" data-appearance="default" data-element="main"><h1>Quem somos?</h1><p>Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo. Quem num gosta di mé, boa gentis num é. Leite de capivaris, leite de mula manquis sem cabeça. Manduma pindureta quium dia nois paga.</p>
-        <p>Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Quem num gosta di mim que vai caçá sua turmis! Atirei o pau no gatis, per gatis num morreus.</p>
-        <p>Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Copo furadis é disculpa de bebadis, arcu quam euismod magna. Quem manda na minha terra sou euzis!</p>
-        <p>Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl. Per aumento de cachacis, eu reclamis. Delegadis gente finis, bibendum egestas augue arcu ut est. Suco de cevadiss deixa as pessoas mais interessantis.</p>
-        <p>Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! Interagi no mé, cursus quis, vehicula ac nisi. Paisis, filhis, espiritis santis.</p></div></div></div>
-        HTML;
+        <style>#html-body [data-pb-style=SE3DE2I]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="SE3DE2I"><h1 data-content-type="heading" data-appearance="default" data-element="main">About Us</h1><div data-content-type="text" data-appearance="default" data-element="main"><p>We are a petshop based in São Paulo, Brasil.</p>
+        <p>Lorem ipsum dolor sit amet. Est delectus voluptatem id voluptatem fugiat rem inventore facere ad porro dolores hic nostrum itaque. In cumque nobis et officiis laborum hic vitae quae non aliquam rerum eum numquam dolorem sit libero consectetur. Ut deleniti laudantium sit sunt rerum et atque internos! Repudiandae tempora est velit quisquam vel enim ipsum a corporis error et similique enim non aliquam consequuntur et enim quae!</p>
+        <p>Ut sunt veritatis quo velit quae qui sapiente suscipit et asperiores quia. Aut consequuntur placeat nam quaerat possimus sed maxime autem est suscipit totam aut repellendus veritatis!</p>
+        <p>At quae laborum sit quia dolor et rerum quia rem numquam voluptatem eum culpa labore ea beatae quasi? Ea unde doloremque eum dolorem officiis est ducimus quia 33 aspernatur magnam ab dolore mollitia At Quis voluptas cum dolor repellat. Aut dignissimos laudantium est praesentium quia et reiciendis voluptatem aut dolore blanditiis rem fugiat voluptatum aut odit ipsum. Et quidem iste id voluptatibus sunt in maxime rerum.</p></div></div></div>
+       HTML;
 
-        $pageIdentifier = 'about';
+        $pageIdentifier = 'about-us';
         $cmsPageModel = $this->pageFactory->create()->load($pageIdentifier, 'title');
-        $cmsPageModel->setIdentifier('about');
+        $cmsPageModel->setIdentifier('about-us');
         $cmsPageModel->setStores($website->getStoreIds());
-        $cmsPageModel->setTitle('Quem somos');
-        $cmsPageModel->setContentHeading('Quem somos');
+        $cmsPageModel->setTitle('About us');
+        $cmsPageModel->setContentHeading('About us');
         $cmsPageModel->setPageLayout('1column');
         $cmsPageModel->setIsActive(1);
         $cmsPageModel->setContent($content)->save();
@@ -124,19 +122,19 @@ class CreateAboutPageFanon implements DataPatchInterface
         }
 
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getDependencies()
-    {
-        return [];
-    }
-
+    
     /**
      * {@inheritdoc}
      */
     public function getAliases()
+    {
+        return [];
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
     {
         return [];
     }

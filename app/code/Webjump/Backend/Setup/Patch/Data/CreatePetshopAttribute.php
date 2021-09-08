@@ -84,7 +84,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'system' => false,
 				'visible' => true,
                 'is_html_allowed_on_front' => false,
-                'visible_on_front' => false,
+                'visible_on_front' => true,
                 'option' => ['values' => ['Ração', 'Coleiras', 'Brinquedos', 'Remédio']],
             ]
         );
@@ -118,7 +118,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'system' => false,
 				'visible' => true,
                 'is_html_allowed_on_front' => false,
-                'visible_on_front' => false,
+                'visible_on_front' => true,
                 'option' => ['values' => ['Pequeno', 'Médio', 'Grande']],
             ]
         );

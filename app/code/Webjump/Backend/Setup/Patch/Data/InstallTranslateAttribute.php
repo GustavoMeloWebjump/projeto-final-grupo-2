@@ -36,7 +36,7 @@ class InstallTranslateAttribute implements DataPatchInterface
                 ->create()
                 ->setStoreId(
                     $this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE)->getId()
-                )->setLabel('Product Tag (kind of product)')
+                )->setLabel('Product Tag (Product type)')
         ];
 
         $attribute->setFrontendLabels($labels);

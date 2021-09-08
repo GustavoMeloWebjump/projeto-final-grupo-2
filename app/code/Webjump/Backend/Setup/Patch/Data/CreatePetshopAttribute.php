@@ -84,8 +84,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'system' => false,
 				'visible' => true,
                 'is_html_allowed_on_front' => false,
-                'visible_on_front' => true,
-                'option' => ['values' => ['Ração', 'Coleiras', 'Brinquedos', 'Remédio']],
+                'visible_on_front' => true
             ]
         );
 
@@ -118,8 +117,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'system' => false,
 				'visible' => true,
                 'is_html_allowed_on_front' => false,
-                'visible_on_front' => true,
-                'option' => ['values' => ['Pequeno', 'Médio', 'Grande']],
+                'visible_on_front' => true
             ]
         );
         $attributeSetId = $eavSetup->getAttributeSetId(Product::ENTITY, CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME);

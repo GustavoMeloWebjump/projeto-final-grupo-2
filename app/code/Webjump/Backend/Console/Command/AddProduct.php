@@ -33,9 +33,8 @@ class AddProduct extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->itemFactory->execute($output);
+        $this->itemFactory->execute();
 
         return Cli::RETURN_SUCCESS;
-
     }
 }

@@ -8,11 +8,13 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Webjump\Backend\App\GetCategoriesByName;
 use Webjump\Backend\Setup\Patch\Data\InstallWGS;
+use Webjump\Backend\Setup\Patch\Data\ReInstallCategories;
+
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class Banner implements DataPatchInterface
+class InstallBanners implements DataPatchInterface
 {
     /**
      * @var string IDENTIFIER
@@ -27,14 +29,6 @@ class Banner implements DataPatchInterface
      */
     private $moduleDataSetup;
     /**
-     * @var BlockRepositoryInterface $blockRepository
-     */
-    private $blockRepository;
-    /**
-     * @var BlockInterfaceFactory $blockFactory
-     */
-    private $blockFactory;
-    /**
      * @var GetCategoriesByName
      */
     private $getCategoriesByName;
@@ -44,21 +38,15 @@ class Banner implements DataPatchInterface
     private $categoryRepositoryInterface;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
-     * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
-     * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
      * @param StoreRepositoryInterface $storeRepository
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
         StoreRepositoryInterface $storeRepository,
         GetCategoriesByName $getCategoriesByName,
         CategoryRepositoryInterface $categoryRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
-        $this->blockRepository = $blockRepository;
-        $this->blockFactory = $blockFactory;
         $this->storeRepository = $storeRepository;
         $this->getCategoriesByName = $getCategoriesByName;
         $this->categoryRepositoryInterface = $categoryRepositoryInterface;
@@ -72,8 +60,8 @@ class Banner implements DataPatchInterface
     public function apply(): void
     {
         $this->moduleDataSetup->startSetup();
+
         $patinhas_en = $this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE)->getId();
-        $patinhas = $this->storeRepository->get(InstallWGS::PATINHAS_STORE_CODE)->getId();
         $fanon = $this->storeRepository->get(InstallWGS::FANON_STORE_CODE)->getId();
 
         $dogCategoryId = $this->getCategoriesByName->getCategoryId('Cães');
@@ -125,7 +113,8 @@ class Banner implements DataPatchInterface
     public static function getDependencies()
     {
         return [
-            InstallWGS::class
+            InstallWGS::class,
+            ReInstallCategories::class
         ];
     }
 }

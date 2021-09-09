@@ -5,6 +5,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Webjump\Backend\Setup\Patch\Data\InstallWGS;
+use Webjump\Backend\Setup\Patch\Data\CategoryFactory;
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -32,6 +33,11 @@ class CachorroBanner implements DataPatchInterface
      */
     private $blockFactory;
     /**
+    * /**
+    * @var \Magento\Catalog\Model\CategoryFactory
+    */
+    private $categoryFactory;
+    /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
@@ -41,12 +47,14 @@ class CachorroBanner implements DataPatchInterface
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
         \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
-        StoreRepositoryInterface $storeRepository
+        \StoreRepositoryInterface $storeRepository,
+        \Magento\Catalog\Model\CategoryFactory $categoryFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
         $this->storeRepository = $storeRepository;
+        $this->categoryFactory = $categoryFactory;
 
     }
     /**
@@ -71,7 +79,6 @@ HTML;
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
         $patinhas = $this->storeRepository->get(InstallWGS::PATINHAS_STORE_CODE);
-        $patinhas_en = $this->storeRepository->get(InstallWGS::PATINHAS_EN_STORE_CODE);
 
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
@@ -79,6 +86,7 @@ HTML;
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
             ->setStores([$patinhas->getId()])
             ->setContent($content);
+
     }
   /**
      * {@inheritdoc}

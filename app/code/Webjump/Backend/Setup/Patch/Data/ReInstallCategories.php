@@ -8,7 +8,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\GroupFactory;
 use Magento\Store\Model\ResourceModel\Group as GroupResourceModel;
 
-class InstallCategories2 implements DataPatchInterface
+class ReInstallCategories implements DataPatchInterface
 {
     private $moduleDataSetup;
 

@@ -2,7 +2,6 @@
 
 namespace Webjump\Backend\App;
 
-use Exception;
 use Magento\Catalog\Api\CategoryListInterface;
 use Magento\Framework\Api\Search\SearchCriteriaInterfaceFactory as SearchCriteriaFactory;
 use Magento\Framework\Api\Search\FilterGroupFactory;

@@ -2,13 +2,10 @@
 
 namespace Webjump\Backend\Setup\Patch\Data;
 
-use Exception;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
-use Magento\Catalog\Api\CategoryListInterface;
-use Magento\TestFramework\Catalog\Model\GetCategoryByName;
 use Webjump\Backend\App\GetCategoriesByName;
 
 class TranslateCategoriesNames implements DataPatchInterface
@@ -173,6 +170,6 @@ class TranslateCategoriesNames implements DataPatchInterface
 
     public static function getDependencies()
     {
-        return [InstallCategories2::class];
+        return [ReInstallCategories::class];
     }
 }

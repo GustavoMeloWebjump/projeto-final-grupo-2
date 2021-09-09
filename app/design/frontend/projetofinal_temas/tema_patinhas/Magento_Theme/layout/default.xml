@@ -36,7 +36,7 @@
 
 </referenceBlock>
 
-<referenceBlock name="header" remove="true"/>
+<referenceBlock name="header" remove="false"/>
 <referenceBlock name="header.panel" remove="false"/>
 
 </page>

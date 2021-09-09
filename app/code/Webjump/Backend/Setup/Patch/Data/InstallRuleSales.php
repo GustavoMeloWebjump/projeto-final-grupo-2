@@ -10,6 +10,7 @@ use Magento\SalesRule\Model\Rule\Condition\CombineFactory;
 use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
 use Magento\Store\Api\WebsiteRepositoryInterface;
+use Webjump\Backend\App\CustomState;
 
 class InstallRuleSales implements DataPatchInterface
 {
@@ -19,6 +20,7 @@ class InstallRuleSales implements DataPatchInterface
     private CombineFactory $combineFactory;
     private AddressFactory $addressFactory;
     private WebsiteRepositoryInterface $websiteRepository;
+    private CustomState $customState;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
@@ -26,7 +28,8 @@ class InstallRuleSales implements DataPatchInterface
         RuleResourceModelSale $ruleResourceModelSale,
         CombineFactory $combineFactory,
         AddressFactory $addressFactory,
-        WebsiteRepositoryInterface $websiteRepository
+        WebsiteRepositoryInterface $websiteRepository,
+        CustomState $customState
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
@@ -34,6 +37,11 @@ class InstallRuleSales implements DataPatchInterface
         $this->combineFactory = $combineFactory;
         $this->addressFactory = $addressFactory;
         $this->websiteRepository = $websiteRepository;
+        $this->customState = $customState;
+
+        if (!$this->customState->validateAreaCode()) {
+            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        }
     }
     /**
      *  {@inheritDoc}

@@ -1,4 +1,4 @@
-.payment-info-block{
+.payment-info-block {
     border: 1px solid @dourado;
     color: @dourado;
     padding: 10px;
@@ -6,4 +6,20 @@
     font-family: @mont-regular;
     margin-bottom: 15px;
     max-width: 200px;
+}
+
+.action.primary {
+    background-color: @dourado;
+    border-radius: 4px;
+    transition: 400ms;
+    border: 1px solid darken(@dourado, 5%) !important;
+
+    &:hover{
+        background-color: lighten(@dourado, 10%);
+        border: 1px solid darken(@dourado, 5%) !important;
+    }
+}
+
+.breadcrumbs{
+    display: none;
 }

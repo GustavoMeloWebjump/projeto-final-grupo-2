@@ -3,11 +3,8 @@ namespace Webjump\Backend\Test\Unit\App;
 
 use Codeception\PHPUnit\TestCase;
 use Exception;
-use Magento\Framework\App\Area;
 use Webjump\Backend\App\CustomState;
 use Magento\Framework\Config\ScopeInterface;
-use Magento\Framework\Exception\LocalizedException;
-
 
 class CustomStateTest extends TestCase
 {
@@ -29,4 +26,8 @@ class CustomStateTest extends TestCase
             $this->assertEquals(false, $this->customState->validateAreaCode());
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c4ae6c60584bb894efef1bfb4f9e705a88bd1f34

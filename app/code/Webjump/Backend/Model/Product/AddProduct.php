@@ -1,13 +1,14 @@
 <?php
 namespace Webjump\Backend\Model\Product;
 
+use Magento\Catalog\Api\Data\ProductLinkInterfaceFactory;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\ImportExport\Model\Import;
 use Magento\ImportExport\Model\ImportFactory;
 use Magento\Framework\Filesystem\Io\File;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Webjump\Backend\App\CustomState;
 
 class AddProduct
 {
@@ -70,19 +71,44 @@ class AddProduct
     /** @var ConsoleOutput */
     private $output;
 
+    /**
+     * @var ProductRepositoryInterface
+     */
+    private $productRepository;
+
+    /**
+     * @var ProductLinkInterfaceFactory
+     */
+    private $productLink;
+
+    /**
+     * @var CustomState
+     */
+    private $customState;
+
     public function __construct(
         CsvFactory $csv,
         ImportFactory $importFactory,
         File $file,
         ReadFactory $readFile,
-        ConsoleOutput $output
+        ProductLinkInterfaceFactory $productLink,
+        ConsoleOutput $output,
+        ProductRepositoryInterface $productInterface,
+        CustomState $customState
     )
     {
         $this->csv = $csv;
         $this->importFactory = $importFactory;
         $this->file = $file;
+        $this->productLink = $productLink;
         $this->readFile = $readFile;
         $this->output = $output;
+        $this->productRepository = $productInterface;
+        $this->customState = $customState;
+
+        if (!$this->customState->validateAreaCode()) {
+            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        }
     }
 
 
@@ -94,7 +120,10 @@ class AddProduct
                 $data['entity'],
                 $data['behavior'],
             );
+
         }
+
+        $this->createRelation();
     }
 
     private function importData($filename, $entity, $behavior)
@@ -118,6 +147,40 @@ class AddProduct
                 $importSetup->invalidateIndex();
             }
         }
+
+    }
+
+    private function createRelation()
+    {
+        $firtstProductLink = $this->productLink->create();
+
+        // Pega a sku do grupo e faz uma relação
+
+        $firtstProductLink
+        ->setSku('F-KTG-1')
+        ->setLinkedProductSku('F-ANR-2')
+        ->setLinkType('associated')
+        ->setLinkedProductType('simple')
+        ->setQty(1);
+
+        $secondProductLink = $this->productLink->create();
+
+        $secondProductLink
+        ->setSku('F-KTG-1')
+        ->setLinkedProductSku('F-ANR-1')
+        ->setLinkType('associated')
+        ->setLinkedProductType('simple')
+        ->setQty(1);
+
+        $gruped = $this->productRepository
+            ->get('F-KTG-1', true);
+
+        $links = [$firtstProductLink, $secondProductLink];
+
+        $gruped->setProductLinks($links);
+
+        $this->productRepository->save($gruped);
+
 
     }
 

@@ -16,23 +16,23 @@ class AddProduct
         0 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => 'sneakers_products.csv'
+            'file' => 'fanon_products.csv'
         ],
-        1 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'petshop_products.csv'
-        ],
-        2 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'website_products.csv'
-        ],
-        3 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'bundle_product.csv'
-        ]
+        // 1 => [
+        //     'entity' => 'catalog_product',
+        //     'behavior' => 'add_update',
+        //     'file' => 'petshop_products.csv'
+        // ],
+        // 2 => [
+        //     'entity' => 'catalog_product',
+        //     'behavior' => 'add_update',
+        //     'file' => 'website_products.csv'
+        // ],
+        // 3 => [
+        //     'entity' => 'catalog_product',
+        //     'behavior' => 'add_update',
+        //     'file' => 'bundle_product.csv'
+        // ]
         // 4 => [
         //     'entity' => 'stock_sources',
         //     'behavior' => 'append',

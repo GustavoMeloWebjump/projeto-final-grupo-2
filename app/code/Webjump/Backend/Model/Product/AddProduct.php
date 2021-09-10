@@ -43,6 +43,11 @@ class AddProduct
             'behavior' => 'append',
             'file' => 'stock_sneakers.csv'
         ],
+        6 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'virtual_download_products.csv' 
+        ]
 
     ];
 

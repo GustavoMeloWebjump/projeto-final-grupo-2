@@ -19,6 +19,10 @@ class AddProductTest extends TestCase
 
         $this->addProduct = new CommandAddProduct($this->itemFactoryMock);
 
+    }
+
+    public function testIntance()
+    {
         $this->assertInstanceOf(CommandAddProduct::class, $this->addProduct);
     }
 }

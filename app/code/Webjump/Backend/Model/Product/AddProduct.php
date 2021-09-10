@@ -7,9 +7,7 @@ use Magento\ImportExport\Model\ImportFactory;
 use Magento\Framework\Filesystem\Io\File;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class AddProduct
 {
@@ -31,15 +29,21 @@ class AddProduct
             'file' => 'website_products.csv'
         ],
         3 => [
-            'entity' => 'stock_sources',
-            'behavior' => 'append',
-            'file' => 'stock_petshop.csv'
-        ],
-        4 => [
-            'entity' => 'stock_sources',
-            'behavior' => 'append',
-            'file' => 'stock_sneakers.csv'
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'bundle_product.csv'
         ]
+        // 4 => [
+        //     'entity' => 'stock_sources',
+        //     'behavior' => 'append',
+        //     'file' => 'stock_petshop.csv'
+        // ],
+        // 5 => [
+        //     'entity' => 'stock_sources',
+        //     'behavior' => 'append',
+        //     'file' => 'stock_sneakers.csv'
+        // ],
+
     ];
 
     /**
@@ -63,32 +67,34 @@ class AddProduct
      */
     private $readFile;
 
+    /** @var ConsoleOutput */
+    private $output;
+
     public function __construct(
-     CsvFactory $csv,
-     ImportFactory $importFactory,
-     File $file,
-     ReadFactory $readFile
+        CsvFactory $csv,
+        ImportFactory $importFactory,
+        File $file,
+        ReadFactory $readFile,
+        ConsoleOutput $output
     )
     {
         $this->csv = $csv;
         $this->importFactory = $importFactory;
         $this->file = $file;
         $this->readFile = $readFile;
+        $this->output = $output;
     }
 
 
     public function execute()
     {
-
         foreach (self::IMPORT_DATA as $data) {
             $this->importData(
                 $data['file'],
                 $data['entity'],
                 $data['behavior'],
             );
-
         }
-
     }
 
     private function importData($filename, $entity, $behavior)
@@ -106,6 +112,7 @@ class AddProduct
         if($validation) {
             $result = $importSetup->importSource();
 
+            $this->output->writeln("Importado {$filename} com sucesso!");
 
             if ($result) {
                 $importSetup->invalidateIndex();

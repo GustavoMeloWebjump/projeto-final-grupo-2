@@ -20,10 +20,7 @@ class InstallRuleSales implements DataPatchInterface
     private CombineFactory $combineFactory;
     private AddressFactory $addressFactory;
     private WebsiteRepositoryInterface $websiteRepository;
-    /**
-     * @var CustomState
-     */
-    private $customState;
+    private CustomState $customState;
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,

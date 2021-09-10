@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    
+<referenceBlock name="breadcrumbs" remove="true" />
 <referenceContainer name="footer" remove="true" />
 
 <referenceContainer name="footer-container">
@@ -27,5 +27,12 @@
 <referenceBlock name="header" remove="true"/>
 <referenceBlock name="header.panel" remove="false"/>
 
+<referenceContainer name="main.content">
+       <block class="Magento\Cms\Block\Block" name="botao_whatsapp">
+           <arguments>
+                <argument name="block_id" xsi:type="string">botao_whatsapp</argument>
+           </arguments>
+       </block>
+    </referenceContainer>
 
 </page>

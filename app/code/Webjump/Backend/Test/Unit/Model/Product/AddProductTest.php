@@ -1,140 +1,157 @@
 <?php
+
 namespace Webjump\Backend\Test\Unit\Model\Product;
 
+use PHPUnit\Framework\TestCase;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
+use Magento\Framework\Filesystem\Directory\Read;
 use Magento\Framework\Filesystem\Io\File;
 use Magento\ImportExport\Model\Import;
-use Magento\ImportExport\Model\Import\Source\Csv;
-use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Magento\ImportExport\Model\ImportFactory;
-use PHPUnit\Framework\TestCase;
-use Webjump\Backend\Model\Product\AddProduct;
-use Magento\Framework\Filesystem\Directory\ReadInterface;
+use Magento\ImportExport\Model\Import\Source\CsvFactory;
+use Magento\ImportExport\Model\Import\Source\Csv;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Webjump\Backend\Model\Product\AddProduct as Model;
 
 class AddProductTest extends TestCase
 {
 
-    private $csvFactoryMock;
+    private $importFactory;
 
-    private $importFactoryMock;
+    private $file;
 
-    private $fileMock;
+    private $csvFactory;
 
-    private $readFileMock;
+    private $readFactory;
 
-    private $addProduct;
+    private $output;
 
-    private $importMock;
+    private $import;
 
-    private $readInterfaceMock;
+    private $read;
 
     private $csv;
 
+    /** @var Model */
+    private $addProduct;
 
-    protected function setUp():void
+
+    protected function setUp(): void
     {
+        $this->importFactory = $this->getMockBuilder('Magento\ImportExport\Model\ImportFactory'::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
 
-        $this->csvFactoryMock = $this->createMock(CsvFactory::class);
-        $this->importFactoryMock = $this->createMock(ImportFactory::class);
-        $this->fileMock = $this->createMock(File::class);
-        $this->readFileMock = $this->createMock(ReadFactory::class);
-        $this->importMock = $this->createMock(Import::class);
-        $this->readInterfaceMock = $this->getMockForAbstractClass(ReadInterface::class);
-        $this->csvMock = $this->createMock(Csv::class);
+        $this->file = $this->createMock(File::class);
 
-        $this->addProduct = new AddProduct(
-            $this->csvFactoryMock,
-            $this->importFactoryMock,
-            $this->fileMock,
-            $this->readFileMock
+        $this->csvFactory = $this
+            ->getMockBuilder('Magento\ImportExport\Model\Import\Source\CsvFactory')
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+
+        $this->readFactory = $this
+            ->getMockBuilder('Magento\Framework\Filesystem\Directory\ReadFactory')
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+
+
+        $this->output = $this->createMock(ConsoleOutput::class);
+
+        $this->import = $this->createMock(Import::class);
+
+        $this->read = $this->createMock(Read::class);
+
+        $this->csv = $this->createMock(Csv::class);
+
+        $this->addProduct = new Model(
+            $this->csvFactory,
+            $this->importFactory,
+            $this->file,
+            $this->readFactory,
+            $this->output,
         );
-
-        $this->assertInstanceOf(AddProduct::class, $this->addProduct);
     }
 
 
-
-    public function testExecute()
+    public function testExecuteShouldNotImportWhenValidationFails()
     {
+        $iterations = count(Model::IMPORT_DATA);
+        $pathInfo = [
+            'dirname' => 'path/to/file',
+            'basename' => 'path/to/file'
+        ];
 
-        $data = AddProduct::IMPORT_DATA;
-        $path = 'test/product.csv';
-
-        $this->importFactoryMock
-            ->expects($this->exactly(5))
+        $this->importFactory->expects($this->exactly($iterations))
             ->method('create')
-            ->willReturn($this->importMock);
+            ->willReturn($this->import);
 
-        $this->importMock
-            ->expects($this->exactly(5))
-            ->method('setData')
-            ->with([
-                'entity' => 'catalog_product',
-                'behavior' => 'add_update',
-                'validation_strategy' => 'validation-stop-on-errors'
-            ])
-            ->willReturnSelf();
+        $this->import->expects($this->exactly($iterations))
+            ->method('setData');
 
-        $this->fileMock
-            ->expects($this->exactly(5))
-            ->method('getPathInfo')
-            ->with($path[0]['file'])
-            ->willReturn([
-                'dirname' => $path[0]['file'],
-                'extension' => 'csv',
-                'basename' => 'product.csv'
-            ]);
-
-        $this->readFileMock
-            ->expects($this->exactly(5))
-            ->method('create')
-            ->with(__DIR__ . 'test/product.csv')
-            ->willReturn($this->readInterfaceMock);
-
-        $this->csvFactoryMock
-            ->expects($this->exactly(5))
-            ->method('create')
-            ->with([
-                'file' => 'product.csv',
-                'directory' => $this->readInterfaceMock
-            ])
-            ->willReturn($this->csv);
-
-
-        $this->importMock
-            ->expects($this->exactly(5))
+        $this->import->expects($this->exactly($iterations))
             ->method('validateSource')
-            ->with($this->csv)
-            ->willReturn(true);
+            ->willReturn(false);
 
+        $this->file->expects($this->exactly($iterations))
+            ->method('getPathInfo')
+            ->willReturn($pathInfo);
 
-        $this->importMock
-            ->expects($this->exactly(5))
-            ->method('importSource')
-            ->willReturn(true);
+        $this->readFactory->expects($this->exactly($iterations))
+            ->method('create')
+            ->willReturn($this->read);
 
-        $this->importMock
-            ->expects($this->exactly(5))
-            ->method('invalidateIndex')
-            ->willReturnSelf();
+        $this->csvFactory->expects($this->exactly($iterations))
+            ->method('create')
+            ->willReturn($this->csv);
 
         $this->addProduct->execute();
     }
 
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isValidate() {
-        return [
-            'enabled' => [
-                'isEnabled' => true,
-                'exactly' => 1
-            ],
-            'disabled' => [
-                'isEnabled' => null,
-                'exactly' => 0
-            ]
+    public function testExecuteShouldImportWhenValidationSucceeds()
+    {
+        $iterations = count(Model::IMPORT_DATA);
+        $pathInfo = [
+            'dirname' => 'path/to/file',
+            'basename' => 'path/to/file'
         ];
+
+        $this->importFactory->expects($this->exactly($iterations))
+            ->method('create')
+            ->willReturn($this->import);
+
+        $this->import->expects($this->exactly($iterations))
+            ->method('setData');
+
+        $this->import->expects($this->exactly($iterations))
+            ->method('validateSource')
+            ->willReturn(true);
+
+        $this->file->expects($this->exactly($iterations))
+            ->method('getPathInfo')
+            ->willReturn($pathInfo);
+
+        $this->readFactory->expects($this->exactly($iterations))
+            ->method('create')
+            ->willReturn($this->read);
+
+        $this->csvFactory->expects($this->exactly($iterations))
+            ->method('create')
+            ->willReturn($this->csv);
+
+        $this->import->expects($this->exactly($iterations))
+            ->method('importSource')
+            ->willReturn(true);
+
+        $this->output->expects($this->exactly($iterations))
+            ->method('writeln');
+
+        $this->import->expects($this->exactly($iterations))
+            ->method('invalidateIndex')
+            ->willReturn(true);
+
+        $this->addProduct->execute();
     }
 }

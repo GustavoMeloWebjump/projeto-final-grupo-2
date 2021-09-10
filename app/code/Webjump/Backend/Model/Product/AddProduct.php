@@ -18,31 +18,31 @@ class AddProduct
             'behavior' => 'add_update',
             'file' => 'fanon_products.csv'
         ],
-        // 1 => [
-        //     'entity' => 'catalog_product',
-        //     'behavior' => 'add_update',
-        //     'file' => 'petshop_products.csv'
-        // ],
-        // 2 => [
-        //     'entity' => 'catalog_product',
-        //     'behavior' => 'add_update',
-        //     'file' => 'website_products.csv'
-        // ],
-        // 3 => [
-        //     'entity' => 'catalog_product',
-        //     'behavior' => 'add_update',
-        //     'file' => 'bundle_product.csv'
-        // ]
-        // 4 => [
-        //     'entity' => 'stock_sources',
-        //     'behavior' => 'append',
-        //     'file' => 'stock_petshop.csv'
-        // ],
-        // 5 => [
-        //     'entity' => 'stock_sources',
-        //     'behavior' => 'append',
-        //     'file' => 'stock_sneakers.csv'
-        // ],
+        1 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'patinhas_products.csv'
+        ],
+        2 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'website_products.csv'
+        ],
+        3 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'bundle_product.csv'
+        ],
+        4 => [
+            'entity' => 'stock_sources',
+            'behavior' => 'append',
+            'file' => 'stock_petshop.csv'
+        ],
+        5 => [
+            'entity' => 'stock_sources',
+            'behavior' => 'append',
+            'file' => 'stock_sneakers.csv'
+        ],
 
     ];
 

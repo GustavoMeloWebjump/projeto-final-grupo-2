@@ -17,7 +17,7 @@ class AddProduct
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'fanon_products.csv'
-        ],
+        ]
         // 1 => [
         //     'entity' => 'catalog_product',
         //     'behavior' => 'add_update',
@@ -123,7 +123,7 @@ class AddProduct
 
     private function getData($filename) {
 
-        $import_file = $this->file->getPathInfo( __DIR__ . '/csv/' . $filename);
+        $import_file = $this->file->getPathInfo(__DIR__ . '/csv/' . $filename);
 
 
         $readSetup = $this->readFile->create($import_file['dirname']);

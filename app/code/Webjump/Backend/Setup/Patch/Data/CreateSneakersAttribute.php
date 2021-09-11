@@ -103,7 +103,7 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
                 [
                     'attribute_set' => 'Sneakers',
                     'user_defined' => true,
-                    'type' => 'varchar',
+                    'type' => 'text',
                     'label' => 'Tipo de amortecedor (fanon)',
                     'input' => 'select',
                     'required' => false,

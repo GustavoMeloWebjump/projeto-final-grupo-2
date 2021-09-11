@@ -2,6 +2,7 @@
 namespace Webjump\Backend\Model\Product;
 
 use Magento\Catalog\Api\Data\ProductLinkInterfaceFactory;
+use Magento\ImportExport\Model\Import;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\ImportExport\Model\ImportFactory;
 use Magento\Framework\Filesystem\Io\File;
@@ -18,27 +19,27 @@ class AddProduct
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'fanon_products.csv'
-        ]
-        // 1 => [
-        //     'entity' => 'catalog_product',
-        //     'behavior' => 'add_update',
-        //     'file' => 'petshop_products.csv'
-        // ],
-        // 2 => [
-        //     'entity' => 'catalog_product',
-        //     'behavior' => 'add_update',
-        //     'file' => 'website_products.csv'
-        // ],
-        // 3 => [
-        //     'entity' => 'catalog_product',
-        //     'behavior' => 'add_update',
-        //     'file' => 'bundle_product.csv'
-        // ]
-        // 4 => [
-        //     'entity' => 'stock_sources',
-        //     'behavior' => 'append',
-        //     'file' => 'stock_petshop.csv'
-        // ],
+        ],
+        1 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'patinhas_products.csv'
+        ],
+        3 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'grouped_products.csv'
+        ],
+        4 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'bundle_products.csv'
+        ],
+        5 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'virtual_download_products.csv'
+        ],
         // 5 => [
         //     'entity' => 'stock_sources',
         //     'behavior' => 'append',
@@ -51,7 +52,6 @@ class AddProduct
      * @var CsvFactory
      */
     private $csv;
-
 
     /**
      * @var ImportFactory
@@ -71,44 +71,19 @@ class AddProduct
     /** @var ConsoleOutput */
     private $output;
 
-    /**
-     * @var ProductRepositoryInterface
-     */
-    private $productRepository;
-
-    /**
-     * @var ProductLinkInterfaceFactory
-     */
-    private $productLink;
-
-    /**
-     * @var CustomState
-     */
-    private $customState;
-
     public function __construct(
         CsvFactory $csv,
         ImportFactory $importFactory,
         File $file,
         ReadFactory $readFile,
-        ProductLinkInterfaceFactory $productLink,
-        ConsoleOutput $output,
-        ProductRepositoryInterface $productInterface,
-        CustomState $customState
+        ConsoleOutput $output
     )
     {
         $this->csv = $csv;
         $this->importFactory = $importFactory;
         $this->file = $file;
-        $this->productLink = $productLink;
         $this->readFile = $readFile;
         $this->output = $output;
-        $this->productRepository = $productInterface;
-        $this->customState = $customState;
-
-        if (!$this->customState->validateAreaCode()) {
-            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
-        }
     }
 
 
@@ -122,8 +97,6 @@ class AddProduct
             );
 
         }
-
-        $this->createRelation();
     }
 
     private function importData($filename, $entity, $behavior)
@@ -147,40 +120,6 @@ class AddProduct
                 $importSetup->invalidateIndex();
             }
         }
-
-    }
-
-    private function createRelation()
-    {
-        $firtstProductLink = $this->productLink->create();
-
-        // Pega a sku do grupo e faz uma relação
-
-        $firtstProductLink
-        ->setSku('F-KTG-1')
-        ->setLinkedProductSku('F-ANR-2')
-        ->setLinkType('associated')
-        ->setLinkedProductType('simple')
-        ->setQty(1);
-
-        $secondProductLink = $this->productLink->create();
-
-        $secondProductLink
-        ->setSku('F-KTG-1')
-        ->setLinkedProductSku('F-ANR-1')
-        ->setLinkType('associated')
-        ->setLinkedProductType('simple')
-        ->setQty(1);
-
-        $gruped = $this->productRepository
-            ->get('F-KTG-1', true);
-
-        $links = [$firtstProductLink, $secondProductLink];
-
-        $gruped->setProductLinks($links);
-
-        $this->productRepository->save($gruped);
-
 
     }
 

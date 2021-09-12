@@ -37,7 +37,11 @@ class CreateRelationTest extends TestCase
             ->getMock();
 
 
-        $this->productLinkInterfaceMock = $this->createMock(ProductLinkInterface::class);
+        $this->productLinkInterfaceMock = $this->getMockBuilder(ProductLinkInterface::class)
+        ->disableOriginalConstructor()
+        ->setMethods(['setQty'])
+        ->onlyMethods(['setSku', 'setLinkedProductSku','setLinkType', 'setLinkedProductType'])
+        ->getMockForAbstractClass();
 
         $this->productRepositoryMock = $this->createMock(ProductRepositoryInterface::class);
 
@@ -81,6 +85,11 @@ class CreateRelationTest extends TestCase
             ->expects($this->exactly($iteration))
             ->method('setLinkedProductType')
             ->willReturnSelf();
+
+        $this->productLinkInterfaceMock
+            ->expects($this->exactly($iteration))
+            ->method('setQty')
+            ->with(1);
 
         $this->productRepositoryMock
             ->expects($this->exactly($iteration))

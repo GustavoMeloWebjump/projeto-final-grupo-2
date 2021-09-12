@@ -32,6 +32,12 @@ class CreateRelation
             'sku_product' => 'P-BGT-1',
             'link_type' => 'associated',
             'product_type' => 'simple'
+        ],
+        4 => [
+            'sku_grouped' => 'P-KBCG-1',
+            'sku_product' => 'P-BPC-1',
+            'link_type' => 'associated',
+            'product_type' => 'simple'
         ]
     ];
 
@@ -90,15 +96,14 @@ class CreateRelation
             ->setSku($sku_grouped)
             ->setLinkedProductSku($sku_product)
             ->setLinkType($link_type)
-            ->setLinkedProductType($product_type);
+            ->setLinkedProductType($product_type)
+            ->setQty(1);
 
 
         $gruped = $this->productRepository
             ->get($sku_grouped, true);
 
-        $links = [$firtstProductLink];
-
-        $gruped->setProductLinks($links);
+        $gruped->setProductLinks([$firtstProductLink]);
 
         $this->productRepository->save($gruped);
 

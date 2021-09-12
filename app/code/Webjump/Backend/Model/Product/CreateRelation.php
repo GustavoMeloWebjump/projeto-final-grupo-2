@@ -60,15 +60,15 @@ class CreateRelation
         $this->productLink = $productLink;
         $this->productRepository = $productInterface;
         $this->customState = $customState;
-
-        if (!$this->customState->validateAreaCode()) {
-            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
-        }
     }
 
 
     public function execute()
     {
+        if (!$this->customState->validateAreaCode()) {
+            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        }
+
         foreach(self::RELATION_DATA as $data) {
             $this->createRelation(
                 $data['sku_grouped'],

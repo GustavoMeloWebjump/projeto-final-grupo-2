@@ -19,6 +19,8 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
 
     const SNEAKERS_SHOK = 'sneakers_type_shock_absorber';
 
+    const SNEAKERS_COLORS = 'color';
+
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
@@ -123,12 +125,42 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
                 ]
             );
 
-        $attributeSetId = $eavSetup->getAttributeSetId(Product::ENTITY, CreateSneakersProductAttribute::SNEAKERS_ATTRIBUTE_NAME);
-        $attributeSet = $this->attributeSetFactory->create();
-        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+
+
+
         $sortOrder = 50;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::SNEAKERS_SHOK, $sortOrder);
+
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::SNEAKERS_COLORS,
+            [
+                'attribute_set' => 'Sneakers',
+                'user_defined' => true,
+                'type' => 'text',
+                'label' => 'Cor',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'filterable' => false,
+                'comparable' => false,
+                'is_used_in_grid' => false,
+                'is_visible_in_grid' => false,
+                'is_filtrable_in_grid' => true,
+                'used_in_product_listing' => true,
+                'system' => false,
+                'visible' => true,
+                'is_html_allowed_on_front' => false,
+                'visible_on_front' => true,
+            ]
+        );
+
+        $sortOrderColor = 54;
+        $this->productAttributeManagement
+         ->assign($attributeSetId, $attributeGroupId, self::SNEAKERS_COLORS, $sortOrderColor);
+
     }
 
 

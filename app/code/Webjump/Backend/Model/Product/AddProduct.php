@@ -40,11 +40,16 @@ class AddProduct
             'behavior' => 'add_update',
             'file' => 'virtual_download_products.csv'
         ],
-        // 5 => [
-        //     'entity' => 'stock_sources',
-        //     'behavior' => 'append',
-        //     'file' => 'stock_sneakers.csv'
-        // ],
+        6 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'configurable_products.csv'
+        ],
+        7 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'website_products.csv'
+        ],
 
     ];
 

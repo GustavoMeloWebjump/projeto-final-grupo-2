@@ -26,8 +26,4 @@ class CustomStateTest extends TestCase
             $this->assertEquals(false, $this->customState->validateAreaCode());
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c4ae6c60584bb894efef1bfb4f9e705a88bd1f34

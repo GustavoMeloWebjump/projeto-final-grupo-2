@@ -4,7 +4,12 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="petshoAddProduct" xsi:type="object">Webjump\Backend\Console\Command\AddProduct</item>
+                <item name="addProduct" xsi:type="object">Webjump\Backend\Console\Command\AddProduct</item>
+            </argument>
+        </arguments>
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="createRelation" xsi:type="object">Webjump\Backend\Console\Command\CreateRelation</item>
             </argument>
         </arguments>
     </type>

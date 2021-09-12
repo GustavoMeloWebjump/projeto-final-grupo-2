@@ -8,6 +8,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Webjump\Backend\Model\Product\AddProduct as ModelAddProduct;
 use Webjump\Backend\Model\Product\CreateRelation;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AddProduct extends Command
 {
 

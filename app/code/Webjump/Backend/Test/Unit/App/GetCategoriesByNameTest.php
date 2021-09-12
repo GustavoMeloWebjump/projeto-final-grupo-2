@@ -28,8 +28,14 @@ class GetCategoriesByNameTest extends TestCase
     public function setUp(): void
     {
         $this->categoryListMock = $this->getMockForAbstractClass(CategoryListInterface::class);
-        $this->searchCriteriaFactoryMock = $this->createMock(SearchCriteriaInterfaceFactory::class);
-        $this->filterGroupFactoryMock = $this->createMock(FilterGroupFactory::class);
+        $this->searchCriteriaFactoryMock = $this->getMockBuilder('Magento\Framework\Api\Search\SearchCriteriaInterfaceFactory')
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+        $this->filterGroupFactoryMock = $this->getMockBuilder('Magento\Framework\Api\Search\FilterGroupFactory')
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
         $this->filterFactoryMock = $this->createMock(FilterFactory::class);
         $this->getCategoriesByName = new GetCategoriesByName(
             $this->categoryListMock,

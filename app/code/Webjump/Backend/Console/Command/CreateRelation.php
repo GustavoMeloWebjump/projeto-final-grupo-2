@@ -8,6 +8,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Webjump\Backend\Model\Product\CreateRelation as ProductRelation;
 
+
+/**
+ * @codeCoverageIgnore
+ */
 class CreateRelation extends Command
 {
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Webjump\Backend\Test\Unit\Model\Product;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -104,7 +105,4 @@ class CreateRelationTest extends TestCase
         $this->createRelation->execute();
 
     }
-
-
-
 }

@@ -153,7 +153,7 @@ class CreateSneakersAttribute implements DataPatchInterface, PatchRevertableInte
                 'system' => false,
                 'visible' => true,
                 'is_html_allowed_on_front' => false,
-                'visible_on_front' => true
+                'visible_on_front' => true,
             ]
         );
 

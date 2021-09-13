@@ -11,8 +11,8 @@ P-RW-1,petshop_en_view_code,Petshop,simple,Whiskas Food	,whiskas-food
 P-RM-1,petshop_en_view_code,Petshop,simple,Matisse Food	,matisse-food
 P-AG-1,petshop_en_view_code,Petshop,simple,Scratcher for Cats,scratcher-for-cats
 P-CA4E-1,petshop_en_view_code,Petshop,simple,Scratcher House with 4 Stations	,scratcher-house-with-4-stations
-P-BCL-1,petshop_en_view_code,Petshop,simple,Dog toy,dog-toy
-P-BGT-1,petshop_en_view_code,Petshop,simple,Cat toy,cat-toy
+P-BCL-1,petshop_en_view_code,Petshop,simple,Dog Toy,dog-toy
+P-BGT-1,petshop_en_view_code,Petshop,simple,Cat Toy,cat-toy
 P-RPG-3,petshop_en_view_code,Petshop,simple,Naruto Cat Clothes,"naruto-cat-clothes
 "
 P-RPG-4,petshop_en_view_code,Petshop,simple,Cat Clothes,white-cat-clothes
@@ -23,3 +23,4 @@ P-RCB-1,petshop_en_view_code,Petshop,bundle,Dog Food Bundle,dog-food-bundle
 P-RPG-2,petshop_en_view_code,Petshop,configurable,Cat Clothes,cat-clothes
 P-KBCG-1,petshop_en_view_code,Petshop,grouped,Dog Toy Kit,dog-toy-kit
 P-BFMA-1,petshop_en_view_code,Petshop,simple,"Wooden Toy for Birds Ferplast ",wooden-toy-for-birds-ferplast
+P-BPC-1,petshop_en_view_code,Petshop,simple,Ball,ball

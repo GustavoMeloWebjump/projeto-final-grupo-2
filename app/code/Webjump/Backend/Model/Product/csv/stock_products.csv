@@ -30,10 +30,9 @@ default,P-BGT-1,1,20.0000
 default,P-NMMP-1,1,10000.0000
 default,P-EBCC-1,1,100000.0000
 default,F-MVPK-1,0,60.0000
-default,P-RPG-2,0,60.0000
-default,P-RPG-3,0,60.0000
-default,P-RPG-4,0,60.0000
-default,P-RPG-2,0,60.0000
+default,P-RPG-2,1,60.0000
+default,P-RPG-3,1,60.0000
+default,P-RPG-4,1,60.0000
 default,F-YIB-2,0,60.0000
 default,F-YIB-3,0,60.0000
 default,F-YIB-1,1,60.0000

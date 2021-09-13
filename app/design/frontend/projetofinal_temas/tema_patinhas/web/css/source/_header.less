@@ -61,12 +61,38 @@
     background:@preto;
 }
 
+.not-logged-in {
+    display: none;
+}
+
 .ui-widget-content{
     background-color: @azul !important;
 }
 
-@media screen and (min-width: 300px) {
-    /* estilos */
+.greet.welcome{
+    display: none;
+}
+
+.nav-sections .header.links a{
+    color: @branco !important;
+}
+
+.label.switcher-label span{
+    color: @branco !important;
+}
+
+.view-petshop_view_code span{
+    color: @branco !important;
+}
+
+.view-petshop_en_view_code a, .view-petshop_en_view_code a::after{
+    color: @branco !important;
+}
+
+@media screen and (max-width: 767px) {
+    .header.links{
+        background-color: @azul;
+    }
 }
 
 

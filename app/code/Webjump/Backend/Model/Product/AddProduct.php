@@ -25,32 +25,36 @@ class AddProduct
             'behavior' => 'add_update',
             'file' => 'patinhas_products.csv'
         ],
-        3 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'grouped_products.csv'
-        ],
-        4 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'bundle_products.csv'
-        ],
-        5 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'virtual_download_products.csv'
-        ],
-        6 => [
+        2 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'configurable_products.csv'
         ],
-        7 => [
+        3 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'virtual_download_products.csv'
+        ],
+        4 => [
+            'entity' => 'stock_sources',
+            'behavior' => 'append',
+            'file' => 'stock_products.csv'
+        ],
+        5 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'bundle_products.csv'
+        ],
+        6 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'grouped_products.csv'
+        ],
+        7=> [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'website_products.csv'
         ],
-
     ];
 
     /**

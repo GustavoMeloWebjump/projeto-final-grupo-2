@@ -61,33 +61,33 @@ class CreateRelationTest extends TestCase
         $iteration = count(CreateRelation::RELATION_DATA);
 
         $this->producLinkInterfaceFactoryMock
-            ->expects($this->exactly($iteration))
+            ->expects($this->exactly($iteration * 2))
             ->method('create')
             ->willReturn($this->productLinkInterfaceMock);
 
         $this->productLinkInterfaceMock
-            ->expects($this->exactly($iteration))
+            ->expects($this->exactly($iteration * 2))
             ->method('setSku')
             ->willReturnSelf();
 
         $this->productLinkInterfaceMock
-            ->expects($this->exactly($iteration))
+            ->expects($this->exactly($iteration * 2))
             ->method('setLinkedProductSku')
             ->willReturnSelf();
 
 
         $this->productLinkInterfaceMock
-            ->expects($this->exactly($iteration))
+            ->expects($this->exactly($iteration * 2))
             ->method('setLinkType')
             ->willReturnSelf();
 
         $this->productLinkInterfaceMock
-            ->expects($this->exactly($iteration))
+            ->expects($this->exactly($iteration * 2))
             ->method('setLinkedProductType')
             ->willReturnSelf();
 
         $this->productLinkInterfaceMock
-            ->expects($this->exactly($iteration))
+            ->expects($this->exactly($iteration * 2))
             ->method('setQty')
             ->with(1);
 
@@ -100,7 +100,8 @@ class CreateRelationTest extends TestCase
             ->expects($this->exactly($iteration))
             ->method('setProductLinks')
             ->with([
-                $this->productLinkInterfaceMock
+                $this->productLinkInterfaceMock,
+                $this->productLinkInterfaceMock,
             ])
             ->willReturnSelf();
 

@@ -11,34 +11,18 @@ class CreateRelation
     const RELATION_DATA = [
         0 => [
             'sku_grouped' => 'F-KTG-1',
-            'sku_product' => 'F-ANR-1',
+            'first_sku_product' => 'F-ANR-1',
+            'second_sku_product' => 'F-ANR-2',
             'link_type' => 'associated',
             'product_type' => 'simple'
         ],
         1 => [
-            'sku_grouped' => 'F-KTG-1',
-            'sku_product' => 'F-ANR-2',
+            'sku_grouped' => 'P-KBCG-1',
+            'first_sku_product' => 'P-BCL-1',
+            'second_sku_product' => 'P-BGT-1',
             'link_type' => 'associated',
             'product_type' => 'simple'
         ],
-        2 => [
-            'sku_grouped' => 'P-KBCG-1',
-            'sku_product' => 'P-BCL-1',
-            'link_type' => 'associated',
-            'product_type' => 'simple'
-        ],
-        3 => [
-            'sku_grouped' => 'P-KBCG-1',
-            'sku_product' => 'P-BGT-1',
-            'link_type' => 'associated',
-            'product_type' => 'simple'
-        ],
-        4 => [
-            'sku_grouped' => 'P-KBCG-1',
-            'sku_product' => 'P-BPC-1',
-            'link_type' => 'associated',
-            'product_type' => 'simple'
-        ]
     ];
 
     /**
@@ -78,23 +62,33 @@ class CreateRelation
         foreach(self::RELATION_DATA as $data) {
             $this->createRelation(
                 $data['sku_grouped'],
-                $data['sku_product'],
+                $data['first_sku_product'],
+                $data['second_sku_product'],
                 $data['link_type'],
                 $data['product_type']
             );
         }
     }
 
-    private function createRelation($sku_grouped, $sku_product, $link_type, $product_type)
+    private function createRelation($sku_grouped, $first_sku_product, $second_sku_product, $link_type, $product_type)
     {
 
-        $firtstProductLink = $this->productLink->create();
+        $firstProductLink = $this->productLink->create();
 
         // Pega a sku do grupo e faz uma relação
 
-        $firtstProductLink
+        $firstProductLink
             ->setSku($sku_grouped)
-            ->setLinkedProductSku($sku_product)
+            ->setLinkedProductSku($first_sku_product)
+            ->setLinkType($link_type)
+            ->setLinkedProductType($product_type)
+            ->setQty(1);
+
+        $secondProductLink = $this->productLink->create();
+
+        $secondProductLink
+            ->setSku($sku_grouped)
+            ->setLinkedProductSku($second_sku_product)
             ->setLinkType($link_type)
             ->setLinkedProductType($product_type)
             ->setQty(1);
@@ -103,7 +97,7 @@ class CreateRelation
         $gruped = $this->productRepository
             ->get($sku_grouped, true);
 
-        $gruped->setProductLinks([$firtstProductLink]);
+        $gruped->setProductLinks([$firstProductLink, $secondProductLink]);
 
         $this->productRepository->save($gruped);
 

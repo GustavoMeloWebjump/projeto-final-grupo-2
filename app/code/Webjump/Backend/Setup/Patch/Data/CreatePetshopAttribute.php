@@ -140,8 +140,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'used_in_product_listing' => true,
                 'system' => false,
-                'visible_on_front' => true,
-                'option' => ['values' => ['Branco', 'Preto']],
+                'visible_on_front' => true
             ]
         );
 

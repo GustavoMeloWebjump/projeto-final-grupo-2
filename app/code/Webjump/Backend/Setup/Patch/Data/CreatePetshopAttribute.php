@@ -141,6 +141,7 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
+                'option' => ['values' => ['Branco', 'Preto']],
             ]
         );
 

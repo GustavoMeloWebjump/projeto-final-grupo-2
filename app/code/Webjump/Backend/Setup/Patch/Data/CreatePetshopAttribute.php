@@ -18,6 +18,8 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
 
     const PETSHOP_SHAPE = 'petshop_shape';
 
+    const PETSHOP_COLOR = 'color';
+
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
@@ -102,30 +104,51 @@ class CreatePetshopAttribute implements DataPatchInterface, PatchRevertableInter
 
                 'attribute_set' => CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME,
                 'type' => 'varchar',
-				'label' => 'Porte (patinhas)',
+                'label' => 'Porte (patinhas)',
                 'user_defined' => true,
-				'input' => 'select',
-				'required' => false,
+                'input' => 'select',
+                'required' => false,
                 'sort_order' => 35,
-				'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
-				'filterable' => false,
-				'comparable' => false,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+                'filterable' => false,
+                'comparable' => false,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filtrable_in_grid' => true,
                 'used_in_product_listing' => true,
                 'system' => false,
-				'visible' => true,
+                'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true
             ]
         );
-        $attributeSetId = $eavSetup->getAttributeSetId(Product::ENTITY, CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME);
-        $attributeSet = $this->attributeSetFactory->create();
-        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-        $sortOrder = 50;
+
+        $sortOrder = 52;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::PETSHOP_SHAPE, $sortOrder);
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::PETSHOP_COLOR,
+            [
+                'attribute_set' => CreatePetshopProductAttribute::PETSHOP_ATTRIBUTE_NAME,
+                'user_defined' => true,
+                'type' => 'text',
+                'label' => 'Cor',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'used_in_product_listing' => true,
+                'system' => false,
+                'visible_on_front' => true
+            ]
+        );
+
+        $sortOrder = 52;
+        $this->productAttributeManagement
+            ->assign($attributeSetId, $attributeGroupId, self::PETSHOP_COLOR, $sortOrder);
+
+
     }
 
 

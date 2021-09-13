@@ -1,36 +1,60 @@
 <?php
 namespace Webjump\Backend\Model\Product;
 
+use Magento\Catalog\Api\Data\ProductLinkInterfaceFactory;
 use Magento\ImportExport\Model\Import;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\ImportExport\Model\ImportFactory;
-use Magento\Framework\App\State;
 use Magento\Framework\Filesystem\Io\File;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Webjump\Backend\App\CustomState;
 
 class AddProduct
 {
-
-    const CSV_FILE = "/csv/products.csv";
 
     const IMPORT_DATA = [
         0 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => '/csv/sneakers_products.csv'
+            'file' => 'fanon_products.csv'
         ],
         1 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => '/csv/website-products.csv'
+            'file' => 'patinhas_products.csv'
         ],
         2 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => '/csv/petshop-products.csv'
-        ]
+            'file' => 'configurable_products.csv'
+        ],
+        3 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'virtual_download_products.csv'
+        ],
+        4 => [
+            'entity' => 'stock_sources',
+            'behavior' => 'append',
+            'file' => 'stock_products.csv'
+        ],
+        5 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'bundle_products.csv'
+        ],
+        6 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'grouped_products.csv'
+        ],
+        7=> [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'website_products.csv'
+        ],
     ];
 
     /**
@@ -39,15 +63,9 @@ class AddProduct
     private $csv;
 
     /**
-     * @var State
-     */
-    private $state;
-
-    /**
      * @var ImportFactory
      */
     private $importFactory;
-
 
     /**
      * @var File
@@ -59,36 +77,38 @@ class AddProduct
      */
     private $readFile;
 
+    /** @var ConsoleOutput */
+    private $output;
+
     public function __construct(
-     CsvFactory $csv,
-     ImportFactory $importFactory,
-     File $file,
-     State $state,
-     ReadFactory $readFile
+        CsvFactory $csv,
+        ImportFactory $importFactory,
+        File $file,
+        ReadFactory $readFile,
+        ConsoleOutput $output
     )
     {
         $this->csv = $csv;
         $this->importFactory = $importFactory;
         $this->file = $file;
         $this->readFile = $readFile;
-        $this->state = $state;
+        $this->output = $output;
     }
 
 
-    public function execute(OutputInterface $output)
+    public function execute()
     {
-        foreach (self::IMPORT_DATA  as $data) {
+        foreach (self::IMPORT_DATA as $data) {
             $this->importData(
                 $data['file'],
                 $data['entity'],
-                $data['behavior']
+                $data['behavior'],
             );
 
-            $output->writeln("Import " . __DIR__ . $data['file']);
         }
     }
 
-    public function importData($filename, $entity, $behavior)
+    private function importData($filename, $entity, $behavior)
     {
         $importSetup = $this->importFactory->create();
 
@@ -101,7 +121,10 @@ class AddProduct
         $validation = $importSetup->validateSource($this->getData($filename));
 
         if($validation) {
-        $result = $importSetup->importSource();
+            $result = $importSetup->importSource();
+
+            $this->output->writeln("Importado {$filename} com sucesso!");
+
             if ($result) {
                 $importSetup->invalidateIndex();
             }
@@ -109,17 +132,15 @@ class AddProduct
 
     }
 
-    private function getData(string $filename) {
+    private function getData($filename) {
 
-        $path = __DIR__ . $filename;
-
-        $import_file = $this->file->getPathInfo($path);
+        $import_file = $this->file->getPathInfo(__DIR__ . '/csv/' . $filename);
 
 
-        $readSetup = $this->readFile->create($import_file["dirname"]);
+        $readSetup = $this->readFile->create($import_file['dirname']);
 
         $csvFile = $this->csv->create([
-            'file' => $import_file["basename"],
+            'file' => $import_file['basename'],
             'directory' => $readSetup,
         ]);
 

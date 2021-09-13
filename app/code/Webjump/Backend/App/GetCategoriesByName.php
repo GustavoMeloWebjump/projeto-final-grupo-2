@@ -8,7 +8,7 @@ use Magento\Framework\Api\Search\FilterGroupFactory;
 use Magento\Framework\Api\FilterFactory;
 
 /**
- * @method getCategory(string $categoryName)
+ * @method getCategoryId(string $categoryName)
  */
 class GetCategoriesByName
 {
@@ -43,7 +43,8 @@ class GetCategoriesByName
 
     /**
      * Use this method to get a category id by it's name (don't work well with duplicated names)
-     */
+     * @return int
+     */ 
     public function getCategoryId(string $categoryName)
     {
         $nameFilter = $this->filterFactory->create()

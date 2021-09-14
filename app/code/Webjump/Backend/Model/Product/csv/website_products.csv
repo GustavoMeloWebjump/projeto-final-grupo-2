@@ -1,26 +1,26 @@
-sku,store_view_code,attribute_set_code,product_type,name,url_key
-P-SAP-1,petshop_en_view_code,Petshop,simple,Anti-Flea Shampoo,anti-flea-shampoo
-P-CBD-1,petshop_en_view_code,Petshop,simple,Conditioner	,conditioner
-P-RC-1,petshop_en_view_code,Petshop,simple,Dog Food 20kg,dog-food
-P-CPC-1,petshop_en_view_code,Petshop,simple,Dog Leash	,dog-leash
-P-REN-1,petshop_en_view_code,Petshop,simple,Escopet Natural Food	,escopet-natural-food
-P-SCD-1,petshop_en_view_code,Petshop,simple,Soft Care Dental,soft-care-dental
-P-AM-1,petshop_en_view_code,Petshop,simple,Mineralized Sand	,mineralized-sand
-P-VP-1,petshop_en_view_code,Petshop,simple,Bird Cage	,bird-cage
-P-RW-1,petshop_en_view_code,Petshop,simple,Whiskas Food	,whiskas-food
-P-RM-1,petshop_en_view_code,Petshop,simple,Matisse Food	,matisse-food
-P-AG-1,petshop_en_view_code,Petshop,simple,Scratcher for Cats,scratcher-for-cats
-P-CA4E-1,petshop_en_view_code,Petshop,simple,Scratcher House with 4 Stations	,scratcher-house-with-4-stations
-P-BCL-1,petshop_en_view_code,Petshop,simple,Dog Toy,dog-toy
-P-BGT-1,petshop_en_view_code,Petshop,simple,Cat Toy,cat-toy
+sku,store_view_code,attribute_set_code,product_type,name,url_key,meta_title
+P-SAP-1,petshop_en_view_code,Petshop,simple,Anti-Flea Shampoo,anti-flea-shampoo,Anti-Flea Shampoo
+P-CBD-1,petshop_en_view_code,Petshop,simple,Conditioner	,conditioner,Conditioner
+P-RC-1,petshop_en_view_code,Petshop,simple,Dog Food 20kg,dog-food,Dog Food 20kg
+P-CPC-1,petshop_en_view_code,Petshop,simple,Dog Leash	,dog-leash,Dog Leash
+P-REN-1,petshop_en_view_code,Petshop,simple,Escopet Natural Food	,escopet-natural-food,Escopet Natural Food
+P-SCD-1,petshop_en_view_code,Petshop,simple,Soft Care Dental,soft-care-dental,Soft Care Dental
+P-AM-1,petshop_en_view_code,Petshop,simple,Mineralized Sand	,mineralized-sand,Mineralized Sand
+P-VP-1,petshop_en_view_code,Petshop,simple,Bird Cage	,bird-cage,Bird Cage
+P-RW-1,petshop_en_view_code,Petshop,simple,Whiskas Food	,whiskas-food,Whiskas Food
+P-RM-1,petshop_en_view_code,Petshop,simple,Matisse Food	,matisse-food,Matisse Food
+P-AG-1,petshop_en_view_code,Petshop,simple,Scratcher for Cats,scratcher-for-cats,Scratcher for Cats
+P-CA4E-1,petshop_en_view_code,Petshop,simple,Scratcher House with 4 Stations	,scratcher-house-with-4-stations,Scratcher House with 4 Stations
+P-BCL-1,petshop_en_view_code,Petshop,simple,Dog Toy,dog-toy,Dog Toy
+P-BGT-1,petshop_en_view_code,Petshop,simple,Cat Toy,cat-toy,Cat Toy
 P-RPG-3,petshop_en_view_code,Petshop,simple,Naruto Cat Clothes,"naruto-cat-clothes
-"
-P-RPG-4,petshop_en_view_code,Petshop,simple,Cat Clothes,white-cat-clothes
+",Naruto Cat Clothes
+P-RPG-4,petshop_en_view_code,Petshop,simple,Cat Clothes,white-cat-clothes,Cat Clothes
 P-NMMP-1,petshop_en_view_code,Petshop,virtual,Magical Nature,"magical-nature
-"
-P-EBCC-1,petshop_en_view_code,Petshop,downloadable,E-book Dog Breeding,dog-breeding
-P-RCB-1,petshop_en_view_code,Petshop,bundle,Dog Food Bundle,dog-food-bundle
-P-RPG-2,petshop_en_view_code,Petshop,configurable,Cat Clothes,cat-clothes
-P-KBCG-1,petshop_en_view_code,Petshop,grouped,Dog Toy Kit,dog-toy-kit
-P-BFMA-1,petshop_en_view_code,Petshop,simple,"Wooden Toy for Birds Ferplast ",wooden-toy-for-birds-ferplast
-P-BPC-1,petshop_en_view_code,Petshop,simple,Ball,ball
+",Magical Nature
+P-EBCC-1,petshop_en_view_code,Petshop,downloadable,E-book Dog Breeding,dog-breeding,E-book Dog Breeding
+P-RCB-1,petshop_en_view_code,Petshop,bundle,Dog Food Bundle,dog-food-bundle,Dog Food Bundle
+P-RPG-2,petshop_en_view_code,Petshop,configurable,Cat Clothes,cat-clothes,Cat Clothes
+P-KBCG-1,petshop_en_view_code,Petshop,grouped,Dog Toy Kit,dog-toy-kit,Dog Toy Kit
+P-BFMA-1,petshop_en_view_code,Petshop,simple,"Wooden Toy for Birds Ferplast ",wooden-toy-for-birds-ferplast,Wooden Toy for Birds Ferplast
+P-BPC-1,petshop_en_view_code,Petshop,simple,Ball,ball,Ball

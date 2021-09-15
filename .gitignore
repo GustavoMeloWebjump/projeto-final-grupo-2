@@ -72,3 +72,4 @@ atlassian*
 !/generated/.htaccess
 .DS_Store
 /cover/*
+phpunit.xml

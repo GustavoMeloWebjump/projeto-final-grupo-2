@@ -40,9 +40,17 @@
 <referenceBlock name="header.panel" remove="false"/>
 
 <referenceContainer name="main.content">
-       <block class="Magento\Cms\Block\Block" name="botao_whatsapp">
+       <block class="Magento\Cms\Block\Block" name="botao_patinhas">
            <arguments>
-                <argument name="block_id" xsi:type="string">botao_whatsapp</argument>
+                <argument name="block_id" xsi:type="string">botao_patinhas</argument>
+           </arguments>
+       </block>
+    </referenceContainer>
+
+    <referenceContainer name="main.content">
+       <block class="Magento\Cms\Block\Block" name="botao_patinhas_en">
+           <arguments>
+                <argument name="block_id" xsi:type="string">botao_patinhas_en</argument>
            </arguments>
        </block>
     </referenceContainer>

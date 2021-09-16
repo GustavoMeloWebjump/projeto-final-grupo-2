@@ -1,9 +1,5 @@
-Projeto final do grupo 2 de estagiários da WebJump - 2021.
+# Instalando produtos
 
-Você encontrará, dentro das pastas do projeto, alguns outros README.md com instruções específicas.
-
-Estão localizados em:
-
--app/etc - Configurando multistore
--app/code/Webjump/Backend - Instalando categorias
--apṕ/code/Webjump/SetupContents - Criação de páginas e blocos
+Para instalar os produtos na base de dados, é necessário executar o comando `bin/magento product:add`.
+As imagens serão baixadas da internet, portanto a execução pode demorar consideravelmente.
+Após isso, execute o comando `bin/magento product:relation` para construir as relações dos produtos agrupados. 

@@ -9,7 +9,12 @@ use Magento\SalesRule\Model\ResourceModel\Rule as RuleResourceModelSale;
 use Magento\SalesRule\Model\Rule\Condition\CombineFactory;
 use Magento\SalesRule\Model\Rule\Condition\AddressFactory;
 use Magento\SalesRule\Model\Rule\Condition\Address;
+<<<<<<< HEAD
 use Magento\CatalogRule\Model\Rule\Condition\ProductFactory;
+=======
+use Magento\Store\Api\WebsiteRepositoryInterface;
+use Webjump\Backend\App\CustomState;
+>>>>>>> release/v1.0
 
 class InstallRuleSales implements DataPatchInterface
 {
@@ -18,19 +23,39 @@ class InstallRuleSales implements DataPatchInterface
     private RuleResourceModelSale $ruleResourceModelSale;
     private CombineFactory $combineFactory;
     private AddressFactory $addressFactory;
+<<<<<<< HEAD
+=======
+    private WebsiteRepositoryInterface $websiteRepository;
+    private CustomState $customState;
+>>>>>>> release/v1.0
 
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         RuleFactory $ruleFactory,
         RuleResourceModelSale $ruleResourceModelSale,
         CombineFactory $combineFactory,
+<<<<<<< HEAD
         AddressFactory $addressFactory
+=======
+        AddressFactory $addressFactory,
+        WebsiteRepositoryInterface $websiteRepository,
+        CustomState $customState
+>>>>>>> release/v1.0
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
         $this->ruleResourceModelSale = $ruleResourceModelSale;
         $this->combineFactory = $combineFactory;
         $this->addressFactory = $addressFactory;
+<<<<<<< HEAD
+=======
+        $this->websiteRepository = $websiteRepository;
+        $this->customState = $customState;
+
+        if (!$this->customState->validateAreaCode()) {
+            $this->customState->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        }
+>>>>>>> release/v1.0
     }
     /**
      *  {@inheritDoc}

@@ -45,6 +45,7 @@ atlassian*
 !/pub/media/downloadable/.htaccess
 /pub/media/favicon/*
 /pub/media/import/*
+!/pub/media/import/downloadable
 !/pub/media/import/.htaccess
 /pub/media/logo/*
 /pub/media/custom_options/*
@@ -69,3 +70,5 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
+/cover/*
+phpunit.xml

@@ -1,0 +1,126 @@
+.header{
+    font-family: @mont-bold; 
+    background: @amarelo;
+}
+
+.block-search input {
+    border-radius: 50px;
+    border-color: @azul;
+    border: 1px solid @azul;
+}
+
+.block-search input:hover {
+    border: 3px solid @azul;
+    transform: scale(1.0); 
+}
+
+.minicart-wrapper .action.showcart:before {
+    color: @azul;
+}
+
+
+.page-header{
+    background-color: @amarelo;
+    .panel.wrapper{
+        background-color: lighten(@amarelo, 5);
+        border-color: @amarelo;
+    }
+}
+
+.header.panel {
+    height: 25px;
+    background: @amarelo;
+}
+
+.section-item-content {
+    background-color: @azul;
+
+    nav {
+        background-color: @azul;
+
+        ul {
+            li {
+                a {
+                    color: @branco !important;
+                }
+
+            }
+        }
+    }
+}
+
+.panel{
+    background: @azul;
+}
+
+.panel.wrapper{
+    background-color: @amarelo !important;
+}
+
+.catalog.topnav {
+    background:@preto;
+}
+
+.not-logged-in {
+    display: none;
+}
+
+.ui-widget-content{
+    background-color: @azul;
+}
+
+.greet.welcome{
+    display: none;
+}
+
+.nav-sections .header.links a{
+    color: @branco !important;
+}
+
+.label.switcher-label span{
+    color: @branco !important;
+}
+
+.view-petshop_view_code span{
+    color: @branco !important;
+}
+
+.block.block-minicart.ui-dialog-content.ui-widget-content{
+    background-color: @branco;
+}
+.minicart-wrapper .action.showcart .counter.qty{
+        background: @azul;
+}
+
+@media screen and (min-width: 768px) {
+    
+    .navigation .level0.active>.level-top, .navigation .level0.has-active>.level-top{
+        border-color: @amarelo;
+    }
+    .print,
+    .navigation, 
+    .level0, 
+    .submenu, 
+    .active>a{
+        border-color: @amarelo !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header.links
+    {
+        background-color: @azul;
+    }
+    .view-petshop_en_view_code a, .view-petshop_en_view_code a::after
+    {
+    color: @branco !important;
+    }
+    .view-petshop_en_view_code span{
+        color: @branco;
+    }
+    .switcher-option a{
+        color: @branco;
+    }
+}
+
+

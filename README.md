@@ -1,4 +1,4 @@
-# h1 Instalando produtos
+# Instalando produtos
 
 Para instalar os produtos na base de dados, é necessário executar o comando `bin/magento product:add`.
 As imagens serão baixadas da internet, portanto a execução pode demorar consideravelmente.

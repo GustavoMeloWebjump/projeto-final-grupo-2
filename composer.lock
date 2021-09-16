@@ -334,16 +334,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.193.3",
+            "version": "3.193.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "eec653425d08850d6becfd1653c9443c8b003991"
+                "reference": "758c2225c484088b2118c4e3ff5b37ccfea3948f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/eec653425d08850d6becfd1653c9443c8b003991",
-                "reference": "eec653425d08850d6becfd1653c9443c8b003991",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/758c2225c484088b2118c4e3ff5b37ccfea3948f",
+                "reference": "758c2225c484088b2118c4e3ff5b37ccfea3948f",
                 "shasum": ""
             },
             "require": {
@@ -419,9 +419,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.193.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.193.4"
             },
-            "time": "2021-09-13T18:16:41+00:00"
+            "time": "2021-09-14T18:19:00+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -4152,46 +4152,43 @@
         },
         {
             "name": "laminas/laminas-servicemanager",
-            "version": "3.7.0",
+            "version": "3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-servicemanager.git",
-                "reference": "2b0aee477fdbd3191af7c302b93dbc5fda0626f4"
+                "reference": "499a6ea14d9f7465df331112cade42ad1241f154"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-servicemanager/zipball/2b0aee477fdbd3191af7c302b93dbc5fda0626f4",
-                "reference": "2b0aee477fdbd3191af7c302b93dbc5fda0626f4",
+                "url": "https://api.github.com/repos/laminas/laminas-servicemanager/zipball/499a6ea14d9f7465df331112cade42ad1241f154",
+                "reference": "499a6ea14d9f7465df331112cade42ad1241f154",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "^1.2",
                 "laminas/laminas-stdlib": "^3.2.1",
-                "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^7.3 || ~8.0.0",
+                "php": "~7.4.0 || ~8.0.0 || ~8.1.0",
                 "psr/container": "^1.0"
             },
             "conflict": {
                 "laminas/laminas-code": "<3.3.1",
-                "zendframework/zend-code": "<3.3.1"
+                "zendframework/zend-code": "<3.3.1",
+                "zendframework/zend-servicemanager": "*"
             },
             "provide": {
                 "container-interop/container-interop-implementation": "^1.2",
                 "psr/container-implementation": "^1.0"
             },
-            "replace": {
-                "zendframework/zend-servicemanager": "^3.4.0"
-            },
             "require-dev": {
                 "composer/package-versions-deprecated": "^1.0",
-                "laminas/laminas-coding-standard": "~2.2.0",
+                "laminas/laminas-coding-standard": "~2.2.1",
                 "laminas/laminas-container-config-test": "^0.3",
                 "laminas/laminas-dependency-plugin": "^2.1.2",
-                "mikey179/vfsstream": "^1.6.8",
-                "ocramius/proxy-manager": "^2.2.3",
-                "phpbench/phpbench": "^1.0.4",
+                "mikey179/vfsstream": "^1.6.10@alpha",
+                "ocramius/proxy-manager": "^2.11",
+                "phpbench/phpbench": "^1.1",
                 "phpspec/prophecy-phpunit": "^2.0",
-                "phpunit/phpunit": "^9.4",
+                "phpunit/phpunit": "^9.5.5",
                 "psalm/plugin-phpunit": "^0.16.1",
                 "vimeo/psalm": "^4.8"
             },
@@ -4237,7 +4234,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-07-24T19:33:07+00:00"
+            "time": "2021-09-14T03:43:26+00:00"
         },
         {
             "name": "laminas/laminas-session",
@@ -18713,6 +18710,8 @@
             "time": "2021-05-03T11:20:27+00:00"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "rafaelstz/traducao_magento2_pt_br",
             "version": "dev-master",
             "source": {
@@ -18766,6 +18765,7 @@
             "time": "2021-08-23T13:21:12+00:00"
         },
         {
+>>>>>>> release/v1.0
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -22880,16 +22880,16 @@
         },
         {
             "name": "allure-framework/allure-phpunit",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/allure-framework/allure-phpunit.git",
-                "reference": "56c65ae482c40411b74a65f97629d16b0e7662ee"
+                "reference": "5584e7e4d7a232bbf7dd92d0cabf143147f72e9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/allure-framework/allure-phpunit/zipball/56c65ae482c40411b74a65f97629d16b0e7662ee",
-                "reference": "56c65ae482c40411b74a65f97629d16b0e7662ee",
+                "url": "https://api.github.com/repos/allure-framework/allure-phpunit/zipball/5584e7e4d7a232bbf7dd92d0cabf143147f72e9e",
+                "reference": "5584e7e4d7a232bbf7dd92d0cabf143147f72e9e",
                 "shasum": ""
             },
             "require": {
@@ -22934,7 +22934,7 @@
                 "issues": "https://github.com/allure-framework/allure-phpunit/issues",
                 "source": "https://github.com/allure-framework/allure-phpunit"
             },
-            "time": "2021-03-26T15:43:03+00:00"
+            "time": "2021-09-14T10:06:07+00:00"
         },
         {
             "name": "behat/gherkin",
@@ -24510,58 +24510,6 @@
                 "source": "https://central.hoa-project.net/Resource/Library/Ustring"
             },
             "time": "2017-01-16T07:08:25+00:00"
-        },
-        {
-            "name": "honl/magento2-templatehints",
-            "version": "0.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ho-nl/magento2-Ho_Templatehints.git",
-                "reference": "c66ab94c4282acd9e3ae93f52da85d64a86c3f73"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ho-nl/magento2-Ho_Templatehints/zipball/c66ab94c4282acd9e3ae93f52da85d64a86c3f73",
-                "reference": "c66ab94c4282acd9e3ae93f52da85d64a86c3f73",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~7.1"
-            },
-            "replace": {
-                "ho-nl/magento2-templatehints": "self.version"
-            },
-            "type": "magento2-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Ho\\Templatehints\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Hachmang - H&O",
-                    "email": "paul@h-o.nl"
-                }
-            ],
-            "description": "H&O Magento 2 Advanced Template Hints module",
-            "homepage": "https://github.com/ho-nl/magento2-Ho_Templatehints",
-            "support": {
-                "issues": "https://github.com/ho-nl/magento2-Ho_Templatehints/issues",
-                "source": "https://github.com/ho-nl/magento2-Ho_Templatehints/tree/master"
-            },
-            "time": "2020-04-17T12:48:43+00:00"
         },
         {
             "name": "jms/metadata",
@@ -27810,9 +27758,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "rafaelstz/traducao_magento2_pt_br": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

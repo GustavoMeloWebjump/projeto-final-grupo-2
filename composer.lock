@@ -18710,8 +18710,6 @@
             "time": "2021-05-03T11:20:27+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "rafaelstz/traducao_magento2_pt_br",
             "version": "dev-master",
             "source": {
@@ -18765,7 +18763,6 @@
             "time": "2021-08-23T13:21:12+00:00"
         },
         {
->>>>>>> release/v1.0
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
